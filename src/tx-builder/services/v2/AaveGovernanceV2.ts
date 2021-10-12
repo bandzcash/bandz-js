@@ -111,9 +111,9 @@ const parseProposal = async (rawProposal: ProposalRPC): Promise<Proposal> => {
 export default class AaveGovernanceV2Service
   extends BaseService<IAaveGovernanceV2>
   implements AaveGovernanceV2Interface {
-  readonly aaveGovernanceV2Address: string;
+  readonly bandzGovernanceV2Address: string;
 
-  readonly aaveGovernanceV2HelperAddress: string;
+  readonly bandzGovernanceV2HelperAddress: string;
 
   readonly executors: tEthereumAddress[] = [];
 
@@ -127,17 +127,17 @@ export default class AaveGovernanceV2Service
     this.governanceConfig = governanceConfig;
 
     const {
-      AAVE_GOVERNANCE_V2,
-      AAVE_GOVERNANCE_V2_HELPER,
-      AAVE_GOVERNANCE_V2_EXECUTOR_SHORT,
-      AAVE_GOVERNANCE_V2_EXECUTOR_LONG,
+      BANDZ_GOVERNANCE_V2,
+      BANDZ_GOVERNANCE_V2_HELPER,
+      BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT,
+      BANDZ_GOVERNANCE_V2_EXECUTOR_LONG,
     } = this.governanceConfig || {};
 
-    this.aaveGovernanceV2Address = AAVE_GOVERNANCE_V2 || '';
-    this.aaveGovernanceV2HelperAddress = AAVE_GOVERNANCE_V2_HELPER || '';
+    this.bandzGovernanceV2Address = BANDZ_GOVERNANCE_V2 || '';
+    this.bandzGovernanceV2HelperAddress = BANDZ_GOVERNANCE_V2_HELPER || '';
     this.executors[ExecutorType.Short] =
-      AAVE_GOVERNANCE_V2_EXECUTOR_SHORT || '';
-    this.executors[ExecutorType.Long] = AAVE_GOVERNANCE_V2_EXECUTOR_LONG || '';
+    BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT || '';
+    this.executors[ExecutorType.Long] = BANDZ_GOVERNANCE_V2_EXECUTOR_LONG || '';
   }
 
   @GovValidator
@@ -157,7 +157,7 @@ export default class AaveGovernanceV2Service
     const txs: EthereumTransactionTypeExtended[] = [];
 
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -190,7 +190,7 @@ export default class AaveGovernanceV2Service
   ): Promise<EthereumTransactionTypeExtended[]> {
     const txs: EthereumTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -214,7 +214,7 @@ export default class AaveGovernanceV2Service
   ): Promise<EthereumTransactionTypeExtended[]> {
     const txs: EthereumTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -238,7 +238,7 @@ export default class AaveGovernanceV2Service
   ): Promise<EthereumTransactionTypeExtended[]> {
     const txs: EthereumTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -262,7 +262,7 @@ export default class AaveGovernanceV2Service
   ): Promise<EthereumTransactionTypeExtended[]> {
     const txs: EthereumTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -300,7 +300,7 @@ export default class AaveGovernanceV2Service
       domain: {
         name: 'Aave Governance v2',
         chainId: ChainId[this.config.network],
-        verifyingContract: this.aaveGovernanceV2Address,
+        verifyingContract: this.bandzGovernanceV2Address,
       },
       message: {
         support,
@@ -319,7 +319,7 @@ export default class AaveGovernanceV2Service
   ): Promise<EthereumTransactionTypeExtended[]> {
     const txs: EthereumTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     const sig: Signature = utils.splitSignature(signature);
@@ -351,14 +351,14 @@ export default class AaveGovernanceV2Service
   }: GovGetProposalsType): Promise<Proposal[]> {
     const { provider }: Configuration = this.config;
     const helper: IGovernanceV2Helper = IGovernanceV2Helper__factory.connect(
-      this.aaveGovernanceV2HelperAddress,
+      this.bandzGovernanceV2HelperAddress,
       provider
     );
 
     const result = await helper.getProposals(
       skip.toString(),
       limit.toString(),
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     const proposals: Promise<Proposal[]> = Promise.all(
@@ -377,13 +377,13 @@ export default class AaveGovernanceV2Service
   }: GovGetProposalType): Promise<Proposal> {
     const { provider }: Configuration = this.config;
     const helper: IGovernanceV2Helper = IGovernanceV2Helper__factory.connect(
-      this.aaveGovernanceV2HelperAddress,
+      this.bandzGovernanceV2HelperAddress,
       provider
     );
 
     const proposal = await helper.getProposal(
       proposalId,
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
 
     return parseProposal(proposal);
@@ -465,7 +465,7 @@ export default class AaveGovernanceV2Service
   public async getTokensPower({ user, tokens }: GovGetPower): Promise<Power[]> {
     const { provider }: Configuration = this.config;
     const helper: IGovernanceV2Helper = IGovernanceV2Helper__factory.connect(
-      this.aaveGovernanceV2HelperAddress,
+      this.bandzGovernanceV2HelperAddress,
       provider
     );
     const power = helper.getTokensPower(user, tokens);
@@ -478,7 +478,7 @@ export default class AaveGovernanceV2Service
     user,
   }: GovGetVoteOnProposal): Promise<Vote> {
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
-      this.aaveGovernanceV2Address
+      this.bandzGovernanceV2Address
     );
     return govContract.getVoteOnProposal(proposalId, user) as Promise<Vote>;
   }

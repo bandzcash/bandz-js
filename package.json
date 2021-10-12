@@ -1,45 +1,46 @@
 {
   "version": "4.1.0",
   "license": "MIT",
-  "name": "@aave/protocol-js",
-  "description": "Aave protocol data aggregation tool",
+  "name": "@bandz/protocol-js",
+  "description": "Bandz protocol data aggregation tool",
   "keywords": [
+    "Bandz",
     "Aave",
     "protocol",
     "lending",
     "defi"
   ],
   "sideEffects": false,
-  "author": "Aave <tech@aave.com>",
+  "author": "Bandz <tech@bandz.cash>",
   "contributors": [
     {
       "name": "Andrey Kozlov",
-      "email": "andrey@aave.com"
+      "email": "andrey@bandz.cash"
     },
     {
       "name": "Ernesto Boado",
-      "email": "ernesto@aave.com"
+      "email": "ernesto@bandz.cash"
     },
     {
       "name": "Emilio Frangella",
-      "email": "emilio@aave.com"
+      "email": "emilio@bandz.cash"
     },
     {
       "name": "Pol Sendra",
-      "email": "pol@aave.com"
+      "email": "pol@bandz.cash"
     },
     {
       "name": "Lukas Strassel",
-      "email": "lukas@aave.com"
+      "email": "lukas@bandz.cash"
     },
     {
       "name": "Daniel Martin",
-      "email": "daniel@aave.com"
+      "email": "daniel@bandz.cash"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aave/aave-js.git"
+    "url": "git+https://github.com/bandzcash/bandz-js.git"
   },
   "module": "dist/protocol-js.esm.js",
   "main": "dist/index.js",

@@ -37,7 +37,7 @@ export default class LTAMigratorService
     this.erc20Service = erc20Service;
     this.migratorConfig = migratorConfig;
 
-    this.migratorAddress = this.migratorConfig?.LEND_TO_AAVE_MIGRATOR || '';
+    this.migratorAddress = this.migratorConfig?.LEND_TO_BANDZ_MIGRATOR || '';
   }
 
   @LTAMigratorValidator
@@ -77,7 +77,7 @@ export default class LTAMigratorService
     });
 
     txs.push({
-      txType: eEthereumTxType.MIGRATION_LEND_AAVE,
+      txType: eEthereumTxType.MIGRATION_LEND_BANDZ,
       tx: txCallback,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });

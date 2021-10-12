@@ -1,8 +1,8 @@
-# AAVE-JS
+# BANDZ-JS
 
-AAVE is a decentralized non-custodial liquidity market protocol where users can participate as depositors or borrowers. The AAVE Protocol is a set of open source smart contracts which facilitate the lending and borrowing of user funds. These contracts, and all user transactions/balances are stored on a public ledger called a blockchain, making them accessible to anyone.
+BANDZ is a decentralized non-custodial liquidity market protocol where users can participate as depositors or borrowers. The BANDZ Protocol is a set of open source smart contracts which facilitate the lending and borrowing of user funds. These contracts, and all user transactions/balances are stored on a public ledger called a blockchain, making them accessible to anyone.
 
-The aave-js package gives developers access to methods for formatting data and executing transactions on the AAVE protocol.
+The bandz-js package gives developers access to methods for formatting data and executing transactions on the BANDZ protocol.
 
 1. [Quick Start](#quick-start)
 2. [Data Formatting Methods](#data-formatting-methods)
@@ -53,24 +53,24 @@ npm install --save ethers
 ## Installing
 
 ```bash
-npm install --save @aave/protocol-js
+npm install --save @bandz/protocol-js
 ```
 
 # Data Formatting Methods
 
-AAVE aggregates on-chain protocol data into a variety of different subgraphs on TheGraph which can be queried directly using the playground (links below) and integrated into applications directly via TheGraph API. 
+BANDZ aggregates on-chain protocol data into a variety of different subgraphs on TheGraph which can be queried directly using the playground (links below) and integrated into applications directly via TheGraph API. 
 
-The aave-js data formatting methods are a layer beyond graphql which wraps protocol data into more usable formats. Each method will require inputs from AAVE subgraph queries, links to these queries in the source code are provided for each method below.
+The bandz-js data formatting methods are a layer beyond graphql which wraps protocol data into more usable formats. Each method will require inputs from BANDZ subgraph queries, links to these queries in the source code are provided for each method below.
 
-Check out this [getting started](https://docs.aave.com/developers/getting-started/using-graphql) guide to get your application integrated with the AAVE subgraphs
+Check out this [getting started](https://docs.bandz.cash/developers/getting-started/using-graphql) guide to get your application integrated with the BANDZ subgraphs
 
 - V1 GraphQL:
-   - Playground: https://thegraph.com/explorer/subgraph/aave/protocol-multy-raw
-   - API: https://api.thegraph.com/subgraphs/name/aave/protocol-multy-raw
+   - Playground: https://thegraph.com/explorer/subgraph/bandz/protocol-multy-raw
+   - API: https://api.thegraph.com/subgraphs/name/bandz/protocol-multy-raw
 
 - V2 GraphQL (V2 Market and AMM Market)
-	- Playground: https://thegraph.com/explorer/subgraph/aave/protocol-v2
-	- API: https://api.thegraph.com/subgraphs/name/aave/protocol-v2
+	- Playground: https://thegraph.com/explorer/subgraph/bandz/protocol-v2
+	- API: https://api.thegraph.com/subgraphs/name/bandz/protocol-v2
 
 The V2 Subgraph contains data for both the V2 and AMM markets. The market which a reserve belongs to can be identified with the pool parameter (market address). The pool id for available markets are below:
 
@@ -80,7 +80,7 @@ The V2 Subgraph contains data for both the V2 and AMM markets. The market which 
 ## Sample Usage
 
 ```js
-import { v1, v2 } from '@aave/protocol-js';
+import { v1, v2 } from '@bandz/protocol-js';
 
 // Fetch poolReservesData from GQL Subscription
 // Fetch rawUserReserves from GQL Subscription
@@ -96,7 +96,7 @@ let userSummary = v2.formatUserSummaryData(poolReservesData, rawUserReserves, us
 
 ### formatUserSummaryData
 
-Returns formatted summary of AAVE user portfolio including: array of holdings, total liquidity, total collateral, total borrows, liquidation threshold, health factor, and available borrowing power 
+Returns formatted summary of BANDZ user portfolio including: array of holdings, total liquidity, total collateral, total borrows, liquidation threshold, health factor, and available borrowing power 
 
 - @param `poolReservesData` GraphQL input:
 	- subscription: src/[v1 or v2]/graphql/subscriptions/reserves-update-subscription.graphql
@@ -133,7 +133,7 @@ v2.formatUserSummaryData(
 
 ### formatReserves
 
-Returns formatted summary of each AAVE reserve asset 
+Returns formatted summary of each BANDZ reserve asset 
 
 Note: liquidityRate = deposit rate in the return object
 
@@ -161,16 +161,16 @@ v2.formatReserves(
 
 ## Markets and Networks
 
-The library exports the enabled networks and markets in the Aave protocol as the enums `Network` and `Market`
+The library exports the enabled networks and markets in the Bandz protocol as the enums `Network` and `Market`
 
 ```
-import { Network, Market } from '@aave/protocol-js';
+import { Network, Market } from '@bandz/protocol-js';
 ```
 
 ## Usage
 
 ```
-import { TxBuilderV2, Network, Market } from '@aave/protocol-js'
+import { TxBuilderV2, Network, Market } from '@bandz/protocol-js'
 
 const httpProvider = new Web3.providers.HttpProvider(
     process.env.ETHEREUM_URL ||
@@ -193,12 +193,12 @@ To learn more about supported providers, see the [ethers documentation on provid
 
 ## Lending Pool V2
 
-Object that contains all the necessary methods to create Aave lending pool transactions.
+Object that contains all the necessary methods to create Bandz lending pool transactions.
 
 The return object will be a Promise array of objects of type:
 
 ```
-import { EthereumTransactionTypeExtended } from '@aave/protocol-js'
+import { EthereumTransactionTypeExtended } from '@bandz/protocol-js'
 ```
 
 having {tx, txType}
@@ -464,14 +464,14 @@ import {
   TxBuilderV2,
   AaveGovernanceV2Interface,
   GovernanceDelegationTokenInterface,
-} from '@aave/protocol-js';
+} from '@bandz/protocol-js';
 
 const httpProvider = new Web3.providers.HttpProvider(
    process.env.ETHEREUM_URL ||
    "https://kovan.infura.io/v3/<project_id>"
 );
 const txBuilder = new TxBuilderV2(Network.main, httpProvider);
-const gov2 = txBuilder.aaveGovernanceV2Service;
+const gov2 = txBuilder.bandzGovernanceV2Service;
 const powerDelegation = txBuilder.governanceDelegationTokenService;
 ```
 
@@ -605,10 +605,10 @@ powerDelegation.delegateByType({
 
 ## Faucets
 
-To use the testnet faucets which are compatible with Aave:
+To use the testnet faucets which are compatible with Bandz:
 
 ```
-import { TxBuilderV2, Network, Market } from '@aave/protocol-js'
+import { TxBuilderV2, Network, Market } from '@bandz/protocol-js'
 
 const httpProvider = new Web3.providers.HttpProvider(
     process.env.ETHEREUM_URL ||
@@ -620,7 +620,7 @@ const faucet = txBuilder.faucetService;
 
 ### mint
 
-Mint tokens for the usage on the Aave protocol on the Kovan network. The amount of minted tokens is fixed and depends on the token
+Mint tokens for the usage on the Bandz protocol on the Kovan network. The amount of minted tokens is fixed and depends on the token
 
 - @param `userAddress` The ethereum address of the wallet the minted tokens will go
 - @param `reserve` The ethereum address of the token you want to mint

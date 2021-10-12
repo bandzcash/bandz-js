@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" >> ~/.npmrc
           git config user.name "GitHub Actions Build"
-          git config user.email "developers@aave.com"
+          git config user.email "developers@bandz.cash"
 
       - name: install
         id: install

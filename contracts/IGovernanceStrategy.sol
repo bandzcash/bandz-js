@@ -34,14 +34,14 @@ interface IGovernanceStrategy {
   function getVotingPowerAt(address user, uint256 blockNumber) external view returns (uint256);
 
   /**
-   * @dev Get the AAVE address of strategy
+   * @dev Get the BANDZ address of strategy
    * @return address
    **/
-  function AAVE() external view returns (address);
+  function BANDZ() external view returns (address);
 
   /**
-   * @dev Get the Staked AAVE address of strategy
+   * @dev Get the Staked BANDZ address of strategy
    * @return address
    **/
-  function STK_AAVE() external view returns (address);
+  function STK_BANDZ() external view returns (address);
 }

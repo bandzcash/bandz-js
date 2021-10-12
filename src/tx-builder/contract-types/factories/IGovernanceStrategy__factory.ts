@@ -19,7 +19,7 @@ export class IGovernanceStrategy__factory {
 const _abi = [
   {
     inputs: [],
-    name: "AAVE",
+    name: "BANDZ",
     outputs: [
       {
         internalType: "address",
@@ -32,7 +32,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "STK_AAVE",
+    name: "STK_BANDZ",
     outputs: [
       {
         internalType: "address",
