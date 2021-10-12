@@ -116,10 +116,10 @@ export const defaultConfig: TxBuilderConfig = {
   },
   migrator: {
     mainnet: {
-      LEND_TO_BANDZ_MIGRATOR: '0x317625234562b1526ea2fac4030ea499c5291de4',
+      LEND_TO_AAVE_MIGRATOR: '0x317625234562b1526ea2fac4030ea499c5291de4',
     },
     kovan: {
-      LEND_TO_BANDZ_MIGRATOR: '0x8cC8965FEf45a448bdbe3C749683b280eF2E17Ea',
+      LEND_TO_AAVE_MIGRATOR: '0x8cC8965FEf45a448bdbe3C749683b280eF2E17Ea',
     },
   },
 };

@@ -64,7 +64,7 @@ export type IncentivesConfig = {
 };
 
 export type MigratorConfig = {
-  LEND_TO_BANDZ_MIGRATOR: tEthereumAddress;
+  LEND_TO_AAVE_MIGRATOR: tEthereumAddress;
 };
 
 export type LendingPoolMarketConfig = {
@@ -171,7 +171,7 @@ export type AddressModel = {
   LENDINGPOOL_CORE_ADDRESS: tEthereumAddress;
   SYNTHETIX_PROXY_ADDRESS: tEthereumAddress;
   GOVERNANCE_PROTO_CONTRACT: tEthereumAddress;
-  LEND_TO_BANDZ_MIGRATOR: tEthereumAddress;
+  LEND_TO_AAVE_MIGRATOR: tEthereumAddress;
   WETH_GATEWAY: tEthereumAddress;
   FAUCET: tEthereumAddress;
   SWAP_COLLATERAL_ADAPTER: tEthereumAddress;
@@ -189,7 +189,7 @@ export type tCommonContractAddressBetweenMarkets = Pick<
   AddressModel,
   | 'SYNTHETIX_PROXY_ADDRESS'
   | 'GOVERNANCE_PROTO_CONTRACT'
-  | 'LEND_TO_BANDZ_MIGRATOR'
+  | 'LEND_TO_AAVE_MIGRATOR'
   | 'WETH_GATEWAY'
   | 'FAUCET'
   | 'SWAP_COLLATERAL_ADAPTER'

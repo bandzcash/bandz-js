@@ -144,10 +144,10 @@ export function LTAMigratorValidator(
   const method = descriptor.value;
   // eslint-disable-next-line no-param-reassign
   descriptor.value = function () {
-    const LEND_TO_BANDZ_MIGRATOR =
-      this.migratorConfig?.LEND_TO_BANDZ_MIGRATOR || '';
+    const LEND_TO_AAVE_MIGRATOR =
+      this.migratorConfig?.LEND_TO_AAVE_MIGRATOR || '';
 
-    if (!utils.isAddress(LEND_TO_BANDZ_MIGRATOR)) {
+    if (!utils.isAddress(LEND_TO_AAVE_MIGRATOR)) {
       console.error(`[MigratorValidator] You need to pass valid addresses`);
       return [];
     }
