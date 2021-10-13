@@ -4,7 +4,7 @@ pragma solidity ^0.6.8;
 /**
 * @title LendToAaveMigrator
 * @notice This contract implements the migration from LEND to AAVE token
-* @author Aave 
+* @author Aave
 */
 interface ILendToAaveMigrator {
     function LEND() external view returns(address);

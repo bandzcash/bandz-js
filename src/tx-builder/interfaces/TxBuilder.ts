@@ -16,7 +16,7 @@ export default interface TxBuilderInterface {
   synthetixService: SynthetixInterface;
   ltaMigratorService: LTAMigratorInterface;
   incentiveService: IncentivesControllerInterface;
-  aaveGovernanceV2Service: AaveGovernanceV2Interface;
+  bandzGovernanceV2Service: AaveGovernanceV2Interface;
   governanceDelegationTokenService: GovernanceDelegationTokenInterface;
   getLendingPool: (market: string) => LendingPoolInterfaceV2;
   getStaking: (stake: string) => StakingInterface;

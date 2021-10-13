@@ -93,7 +93,7 @@ interface ILendingPool {
   /**
    * @dev allows smartcontracts to access the liquidity of the pool within one transaction,
    * as long as the amount taken plus a fee is returned. NOTE There are security concerns for developers of flashloan receiver contracts
-   * that must be kept into consideration. For further details please visit https://developers.aave.com
+   * that must be kept into consideration. For further details please visit https://developers.bandz.cash
    * @param receiver The address of the contract receiving the funds. The receiver should implement the IFlashLoanReceiver interface.
    * @param assets the address of the principal reserve
    * @param amounts the amount requested for this flashloan

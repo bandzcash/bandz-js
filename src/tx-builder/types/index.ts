@@ -19,7 +19,7 @@ export enum Market {
 
 export enum Network {
   mainnet = 'mainnet',
-  ropsten = 'ropsten',
+  amber = 'amber',
   kovan = 'kovan',
   polygon = 'polygon',
   fork = 'fork',
@@ -33,8 +33,8 @@ export enum Network {
 }
 
 export enum ChainId {
-  mainnet = 1,
-  ropsten = 3,
+  mainnet = 10000,
+  amber = 10001,
   kovan = 42,
   polygon = 137,
   fork = 1337,
@@ -52,10 +52,10 @@ export type ConstantAddressesByNetwork = {
   };
 };
 export type GovernanceConfig = {
-  AAVE_GOVERNANCE_V2: tEthereumAddress;
-  AAVE_GOVERNANCE_V2_EXECUTOR_SHORT: tEthereumAddress;
-  AAVE_GOVERNANCE_V2_EXECUTOR_LONG: tEthereumAddress;
-  AAVE_GOVERNANCE_V2_HELPER: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_LONG: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2_HELPER: tEthereumAddress;
 };
 
 export type IncentivesConfig = {
@@ -135,7 +135,7 @@ export enum GovernanceVote {
 }
 
 export enum Stake {
-  aave = 'aave',
+  bandz = 'bandz',
   bpt = 'bpt',
 }
 
@@ -176,10 +176,10 @@ export type AddressModel = {
   FAUCET: tEthereumAddress;
   SWAP_COLLATERAL_ADAPTER: tEthereumAddress;
   REPAY_WITH_COLLATERAL_ADAPTER: tEthereumAddress;
-  AAVE_GOVERNANCE_V2: tEthereumAddress;
-  AAVE_GOVERNANCE_V2_EXECUTOR_SHORT: tEthereumAddress;
-  AAVE_GOVERNANCE_V2_EXECUTOR_LONG: tEthereumAddress;
-  AAVE_GOVERNANCE_V2_HELPER: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_LONG: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2_HELPER: tEthereumAddress;
   FLASHLIQUIDATION: tEthereumAddress;
   INCENTIVES_CONTROLLER: tEthereumAddress;
   INCENTIVES_CONTROLLER_REWARD_TOKEN: tEthereumAddress;
@@ -213,10 +213,10 @@ export type tDistinctContractAddressBetweenMarketsV2 = Pick<
 
 export type tDistinctGovernanceV2Addresses = Pick<
   AddressModel,
-  | 'AAVE_GOVERNANCE_V2'
-  | 'AAVE_GOVERNANCE_V2_EXECUTOR_SHORT'
-  | 'AAVE_GOVERNANCE_V2_EXECUTOR_LONG'
-  | 'AAVE_GOVERNANCE_V2_HELPER'
+  | 'BANDZ_GOVERNANCE_V2'
+  | 'BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT'
+  | 'BANDZ_GOVERNANCE_V2_EXECUTOR_LONG'
+  | 'BANDZ_GOVERNANCE_V2_HELPER'
 >;
 
 export type tdistinctStakingAddressesBetweenTokens = {
@@ -304,7 +304,7 @@ export type EnabledNetworksType = {
   faucet: Network[];
   liquiditySwapAdapter: Network[];
   repayWithCollateralAdapter: Network[];
-  aaveGovernanceV2: Network[];
+  bandzGovernanceV2: Network[];
   ltaMigrator: Network[];
   incentivesController: Network[];
 };

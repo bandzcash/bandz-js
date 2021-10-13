@@ -25,7 +25,7 @@ export const getTxValue = (reserve: string, amount: string): string => {
 };
 
 export const mintAmountsPerToken: { [token: string]: tStringDecimalUnits } = {
-  AAVE: parseNumber('100', 18),
+  BANDZ: parseNumber('100', 18),
   BAT: parseNumber('100000', 18),
   BUSD: parseNumber('10000', 18),
   DAI: parseNumber('10000', 18),

@@ -40,7 +40,7 @@ export async function getProposalMetadata(
     };
     return MEMORIZE[ipfsHash];
   } catch (e) {
-    console.error(`@aave/protocol-js: IPFS fetch Error: ${e.message}`);
+    console.error(`@bandz/protocol-js: IPFS fetch Error: ${e.message}`);
     return {
       ipfsHash,
       title: `Proposal - ${ipfsHash}`,

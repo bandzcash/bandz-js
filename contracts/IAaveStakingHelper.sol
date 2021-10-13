@@ -4,7 +4,7 @@ pragma solidity ^0.6.8;
 /**
  * @title StakingHelper contract
  * @author Aave
- * @dev implements a staking function that allows staking through the EIP2612 capabilities of the AAVE token
+ * @dev implements a staking function that allows staking through the EIP2612 capabilities of the BANDZ token
  **/
 
 interface IAaveStakingHelper {

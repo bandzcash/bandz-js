@@ -38,7 +38,7 @@ export default class TxBuilder
 
   readonly baseDebtTokenService: BaseDebtTokenInterface;
 
-  public aaveGovernanceV2Service: AaveGovernanceV2Interface;
+  public bandzGovernanceV2Service: AaveGovernanceV2Interface;
 
   public governanceDelegationTokenService: GovernanceDelegationTokenInterface;
 
@@ -59,7 +59,7 @@ export default class TxBuilder
       this.erc20Service
     );
 
-    this.aaveGovernanceV2Service = new AaveGovernanceV2Service(
+    this.bandzGovernanceV2Service = new AaveGovernanceV2Service(
       this.configuration,
       this.txBuilderConfig.governance?.[network]
     );

@@ -377,17 +377,17 @@ export function GovValidator(
   // eslint-disable-next-line no-param-reassign
   descriptor.value = function () {
     const {
-      AAVE_GOVERNANCE_V2,
-      AAVE_GOVERNANCE_V2_HELPER,
-      AAVE_GOVERNANCE_V2_EXECUTOR_SHORT,
-      AAVE_GOVERNANCE_V2_EXECUTOR_LONG,
+      BANDZ_GOVERNANCE_V2,
+      BANDZ_GOVERNANCE_V2_HELPER,
+      BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT,
+      BANDZ_GOVERNANCE_V2_EXECUTOR_LONG,
     } = this.governanceConfig || {};
 
     if (
-      !utils.isAddress(AAVE_GOVERNANCE_V2) ||
-      !utils.isAddress(AAVE_GOVERNANCE_V2_HELPER) ||
-      !utils.isAddress(AAVE_GOVERNANCE_V2_EXECUTOR_SHORT) ||
-      !utils.isAddress(AAVE_GOVERNANCE_V2_EXECUTOR_LONG)
+      !utils.isAddress(BANDZ_GOVERNANCE_V2) ||
+      !utils.isAddress(BANDZ_GOVERNANCE_V2_HELPER) ||
+      !utils.isAddress(BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT) ||
+      !utils.isAddress(BANDZ_GOVERNANCE_V2_EXECUTOR_LONG)
     ) {
       console.error(`[GovernanceValidator] You need to pass valid addresses`);
       return [];
