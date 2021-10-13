@@ -1,6 +1,6 @@
 import {
-  EthereumTransactionTypeExtended,
-  tEthereumAddress,
+  SmartBCHTransactionTypeExtended,
+  tSmartBCHAddress,
   tStringCurrencyUnits,
   tStringDecimalUnits,
 } from '../../types';
@@ -18,23 +18,23 @@ import {
 } from '../../types/GovDelegationMethodTypes';
 
 export default interface GovernanceDelegationToken {
-  delegate: (args: GovDelegate) => Promise<EthereumTransactionTypeExtended[]>;
+  delegate: (args: GovDelegate) => Promise<SmartBCHTransactionTypeExtended[]>;
   delegateByType: (
     args: GovDelegateByType
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   delegateBySig: (
     args: GovDelegateBySig
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   delegateByTypeBySig: (
     args: GovDelegateByTypeBySig
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   prepareDelegateSignature: (args: GovPrepareDelegateSig) => Promise<string>;
   prepareDelegateByTypeSignature: (
     args: GovPrepareDelegateSigByType
   ) => Promise<string>;
   getDelegateeByType: (
     args: GovGetDelegateeByType
-  ) => Promise<tEthereumAddress>;
+  ) => Promise<tSmartBCHAddress>;
   getPowerCurrent: (args: GovGetPowerCurrent) => Promise<tStringCurrencyUnits>;
   getPowerAtBlock: (args: GovGetPowerAtBlock) => Promise<tStringCurrencyUnits>;
   getNonce: (args: GovGetNonce) => Promise<tStringDecimalUnits>;

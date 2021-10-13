@@ -5,15 +5,15 @@ import {
 import LiquiditySwapAdapterInterface from '../interfaces/LiquiditySwapAdapterParaswap';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   LendingPoolMarketConfig,
   ProtocolAction,
   transactionType,
 } from '../types';
 import { SwapAndDepositMethodType } from '../types/LiquiditySwapAdapterParaswapMethodTypes';
 import { LiquiditySwapValidator } from '../validators/methodValidators';
-import { IsEthAddress, IsPositiveAmount } from '../validators/paramValidators';
+import { IsBchAddress, IsPositiveAmount } from '../validators/paramValidators';
 import BaseService from './BaseService';
 
 export function augustusFromAmountOffsetFromCalldata(calldata: string) {
@@ -53,10 +53,10 @@ export default class LiquiditySwapAdapterService
 
   @LiquiditySwapValidator
   public swapAndDeposit(
-    @IsEthAddress('user')
-    @IsEthAddress('assetToSwapFrom')
-    @IsEthAddress('assetToSwapTo')
-    @IsEthAddress('augustus')
+    @IsBchAddress('user')
+    @IsBchAddress('assetToSwapFrom')
+    @IsBchAddress('assetToSwapTo')
+    @IsBchAddress('augustus')
     @IsPositiveAmount('amountToSwap')
     @IsPositiveAmount('minAmountToReceive')
     {
@@ -70,8 +70,8 @@ export default class LiquiditySwapAdapterService
       swapCallData,
       swapAll,
     }: SwapAndDepositMethodType,
-    txs?: EthereumTransactionTypeExtended[]
-  ): EthereumTransactionTypeExtended {
+    txs?: SmartBCHTransactionTypeExtended[]
+  ): SmartBCHTransactionTypeExtended {
     const liquiditySwapContract = this.getContractInstance(
       this.liquiditySwapAdapterAddress
     );
@@ -95,7 +95,7 @@ export default class LiquiditySwapAdapterService
 
     return {
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs || [],
         txCallback,

@@ -34,7 +34,7 @@ fragment ReserveData on Reserve {
   reserveLiquidationBonus
   variableBorrowRate
   price {
-    priceInEth
+    priceInBch
   }
   lastUpdateTimestamp
 }

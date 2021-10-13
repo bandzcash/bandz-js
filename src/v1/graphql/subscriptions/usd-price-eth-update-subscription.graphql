@@ -1,5 +1,5 @@
-subscription UsdPriceEth {
+subscription usdPriceBch {
   priceOracle(id: "1") {
-    usdPriceEth
+    usdPriceBch
   }
 }

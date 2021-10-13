@@ -1,12 +1,12 @@
-import { PermitSignature, tEthereumAddress } from '.';
+import { PermitSignature, tSmartBCHAddress } from '.';
 
 export type RepayWithCollateralType = {
-  user: tEthereumAddress;
-  collateralAsset: tEthereumAddress;
-  debtAsset: tEthereumAddress;
+  user: tSmartBCHAddress;
+  collateralAsset: tSmartBCHAddress;
+  debtAsset: tSmartBCHAddress;
   collateralAmount: string;
   debtRepayAmount: string;
   debtRateMode: number;
   permit: PermitSignature;
-  useEthPath?: boolean;
+  useBchPath?: boolean;
 };

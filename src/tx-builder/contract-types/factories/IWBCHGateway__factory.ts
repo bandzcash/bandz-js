@@ -5,14 +5,14 @@
 import { Contract, Signer } from "ethers";
 import { Provider } from "@ethersproject/providers";
 
-import type { IWETHGateway } from "../IWETHGateway";
+import type { IWBCHGateway } from "../IWBCHGateway";
 
-export class IWETHGateway__factory {
+export class IWBCHGateway__factory {
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
-  ): IWETHGateway {
-    return new Contract(address, _abi, signerOrProvider) as IWETHGateway;
+  ): IWBCHGateway {
+    return new Contract(address, _abi, signerOrProvider) as IWBCHGateway;
   }
 }
 
@@ -40,7 +40,7 @@ const _abi = [
         type: "uint16",
       },
     ],
-    name: "borrowETH",
+    name: "borrowBCH",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -63,7 +63,7 @@ const _abi = [
         type: "uint16",
       },
     ],
-    name: "depositETH",
+    name: "depositBCH",
     outputs: [],
     stateMutability: "payable",
     type: "function",
@@ -91,7 +91,7 @@ const _abi = [
         type: "address",
       },
     ],
-    name: "repayETH",
+    name: "repayBCH",
     outputs: [],
     stateMutability: "payable",
     type: "function",
@@ -114,7 +114,7 @@ const _abi = [
         type: "address",
       },
     ],
-    name: "withdrawETH",
+    name: "withdrawBCH",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

@@ -8,15 +8,15 @@ import {
 import FaucetInterface from '../interfaces/Faucet';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   LendingPoolMarketConfig,
   transactionType,
 } from '../types';
 import { FaucetParamsType } from '../types/FaucetMethodTypes';
 import { mintAmountsPerToken } from '../utils/parsings';
 import { FaucetValidator } from '../validators/methodValidators';
-import { IsEthAddress } from '../validators/paramValidators';
+import { IsBchAddress } from '../validators/paramValidators';
 import BaseService from './BaseService';
 
 export default class FaucetService
@@ -50,10 +50,10 @@ export default class FaucetService
 
   @FaucetValidator
   public async mint(
-    @IsEthAddress('userAddress')
-    @IsEthAddress('reserve')
+    @IsBchAddress('userAddress')
+    @IsBchAddress('reserve')
     { userAddress, reserve, tokenSymbol }: FaucetParamsType
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     const amount: string = mintAmountsPerToken[tokenSymbol];
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -66,7 +66,7 @@ export default class FaucetService
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.FAUCET_MINT,
+        txType: eSmartBCHTxType.FAUCET_MINT,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];

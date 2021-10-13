@@ -1,27 +1,27 @@
 // SPDX-License-Identifier: agpl-3.0
 pragma solidity ^0.6.8;
 
-interface IWETHGateway {
-    function depositETH(
+interface IWBCHGateway {
+    function depositBCH(
     address lendingPool,
     address onBehalfOf,
     uint16 referralCode
   ) external payable;
 
-  function withdrawETH(
+  function withdrawBCH(
     address lendingPool,
     uint256 amount,
     address onBehalfOf
   ) external;
 
-  function repayETH(
+  function repayBCH(
     address lendingPool,
     uint256 amount,
     uint256 rateMode,
     address onBehalfOf
   ) external payable;
 
-  function borrowETH(
+  function borrowBCH(
     address lendingPool,
     uint256 amount,
     uint256 interesRateMode,

@@ -19,7 +19,7 @@ export class IMinter__factory {
 const _abi = [
   {
     inputs: [],
-    name: "isEthRequired",
+    name: "isBchRequired",
     outputs: [
       {
         internalType: "bool",

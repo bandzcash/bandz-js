@@ -1,7 +1,7 @@
 import { providers, BigNumber, BytesLike, PopulatedTransaction } from 'ethers';
 
-export type tEthereumAddress = string;
-export type tStringCurrencyUnits = string; // ex 2.5 eth
+export type tSmartBCHAddress = string;
+export type tStringCurrencyUnits = string; // ex 2.5 bch
 export type tStringDecimalUnits = string; // ex 2500000000000000000
 export type ENS = string; // something.eth
 
@@ -20,60 +20,40 @@ export enum Market {
 export enum Network {
   mainnet = 'mainnet',
   amber = 'amber',
-  kovan = 'kovan',
-  polygon = 'polygon',
-  fork = 'fork',
-  mumbai = 'mumbai',
-  polygon_fork = 'polygon_fork',
-  avalanche = 'avalanche',
-  avalanche_fork = 'avalanche_fork',
-  fuji = 'fuji', // avalanche test network
-  arbitrum_one = 'arbitrum_one',
-  arbitrum_rinkeby = 'arbitrum_rinkeby',
 }
 
 export enum ChainId {
   mainnet = 10000,
   amber = 10001,
-  kovan = 42,
-  polygon = 137,
-  fork = 1337,
-  mumbai = 80001,
-  polygon_fork = 1338,
-  avalanche = 43114,
-  avalanche_fork = 1337,
-  fuji = 43113, // avalanche test network
-  arbitrum_one = 42161,
-  arbitrum_rinkeby = 421611,
 }
 export type ConstantAddressesByNetwork = {
   [network: string]: {
-    SYNTHETIX_PROXY_ADDRESS?: tEthereumAddress;
+    SYNTHETIX_PROXY_ADDRESS?: tSmartBCHAddress;
   };
 };
 export type GovernanceConfig = {
-  BANDZ_GOVERNANCE_V2: tEthereumAddress;
-  BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT: tEthereumAddress;
-  BANDZ_GOVERNANCE_V2_EXECUTOR_LONG: tEthereumAddress;
-  BANDZ_GOVERNANCE_V2_HELPER: tEthereumAddress;
+  BANDZ_GOVERNANCE_V2: tSmartBCHAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT: tSmartBCHAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_LONG: tSmartBCHAddress;
+  BANDZ_GOVERNANCE_V2_HELPER: tSmartBCHAddress;
 };
 
 export type IncentivesConfig = {
-  INCENTIVES_CONTROLLER: tEthereumAddress;
-  INCENTIVES_CONTROLLER_REWARD_TOKEN: tEthereumAddress;
+  INCENTIVES_CONTROLLER: tSmartBCHAddress;
+  INCENTIVES_CONTROLLER_REWARD_TOKEN: tSmartBCHAddress;
 };
 
 export type MigratorConfig = {
-  LEND_TO_AAVE_MIGRATOR: tEthereumAddress;
+  LEND_TO_AAVE_MIGRATOR: tSmartBCHAddress;
 };
 
 export type LendingPoolMarketConfig = {
-  LENDING_POOL: tEthereumAddress;
-  WETH_GATEWAY?: tEthereumAddress;
-  FLASH_LIQUIDATION_ADAPTER?: tEthereumAddress;
-  REPAY_WITH_COLLATERAL_ADAPTER?: tEthereumAddress;
-  SWAP_COLLATERAL_ADAPTER?: tEthereumAddress;
-  FAUCET?: tEthereumAddress;
+  LENDING_POOL: tSmartBCHAddress;
+  WBCH_GATEWAY?: tSmartBCHAddress;
+  FLASH_LIQUIDATION_ADAPTER?: tSmartBCHAddress;
+  REPAY_WITH_COLLATERAL_ADAPTER?: tSmartBCHAddress;
+  SWAP_COLLATERAL_ADAPTER?: tSmartBCHAddress;
+  FAUCET?: tSmartBCHAddress;
 };
 
 export type LendingPoolConfig = {
@@ -83,9 +63,9 @@ export type LendingPoolConfig = {
 };
 
 export type StakingNetworkConfig = {
-  TOKEN_STAKING: tEthereumAddress;
-  STAKING_REWARD_TOKEN: tEthereumAddress;
-  STAKING_HELPER?: tEthereumAddress;
+  TOKEN_STAKING: tSmartBCHAddress;
+  STAKING_REWARD_TOKEN: tSmartBCHAddress;
+  STAKING_HELPER?: tSmartBCHAddress;
 };
 
 export type StakingConfig = {
@@ -104,7 +84,7 @@ export type TxBuilderConfig = {
   staking?: StakingConfig;
 };
 
-export enum eEthereumTxType {
+export enum eSmartBCHTxType {
   ERC20_APPROVAL = 'ERC20_APPROVAL',
   DLP_ACTION = 'DLP_ACTION',
   GOVERNANCE_ACTION = 'GOVERNANCE_ACTION',
@@ -124,8 +104,8 @@ export enum ProtocolAction {
   repay = 'repay',
   swapCollateral = 'swapCollateral',
   repayCollateral = 'repayCollateral',
-  withdrawETH = 'withdrawETH',
-  borrowETH = 'borrwoETH',
+  withdrawBCH = 'withdrawBCH',
+  borrowBCH = 'borrowBCH',
 }
 
 export enum GovernanceVote {
@@ -166,23 +146,23 @@ export type transactionType = {
 };
 
 export type AddressModel = {
-  ADDRESS_PROVIDER_ADDRESS: tEthereumAddress;
-  LENDINGPOOL_ADDRESS: tEthereumAddress;
-  LENDINGPOOL_CORE_ADDRESS: tEthereumAddress;
-  SYNTHETIX_PROXY_ADDRESS: tEthereumAddress;
-  GOVERNANCE_PROTO_CONTRACT: tEthereumAddress;
-  LEND_TO_AAVE_MIGRATOR: tEthereumAddress;
-  WETH_GATEWAY: tEthereumAddress;
-  FAUCET: tEthereumAddress;
-  SWAP_COLLATERAL_ADAPTER: tEthereumAddress;
-  REPAY_WITH_COLLATERAL_ADAPTER: tEthereumAddress;
-  BANDZ_GOVERNANCE_V2: tEthereumAddress;
-  BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT: tEthereumAddress;
-  BANDZ_GOVERNANCE_V2_EXECUTOR_LONG: tEthereumAddress;
-  BANDZ_GOVERNANCE_V2_HELPER: tEthereumAddress;
-  FLASHLIQUIDATION: tEthereumAddress;
-  INCENTIVES_CONTROLLER: tEthereumAddress;
-  INCENTIVES_CONTROLLER_REWARD_TOKEN: tEthereumAddress;
+  ADDRESS_PROVIDER_ADDRESS: tSmartBCHAddress;
+  LENDINGPOOL_ADDRESS: tSmartBCHAddress;
+  LENDINGPOOL_CORE_ADDRESS: tSmartBCHAddress;
+  SYNTHETIX_PROXY_ADDRESS: tSmartBCHAddress;
+  GOVERNANCE_PROTO_CONTRACT: tSmartBCHAddress;
+  LEND_TO_AAVE_MIGRATOR: tSmartBCHAddress;
+  WBCH_GATEWAY: tSmartBCHAddress;
+  FAUCET: tSmartBCHAddress;
+  SWAP_COLLATERAL_ADAPTER: tSmartBCHAddress;
+  REPAY_WITH_COLLATERAL_ADAPTER: tSmartBCHAddress;
+  BANDZ_GOVERNANCE_V2: tSmartBCHAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT: tSmartBCHAddress;
+  BANDZ_GOVERNANCE_V2_EXECUTOR_LONG: tSmartBCHAddress;
+  BANDZ_GOVERNANCE_V2_HELPER: tSmartBCHAddress;
+  FLASHLIQUIDATION: tSmartBCHAddress;
+  INCENTIVES_CONTROLLER: tSmartBCHAddress;
+  INCENTIVES_CONTROLLER_REWARD_TOKEN: tSmartBCHAddress;
 };
 
 export type tCommonContractAddressBetweenMarkets = Pick<
@@ -190,7 +170,7 @@ export type tCommonContractAddressBetweenMarkets = Pick<
   | 'SYNTHETIX_PROXY_ADDRESS'
   | 'GOVERNANCE_PROTO_CONTRACT'
   | 'LEND_TO_AAVE_MIGRATOR'
-  | 'WETH_GATEWAY'
+  | 'WBCH_GATEWAY'
   | 'FAUCET'
   | 'SWAP_COLLATERAL_ADAPTER'
   | 'REPAY_WITH_COLLATERAL_ADAPTER'
@@ -220,14 +200,14 @@ export type tDistinctGovernanceV2Addresses = Pick<
 >;
 
 export type tdistinctStakingAddressesBetweenTokens = {
-  TOKEN_STAKING_ADDRESS: tEthereumAddress;
-  STAKING_REWARD_TOKEN_ADDRESS: tEthereumAddress;
-  STAKING_HELPER_ADDRESS: tEthereumAddress;
+  TOKEN_STAKING_ADDRESS: tSmartBCHAddress;
+  STAKING_REWARD_TOKEN_ADDRESS: tSmartBCHAddress;
+  STAKING_HELPER_ADDRESS: tSmartBCHAddress;
   canUsePermit: boolean;
 };
 
 export type ContractAddresses = {
-  [contractName: string]: tEthereumAddress;
+  [contractName: string]: tSmartBCHAddress;
 };
 
 export type Configuration = {
@@ -235,15 +215,15 @@ export type Configuration = {
   provider: providers.Provider;
 };
 
-export type EthereumTransactionTypeExtended = {
-  txType: eEthereumTxType;
+export type SmartBCHTransactionTypeExtended = {
+  txType: eSmartBCHTxType;
   tx: () => Promise<transactionType>;
   gas: GasResponse;
 };
 
 export type TransactionGenerationMethod = {
   rawTxMethod: () => Promise<PopulatedTransaction>;
-  from: tEthereumAddress;
+  from: tSmartBCHAddress;
   value?: string;
   gasSurplus?: number;
   action?: ProtocolAction;
@@ -300,7 +280,7 @@ export type EnabledNetworksType = {
     [market: string]: Network[];
   };
   governance: Network[];
-  wethGateway: Network[];
+  WBCHGateway: Network[];
   faucet: Network[];
   liquiditySwapAdapter: Network[];
   repayWithCollateralAdapter: Network[];
@@ -318,7 +298,7 @@ export type PermitSignature = {
 };
 
 export type FlashLoanParams = {
-  assetToSwapToList: tEthereumAddress[]; // List of the addresses of the reserve to be swapped to and deposited
+  assetToSwapToList: tSmartBCHAddress[]; // List of the addresses of the reserve to be swapped to and deposited
   minAmountsToReceive: string[]; // List of min amounts to be received from the swap
   swapAllBalance: boolean[]; // Flag indicating if all the user balance should be swapped
   permitAmount: string[]; // List of amounts for the permit signature

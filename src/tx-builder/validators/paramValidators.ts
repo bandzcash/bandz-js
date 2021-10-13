@@ -3,9 +3,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata';
 
-export const isEthAddressMetadataKey = Symbol('ethAddress');
-export const isEthAddressArrayMetadataKey = Symbol('ethAddressArray');
-export const isEthAddressOrENSMetadataKey = Symbol('ethOrENSAddress');
+export const IsBchAddressMetadataKey = Symbol('bchAddress');
+export const IsBchAddressArrayMetadataKey = Symbol('bchAddressArray');
+export const IsBchAddressOrENSMetadataKey = Symbol('bchOrENSAddress');
 export const isPositiveMetadataKey = Symbol('isPositive');
 export const isPositiveOrMinusOneMetadataKey = Symbol('isPositiveOrMinusOne');
 export const is0OrPositiveMetadataKey = Symbol('is0OrPositiveMetadataKey');
@@ -17,7 +17,7 @@ export type paramsType = {
 };
 
 // tslint:disable-next-line: function-name
-export function IsEthAddress(field?: string) {
+export function IsBchAddress(field?: string) {
   return function (
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     target: any,
@@ -25,7 +25,7 @@ export function IsEthAddress(field?: string) {
     parameterIndex: number
   ): void {
     const existingPossibleAddresses: paramsType[] =
-      Reflect.getOwnMetadata(isEthAddressMetadataKey, target, propertyKey) ||
+      Reflect.getOwnMetadata(IsBchAddressMetadataKey, target, propertyKey) ||
       [];
 
     existingPossibleAddresses.push({
@@ -34,7 +34,7 @@ export function IsEthAddress(field?: string) {
     });
 
     Reflect.defineMetadata(
-      isEthAddressMetadataKey,
+      IsBchAddressMetadataKey,
       existingPossibleAddresses,
       target,
       propertyKey
@@ -43,7 +43,7 @@ export function IsEthAddress(field?: string) {
 }
 
 // tslint:disable-next-line: function-name
-export function IsEthAddressArray(field?: string) {
+export function IsBchAddressArray(field?: string) {
   return function (
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     target: any,
@@ -51,7 +51,7 @@ export function IsEthAddressArray(field?: string) {
     parameterIndex: number
   ): void {
     const existingPossibleAddresses: paramsType[] =
-      Reflect.getOwnMetadata(isEthAddressMetadataKey, target, propertyKey) ||
+      Reflect.getOwnMetadata(IsBchAddressMetadataKey, target, propertyKey) ||
       [];
 
     existingPossibleAddresses.push({
@@ -60,7 +60,7 @@ export function IsEthAddressArray(field?: string) {
     });
 
     Reflect.defineMetadata(
-      isEthAddressArrayMetadataKey,
+      IsBchAddressArrayMetadataKey,
       existingPossibleAddresses,
       target,
       propertyKey
@@ -68,7 +68,7 @@ export function IsEthAddressArray(field?: string) {
   };
 }
 
-export function IsEthAddressOrENS(field?: string) {
+export function IsBchAddressOrENS(field?: string) {
   return function (
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     target: any,
@@ -77,7 +77,7 @@ export function IsEthAddressOrENS(field?: string) {
   ): void {
     const existingPossibleAddresses: paramsType[] =
       Reflect.getOwnMetadata(
-        isEthAddressOrENSMetadataKey,
+        IsBchAddressOrENSMetadataKey,
         target,
         propertyKey
       ) || [];
@@ -88,7 +88,7 @@ export function IsEthAddressOrENS(field?: string) {
     });
 
     Reflect.defineMetadata(
-      isEthAddressOrENSMetadataKey,
+      IsBchAddressOrENSMetadataKey,
       existingPossibleAddresses,
       target,
       propertyKey

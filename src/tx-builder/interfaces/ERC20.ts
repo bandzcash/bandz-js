@@ -1,24 +1,24 @@
 import {
-  tEthereumAddress,
+  tSmartBCHAddress,
   tStringCurrencyUnits,
-  EthereumTransactionTypeExtended,
+  SmartBCHTransactionTypeExtended,
   tStringDecimalUnits,
   TokenMetadataType,
 } from '../types';
 
 export default interface IERC20ServiceInterface {
-  decimalsOf: (token: tEthereumAddress) => Promise<number>;
-  getTokenData: (token: tEthereumAddress) => Promise<TokenMetadataType>;
+  decimalsOf: (token: tSmartBCHAddress) => Promise<number>;
+  getTokenData: (token: tSmartBCHAddress) => Promise<TokenMetadataType>;
   isApproved: (
-    token: tEthereumAddress,
-    userAddress: tEthereumAddress,
-    spender: tEthereumAddress,
+    token: tSmartBCHAddress,
+    userAddress: tSmartBCHAddress,
+    spender: tSmartBCHAddress,
     amount: tStringCurrencyUnits
   ) => Promise<boolean>;
   approve: (
-    user: tEthereumAddress,
-    token: tEthereumAddress,
-    spender: tEthereumAddress,
+    user: tSmartBCHAddress,
+    token: tSmartBCHAddress,
+    spender: tSmartBCHAddress,
     amount: tStringDecimalUnits
-  ) => EthereumTransactionTypeExtended;
+  ) => SmartBCHTransactionTypeExtended;
 }

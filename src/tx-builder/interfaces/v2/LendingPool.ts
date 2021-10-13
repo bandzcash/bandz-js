@@ -1,4 +1,4 @@
-import { EthereumTransactionTypeExtended } from '../../types';
+import { SmartBCHTransactionTypeExtended } from '../../types';
 import {
   LPBorrowParamsType,
   LPDepositParamsType,
@@ -15,42 +15,42 @@ import {
 export default interface LendingPoolInterface {
   deposit: (
     args: LPDepositParamsType
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   withdraw: (
     args: LPWithdrawParamsType
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   // delegateBorrowAllowance: (
-  //   user: tEthereumAddress,
-  //   asset: tEthereumAddress,
+  //   user: tSmartBCHAddress,
+  //   asset: tSmartBCHAddress,
   //   interestRateMode: InterestRate,
   //   amount: tStringCurrencyUnits,
-  // ) => Promise<EthereumTransactionTypeExtended[]>;
+  // ) => Promise<SmartBCHTransactionTypeExtended[]>;
   borrow: (
     args: LPBorrowParamsType
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   repay: (
     args: LPRepayParamsType
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   swapBorrowRateMode: (
     args: LPSwapBorrowRateMode
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   // rebalanceStableBorrowRate: (
-  //   user: tEthereumAddress,
-  //   reserve: tEthereumAddress,
-  // ) => Promise<EthereumTransactionTypeExtended[]>;
+  //   user: tSmartBCHAddress,
+  //   reserve: tSmartBCHAddress,
+  // ) => Promise<SmartBCHTransactionTypeExtended[]>;
   setUsageAsCollateral: (
     args: LPSetUsageAsCollateral
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   liquidationCall: (
     args: LPLiquidationCall
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   swapCollateral: (
     args: LPSwapCollateral
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   repayWithCollateral: (
     args: LPRepayWithCollateral
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   flashLiquidation(
     args: LPFlashLiquidation
-  ): Promise<EthereumTransactionTypeExtended[]>;
+  ): Promise<SmartBCHTransactionTypeExtended[]>;
 }

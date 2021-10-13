@@ -5,15 +5,15 @@ import {
 import RepayWithCollateralAdapterInterface from '../interfaces/RepayWithCollateralAdapter';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   LendingPoolMarketConfig,
   ProtocolAction,
   transactionType,
 } from '../types';
 import { RepayWithCollateralType } from '../types/RepayWithCollateralMethodTypes';
 import { RepayWithCollateralValidator } from '../validators/methodValidators';
-import { IsEthAddress, IsPositiveAmount } from '../validators/paramValidators';
+import { IsBchAddress, IsPositiveAmount } from '../validators/paramValidators';
 import BaseService from './BaseService';
 
 export default class RepayWithCollateralAdapterService
@@ -36,9 +36,9 @@ export default class RepayWithCollateralAdapterService
 
   @RepayWithCollateralValidator
   public swapAndRepay(
-    @IsEthAddress('user')
-    @IsEthAddress('collateralAsset')
-    @IsEthAddress('debtAsset')
+    @IsBchAddress('user')
+    @IsBchAddress('collateralAsset')
+    @IsBchAddress('debtAsset')
     @IsPositiveAmount('collateralAmount')
     @IsPositiveAmount('debtRepayAmount')
     {
@@ -49,10 +49,10 @@ export default class RepayWithCollateralAdapterService
       debtRepayAmount,
       debtRateMode,
       permit,
-      useEthPath,
+      useBchPath,
     }: RepayWithCollateralType,
-    txs?: EthereumTransactionTypeExtended[]
-  ): EthereumTransactionTypeExtended {
+    txs?: SmartBCHTransactionTypeExtended[]
+  ): SmartBCHTransactionTypeExtended {
     const repayWithCollateralContract: IRepayWithCollateral = this.getContractInstance(
       this.repayWithCollateralAddress
     );
@@ -66,14 +66,14 @@ export default class RepayWithCollateralAdapterService
           debtRepayAmount,
           debtRateMode,
           permit,
-          useEthPath || false
+          useBchPath || false
         ),
       from: user,
     });
 
     return {
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs || [],
         txCallback,

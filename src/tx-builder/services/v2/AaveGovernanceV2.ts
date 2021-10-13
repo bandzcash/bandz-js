@@ -12,10 +12,10 @@ import AaveGovernanceV2Interface from '../../interfaces/v2/AaveGovernanceV2';
 import {
   ChainId,
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   GovernanceConfig,
-  tEthereumAddress,
+  tSmartBCHAddress,
   transactionType,
 } from '../../types';
 import {
@@ -45,7 +45,7 @@ import { getProposalMetadata } from '../../utils/ipfs';
 import { GovValidator } from '../../validators/methodValidators';
 import {
   Is0OrPositiveAmount,
-  IsEthAddress,
+  IsBchAddress,
 } from '../../validators/paramValidators';
 import BaseService from '../BaseService';
 
@@ -115,7 +115,7 @@ export default class AaveGovernanceV2Service
 
   readonly bandzGovernanceV2HelperAddress: string;
 
-  readonly executors: tEthereumAddress[] = [];
+  readonly executors: tSmartBCHAddress[] = [];
 
   readonly governanceConfig: GovernanceConfig | undefined;
 
@@ -142,7 +142,7 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async create(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     {
       user,
       targets,
@@ -153,8 +153,8 @@ export default class AaveGovernanceV2Service
       ipfsHash,
       executor,
     }: GovCreateType
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
 
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
       this.bandzGovernanceV2Address
@@ -176,7 +176,7 @@ export default class AaveGovernanceV2Service
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOVERNANCE_ACTION,
+      txType: eSmartBCHTxType.GOVERNANCE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
     return txs;
@@ -184,11 +184,11 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async cancel(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId }: GovCancelType
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
       this.bandzGovernanceV2Address
     );
@@ -200,7 +200,7 @@ export default class AaveGovernanceV2Service
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOVERNANCE_ACTION,
+      txType: eSmartBCHTxType.GOVERNANCE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
     return txs;
@@ -208,11 +208,11 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async queue(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId }: GovQueueType
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
       this.bandzGovernanceV2Address
     );
@@ -224,7 +224,7 @@ export default class AaveGovernanceV2Service
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOVERNANCE_ACTION,
+      txType: eSmartBCHTxType.GOVERNANCE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
     return txs;
@@ -232,11 +232,11 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async execute(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId }: GovExecuteType
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
       this.bandzGovernanceV2Address
     );
@@ -248,7 +248,7 @@ export default class AaveGovernanceV2Service
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOVERNANCE_ACTION,
+      txType: eSmartBCHTxType.GOVERNANCE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
     return txs;
@@ -256,11 +256,11 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async submitVote(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId, support }: GovSubmitVoteType
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
       this.bandzGovernanceV2Address
     );
@@ -273,7 +273,7 @@ export default class AaveGovernanceV2Service
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOVERNANCE_ACTION,
+      txType: eSmartBCHTxType.GOVERNANCE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
     return txs;
@@ -313,11 +313,11 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async submitVoteBySignature(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId, support, signature }: GovSubmitVoteSignType
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const govContract: IAaveGovernanceV2 = this.getContractInstance(
       this.bandzGovernanceV2Address
     );
@@ -338,7 +338,7 @@ export default class AaveGovernanceV2Service
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOVERNANCE_ACTION,
+      txType: eSmartBCHTxType.GOVERNANCE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
     return txs;

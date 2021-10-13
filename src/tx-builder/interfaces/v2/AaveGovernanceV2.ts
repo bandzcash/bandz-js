@@ -1,4 +1,4 @@
-import { EthereumTransactionTypeExtended } from '../../types';
+import { SmartBCHTransactionTypeExtended } from '../../types';
 import {
   GovCreateType,
   GovCancelType,
@@ -17,16 +17,16 @@ import {
 import { Proposal, Power, Vote } from '../../types/GovernanceV2ReturnTypes';
 
 export default interface AaveGovernanceV2Interface {
-  create: (args: GovCreateType) => Promise<EthereumTransactionTypeExtended[]>;
-  cancel: (args: GovCancelType) => Promise<EthereumTransactionTypeExtended[]>;
-  queue: (args: GovQueueType) => Promise<EthereumTransactionTypeExtended[]>;
-  execute: (args: GovExecuteType) => Promise<EthereumTransactionTypeExtended[]>;
+  create: (args: GovCreateType) => Promise<SmartBCHTransactionTypeExtended[]>;
+  cancel: (args: GovCancelType) => Promise<SmartBCHTransactionTypeExtended[]>;
+  queue: (args: GovQueueType) => Promise<SmartBCHTransactionTypeExtended[]>;
+  execute: (args: GovExecuteType) => Promise<SmartBCHTransactionTypeExtended[]>;
   submitVote: (
     args: GovSubmitVoteType
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   submitVoteBySignature: (
     args: GovSubmitVoteSignType
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   signVoting: (args: GovSignVotingType) => Promise<string>;
   getProposals: (args: GovGetProposalsType) => Promise<Proposal[]>;
   getProposal: (args: GovGetProposalType) => Promise<Proposal>;

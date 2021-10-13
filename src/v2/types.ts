@@ -25,7 +25,7 @@ export type RewardsInformation = {
   rewardTokenAddress: string;
   rewardTokenDecimals: number;
   incentivePrecision: number;
-  rewardTokenPriceEth: string;
+  rewardTokenPriceBch: string;
   emissionEndTimestamp: number;
 };
 
@@ -67,7 +67,7 @@ export type ReserveData = {
   totalScaledVariableDebt: string;
   lastUpdateTimestamp: number;
   price: {
-    priceInEth: string;
+    priceInBch: string;
   };
   aEmissionPerSecond: string;
   vEmissionPerSecond: string;
@@ -122,49 +122,49 @@ export type UserReserveData = {
 
 export type ComputedUserReserve = UserReserveData & {
   underlyingBalance: string;
-  underlyingBalanceETH: string;
+  underlyingBalanceBCH: string;
   underlyingBalanceUSD: string;
 
   variableBorrows: string;
-  variableBorrowsETH: string;
+  variableBorrowsBCH: string;
   variableBorrowsUSD: string;
 
   stableBorrows: string;
-  stableBorrowsETH: string;
+  stableBorrowsBCH: string;
   stableBorrowsUSD: string;
 
   totalBorrows: string;
-  totalBorrowsETH: string;
+  totalBorrowsBCH: string;
   totalBorrowsUSD: string;
 
   aTokenRewards: string;
-  aTokenRewardsETH: string;
+  aTokenRewardsBCH: string;
   aTokenRewardsUSD: string;
   vTokenRewards: string;
-  vTokenRewardsETH: string;
+  vTokenRewardsBCH: string;
   vTokenRewardsUSD: string;
   sTokenRewards: string;
-  sTokenRewardsETH: string;
+  sTokenRewardsBCH: string;
   sTokenRewardsUSD: string;
   totalRewards: string;
-  totalRewardsETH: string;
+  totalRewardsBCH: string;
   totalRewardsUSD: string;
 };
 
 export type UserSummaryData = {
   id: string;
-  totalLiquidityETH: string;
+  totalLiquidityBCH: string;
   totalLiquidityUSD: string;
-  totalCollateralETH: string;
+  totalCollateralBCH: string;
   totalCollateralUSD: string;
-  totalBorrowsETH: string;
+  totalBorrowsBCH: string;
   totalBorrowsUSD: string;
-  availableBorrowsETH: string;
+  availableBorrowsBCH: string;
   currentLoanToValue: string;
   currentLiquidationThreshold: string;
   healthFactor: string;
   reservesData: ComputedUserReserve[];
   totalRewards: string;
-  totalRewardsETH: string;
+  totalRewardsBCH: string;
   totalRewardsUSD: string;
 };

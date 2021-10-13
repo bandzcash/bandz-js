@@ -2,15 +2,15 @@ import { BigNumber } from 'ethers';
 import IERC20ServiceInterface from '../interfaces/ERC20';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
-  tEthereumAddress,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
+  tSmartBCHAddress,
   transactionType,
   tStringCurrencyUnits,
   tStringDecimalUnits,
   TokenMetadataType,
 } from '../types';
-import { API_ETH_MOCK_ADDRESS, SUPER_BIG_ALLOWANCE_NUMBER } from '../config';
+import { API_BCH_MOCK_ADDRESS, SUPER_BIG_ALLOWANCE_NUMBER } from '../config';
 import { IERC20Detailed, IERC20Detailed__factory } from '../contract-types';
 import BaseService from './BaseService';
 import { parseNumber } from '../utils/parsings';
@@ -26,11 +26,11 @@ export default class ERC20Service
   }
 
   public approve = (
-    user: tEthereumAddress,
-    token: tEthereumAddress,
-    spender: tEthereumAddress,
+    user: tSmartBCHAddress,
+    token: tSmartBCHAddress,
+    spender: tSmartBCHAddress,
     amount: tStringDecimalUnits
-  ): EthereumTransactionTypeExtended => {
+  ): SmartBCHTransactionTypeExtended => {
     const erc20Contract = this.getContractInstance(token);
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -41,18 +41,18 @@ export default class ERC20Service
 
     return {
       tx: txCallback,
-      txType: eEthereumTxType.ERC20_APPROVAL,
+      txType: eSmartBCHTxType.ERC20_APPROVAL,
       gas: this.generateTxPriceEstimation([], txCallback),
     };
   };
 
   public isApproved = async (
-    token: tEthereumAddress,
-    userAddress: tEthereumAddress,
-    spender: tEthereumAddress,
+    token: tSmartBCHAddress,
+    userAddress: tSmartBCHAddress,
+    spender: tSmartBCHAddress,
     amount: tStringCurrencyUnits
   ): Promise<boolean> => {
-    if (token.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) return true;
+    if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) return true;
     const decimals = await this.decimalsOf(token);
     const erc20Contract: IERC20Detailed = this.getContractInstance(token);
     const allowance: BigNumber = await erc20Contract.allowance(
@@ -66,8 +66,8 @@ export default class ERC20Service
     return allowance.gte(amountBNWithDecimals);
   };
 
-  public decimalsOf = async (token: tEthereumAddress): Promise<number> => {
-    if (token.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) return 18;
+  public decimalsOf = async (token: tSmartBCHAddress): Promise<number> => {
+    if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) return 18;
     if (!this.tokenDecimals[token]) {
       const erc20Contract = this.getContractInstance(token);
       this.tokenDecimals[token] = await erc20Contract.decimals();
@@ -77,12 +77,12 @@ export default class ERC20Service
   };
 
   public getTokenData = async (
-    token: tEthereumAddress
+    token: tSmartBCHAddress
   ): Promise<TokenMetadataType> => {
-    if (token.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) {
+    if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
       return {
-        name: 'Ethereum',
-        symbol: 'ETH',
+        name: 'BitcoinCash',
+        symbol: 'BCH',
         decimals: 18,
         address: token,
       };

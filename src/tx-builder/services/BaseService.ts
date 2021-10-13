@@ -1,13 +1,13 @@
 import { BigNumber, Contract, PopulatedTransaction } from 'ethers';
 import {
   Configuration,
-  tEthereumAddress,
+  tSmartBCHAddress,
   TransactionGenerationMethod,
   transactionType,
   GasResponse,
   ProtocolAction,
-  EthereumTransactionTypeExtended,
-  eEthereumTxType,
+  SmartBCHTransactionTypeExtended,
+  eSmartBCHTxType,
 } from '../types';
 import { ContractsFactory } from '../interfaces/ContractsFactory';
 import { estimateGasByNetwork, getGasPrice } from '../utils/gasStation';
@@ -26,7 +26,7 @@ export default class BaseService<T extends Contract> {
     this.contractInstances = {};
   }
 
-  public getContractInstance = (address: tEthereumAddress): T => {
+  public getContractInstance = (address: tSmartBCHAddress): T => {
     if (!this.contractInstances[address]) {
       const { provider }: Configuration = this.config;
       this.contractInstances[address] = this.contractFactory.connect(
@@ -67,14 +67,14 @@ export default class BaseService<T extends Contract> {
   };
 
   readonly generateTxPriceEstimation = (
-    txs: EthereumTransactionTypeExtended[],
+    txs: SmartBCHTransactionTypeExtended[],
     txCallback: () => Promise<transactionType>,
     action: string = ProtocolAction.default
   ): GasResponse => async (force = false) => {
     try {
       const gasPrice = await getGasPrice(this.config);
       const hasPendingApprovals = txs.find(
-        (tx) => tx.txType === eEthereumTxType.ERC20_APPROVAL
+        (tx) => tx.txType === eSmartBCHTxType.ERC20_APPROVAL
       );
       if (!hasPendingApprovals || force) {
         const {

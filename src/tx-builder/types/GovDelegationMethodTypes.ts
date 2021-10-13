@@ -1,66 +1,66 @@
-import { ENS, tEthereumAddress, tStringDecimalUnits } from '.';
+import { ENS, tSmartBCHAddress, tStringDecimalUnits } from '.';
 
 export type GovDelegate = {
-  user: tEthereumAddress;
-  delegatee: tEthereumAddress | ENS;
-  governanceToken: tEthereumAddress;
+  user: tSmartBCHAddress;
+  delegatee: tSmartBCHAddress | ENS;
+  governanceToken: tSmartBCHAddress;
 };
 
 export type GovDelegateByType = {
-  user: tEthereumAddress;
-  delegatee: tEthereumAddress | ENS;
+  user: tSmartBCHAddress;
+  delegatee: tSmartBCHAddress | ENS;
   delegationType: tStringDecimalUnits;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 export type GovDelegateBySig = {
-  user: tEthereumAddress;
-  delegatee: tEthereumAddress | ENS;
+  user: tSmartBCHAddress;
+  delegatee: tSmartBCHAddress | ENS;
   expiry: tStringDecimalUnits;
   signature: string;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 export type GovDelegateByTypeBySig = {
-  user: tEthereumAddress;
-  delegatee: tEthereumAddress | ENS;
+  user: tSmartBCHAddress;
+  delegatee: tSmartBCHAddress | ENS;
   delegationType: tStringDecimalUnits;
   expiry: tStringDecimalUnits;
   signature: string;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 export type GovPrepareDelegateSig = {
-  delegatee: tEthereumAddress | ENS;
+  delegatee: tSmartBCHAddress | ENS;
   nonce: tStringDecimalUnits;
   expiry: tStringDecimalUnits;
   governanceTokenName: string;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 export type GovPrepareDelegateSigByType = {
-  delegatee: tEthereumAddress | ENS;
+  delegatee: tSmartBCHAddress | ENS;
   type: tStringDecimalUnits;
   nonce: tStringDecimalUnits;
   expiry: tStringDecimalUnits;
   governanceTokenName: string;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 
 // Data types
 export type GovGetDelegateeByType = {
-  delegator: tEthereumAddress;
+  delegator: tSmartBCHAddress;
   delegationType: tStringDecimalUnits;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 export type GovGetPowerCurrent = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   delegationType: tStringDecimalUnits;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 export type GovGetPowerAtBlock = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   blockNumber: tStringDecimalUnits;
   delegationType: tStringDecimalUnits;
-  governanceToken: tEthereumAddress;
+  governanceToken: tSmartBCHAddress;
 };
 export type GovGetNonce = {
-  user: tEthereumAddress;
-  governanceToken: tEthereumAddress;
+  user: tSmartBCHAddress;
+  governanceToken: tSmartBCHAddress;
 };

@@ -3,7 +3,7 @@ import LendingPoolInterfaceV2 from './v2/LendingPool';
 import SynthetixInterface from './Synthetix';
 import LTAMigratorInterface from './LTAMigrator';
 import StakingInterface from './Staking';
-import WETHGatewayInterface from './WETHGateway';
+import WBCHGatewayInterface from './WBCHGateway';
 import FaucetInterface from './Faucet';
 import AaveGovernanceV2Interface from './v2/AaveGovernanceV2';
 import GovernanceDelegationTokenInterface from './v2/GovernanceDelegationToken';
@@ -20,7 +20,7 @@ export default interface TxBuilderInterface {
   governanceDelegationTokenService: GovernanceDelegationTokenInterface;
   getLendingPool: (market: string) => LendingPoolInterfaceV2;
   getStaking: (stake: string) => StakingInterface;
-  getWethGateway: (market: string) => WETHGatewayInterface;
+  getWBCHGateway: (market: string) => WBCHGatewayInterface;
   getRepayWithCollateralAdapter: (
     market: string
   ) => RepayWithCollateralAdapterInterface;

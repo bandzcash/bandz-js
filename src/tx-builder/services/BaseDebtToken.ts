@@ -4,9 +4,9 @@ import BaseDebtTokenInterface from '../interfaces/BaseDebtToken';
 import IERC20ServiceInterface from '../interfaces/ERC20';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
-  tEthereumAddress,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
+  tSmartBCHAddress,
   transactionType,
   tStringCurrencyUnits,
   tStringDecimalUnits,
@@ -25,11 +25,11 @@ export default class BaseDebtToken
   }
 
   public approveDelegation(
-    user: tEthereumAddress,
-    delegatee: tEthereumAddress,
-    debtTokenAddress: tEthereumAddress,
+    user: tSmartBCHAddress,
+    delegatee: tSmartBCHAddress,
+    debtTokenAddress: tSmartBCHAddress,
     amount: tStringDecimalUnits
-  ): EthereumTransactionTypeExtended {
+  ): SmartBCHTransactionTypeExtended {
     const debtTokenContract: IDebtTokenBase = this.getContractInstance(
       debtTokenAddress
     );
@@ -44,15 +44,15 @@ export default class BaseDebtToken
 
     return {
       tx: txCallback,
-      txType: eEthereumTxType.ERC20_APPROVAL,
+      txType: eSmartBCHTxType.ERC20_APPROVAL,
       gas: this.generateTxPriceEstimation([], txCallback),
     };
   }
 
   public async isDelegationApproved(
-    debtTokenAddress: tEthereumAddress,
-    allowanceGiver: tEthereumAddress,
-    allowanceReceiver: tEthereumAddress,
+    debtTokenAddress: tSmartBCHAddress,
+    allowanceGiver: tSmartBCHAddress,
+    allowanceReceiver: tSmartBCHAddress,
     amount: tStringCurrencyUnits
   ): Promise<boolean> {
     const decimals: number = await this.erc20Service.decimalsOf(

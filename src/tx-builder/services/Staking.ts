@@ -11,10 +11,10 @@ import StakingInterface from '../interfaces/Staking';
 import {
   ChainId,
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   StakingNetworkConfig,
-  tEthereumAddress,
+  tSmartBCHAddress,
   transactionType,
   tStringCurrencyUnits,
   tStringDecimalUnits,
@@ -25,7 +25,7 @@ import {
   StakingValidator,
 } from '../validators/methodValidators';
 import {
-  IsEthAddress,
+  IsBchAddress,
   IsPositiveAmount,
   IsPositiveOrMinusOneAmount,
   Optional,
@@ -37,11 +37,11 @@ export default class StakingService
   implements StakingInterface {
   readonly stakingHelperContract: IAaveStakingHelper;
 
-  public readonly stakingContractAddress: tEthereumAddress;
+  public readonly stakingContractAddress: tSmartBCHAddress;
 
-  public readonly stakingRewardTokenContractAddress: tEthereumAddress;
+  public readonly stakingRewardTokenContractAddress: tSmartBCHAddress;
 
-  readonly stakingHelperContractAddress: tEthereumAddress | undefined;
+  readonly stakingHelperContractAddress: tSmartBCHAddress | undefined;
 
   readonly erc20Service: IERC20ServiceInterface;
 
@@ -79,7 +79,7 @@ export default class StakingService
 
   @SignStakingValidator
   public async signStaking(
-    @IsEthAddress() user: tEthereumAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits,
     nonce: string
   ): Promise<string> {
@@ -130,13 +130,13 @@ export default class StakingService
 
   @StakingValidator
   public async stakeWithPermit(
-    @IsEthAddress() user: tEthereumAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits,
     signature: string
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (!this.stakingHelperContractAddress) return [];
 
-    const txs: EthereumTransactionTypeExtended[] = [];
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const { decimalsOf } = this.erc20Service;
     const stakingContract: IStakedToken = this.getContractInstance(
       this.stakingContractAddress
@@ -163,7 +163,7 @@ export default class StakingService
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.STAKE_ACTION,
+      txType: eSmartBCHTxType.STAKE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
 
@@ -172,11 +172,11 @@ export default class StakingService
 
   @StakingValidator
   public async stake(
-    @IsEthAddress() user: tEthereumAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits,
-    @Optional @IsEthAddress() onBehalfOf?: tEthereumAddress
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+    @Optional @IsBchAddress() onBehalfOf?: tSmartBCHAddress
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const { decimalsOf, isApproved, approve } = this.erc20Service;
     const stakingContract: IStakedToken = this.getContractInstance(
       this.stakingContractAddress
@@ -214,7 +214,7 @@ export default class StakingService
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.STAKE_ACTION,
+      txType: eSmartBCHTxType.STAKE_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
 
@@ -223,9 +223,9 @@ export default class StakingService
 
   @StakingValidator
   public async redeem(
-    @IsEthAddress() user: tEthereumAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveOrMinusOneAmount() amount: tStringCurrencyUnits
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     let convertedAmount: tStringDecimalUnits;
     const stakingContract: IStakedToken = this.getContractInstance(
       this.stakingContractAddress
@@ -250,7 +250,7 @@ export default class StakingService
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.STAKE_ACTION,
+        txType: eSmartBCHTxType.STAKE_ACTION,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];
@@ -258,8 +258,8 @@ export default class StakingService
 
   @StakingValidator
   public async cooldown(
-    @IsEthAddress() user: tEthereumAddress
-  ): Promise<EthereumTransactionTypeExtended[]> {
+    @IsBchAddress() user: tSmartBCHAddress
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     const stakingContract: IStakedToken = this.getContractInstance(
       this.stakingContractAddress
     );
@@ -272,7 +272,7 @@ export default class StakingService
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.STAKE_ACTION,
+        txType: eSmartBCHTxType.STAKE_ACTION,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];
@@ -280,9 +280,9 @@ export default class StakingService
 
   @StakingValidator
   public async claimRewards(
-    @IsEthAddress() user: tEthereumAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveOrMinusOneAmount() amount: tStringCurrencyUnits
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     let convertedAmount: tStringDecimalUnits;
     const stakingContract: IStakedToken = this.getContractInstance(
       this.stakingContractAddress
@@ -306,7 +306,7 @@ export default class StakingService
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.STAKE_ACTION,
+        txType: eSmartBCHTxType.STAKE_ACTION,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];

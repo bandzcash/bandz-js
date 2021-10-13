@@ -6,9 +6,9 @@ import { canBeEnsAddress } from '../utils/parsings';
 // import 'reflect-metadata';
 import {
   is0OrPositiveMetadataKey,
-  isEthAddressArrayMetadataKey,
-  isEthAddressMetadataKey,
-  isEthAddressOrENSMetadataKey,
+  IsBchAddressArrayMetadataKey,
+  IsBchAddressMetadataKey,
+  IsBchAddressOrENSMetadataKey,
   isPositiveMetadataKey,
   isPositiveOrMinusOneMetadataKey,
   optionalMetadataKey,
@@ -37,14 +37,14 @@ export function optionalValidator(
   return isParamOptional;
 }
 
-export function isEthAddressValidator(
+export function IsBchAddressValidator(
   target: any,
   propertyName: string,
   methodArguments: any,
   isParamOptional?: boolean[]
 ): void {
   const addressParameters: paramsType[] = Reflect.getOwnMetadata(
-    isEthAddressMetadataKey,
+    IsBchAddressMetadataKey,
     target,
     propertyName
   );
@@ -59,7 +59,7 @@ export function isEthAddressValidator(
           throw new Error(
             `Address: ${
               methodArguments[0][storedParams.field]
-            } is not a valid ethereum Address`
+            } is not a valid smartBCH address`
           );
         }
       } else {
@@ -73,7 +73,7 @@ export function isEthAddressValidator(
           throw new Error(
             `Address: ${
               methodArguments[storedParams.index]
-            } is not a valid ethereum Address`
+            } is not a valid smartBCH address`
           );
         }
       }
@@ -81,14 +81,14 @@ export function isEthAddressValidator(
   }
 }
 
-export function isEthAddressArrayValidator(
+export function IsBchAddressArrayValidator(
   target: any,
   propertyName: string,
   methodArguments: any,
   isParamOptional?: boolean[]
 ): void {
   const addressParameters: paramsType[] = Reflect.getOwnMetadata(
-    isEthAddressArrayMetadataKey,
+    IsBchAddressArrayMetadataKey,
     target,
     propertyName
   );
@@ -107,7 +107,7 @@ export function isEthAddressArrayValidator(
             fieldArray.forEach((address: string) => {
               if (!utils.isAddress(address)) {
                 throw new Error(
-                  `Address: ${address} is not a valid ethereum Address`
+                  `Address: ${address} is not a valid smartBCH address`
                 );
               }
             });
@@ -126,7 +126,7 @@ export function isEthAddressArrayValidator(
             fieldArray.forEach((address: string) => {
               if (!utils.isAddress(address)) {
                 throw new Error(
-                  `Address: ${address} is not a valid ethereum Address`
+                  `Address: ${address} is not a valid smartBCH address`
                 );
               }
             });
@@ -137,14 +137,14 @@ export function isEthAddressArrayValidator(
   }
 }
 
-export function isEthAddressOrEnsValidator(
+export function IsBchAddressOrEnsValidator(
   target: any,
   propertyName: string,
   methodArguments: any,
   isParamOptional?: boolean[]
 ): void {
   const addressParameters: paramsType[] = Reflect.getOwnMetadata(
-    isEthAddressOrENSMetadataKey,
+    IsBchAddressOrENSMetadataKey,
     target,
     propertyName
   );
@@ -160,7 +160,7 @@ export function isEthAddressOrEnsValidator(
             throw new Error(
               `Address ${
                 methodArguments[0][storedParams.field]
-              } is not valid ENS format or a valid ethereum Address`
+              } is not valid ENS format or a valid smartBCH address`
             );
           }
         }
@@ -176,7 +176,7 @@ export function isEthAddressOrEnsValidator(
             throw new Error(
               `Address ${
                 methodArguments[storedParams.index]
-              } is not valid ENS format or a valid ethereum Address`
+              } is not valid ENS format or a valid smartBCH address`
             );
           }
         }

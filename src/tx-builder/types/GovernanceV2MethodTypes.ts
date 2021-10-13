@@ -1,5 +1,5 @@
 import { BytesLike } from 'ethers';
-import { tEthereumAddress } from '.';
+import { tSmartBCHAddress } from '.';
 
 export enum ExecutorType {
   Short,
@@ -7,8 +7,8 @@ export enum ExecutorType {
 }
 
 export type GovCreateType = {
-  user: tEthereumAddress;
-  targets: tEthereumAddress[];
+  user: tSmartBCHAddress;
+  targets: tSmartBCHAddress[];
   values: string[];
   signatures: string[];
   calldatas: BytesLike[];
@@ -17,31 +17,31 @@ export type GovCreateType = {
   executor: ExecutorType;
 };
 export type GovCancelType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   proposalId: number;
 };
 export type GovQueueType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   proposalId: number;
 };
 export type GovExecuteType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   proposalId: number;
 };
 export type GovSubmitVoteType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   proposalId: number;
   support: boolean;
 };
 export type GovSubmitVoteSignType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   proposalId: number;
   support: boolean;
   signature: string;
 };
 
 export type GovSignVotingType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   support: boolean;
   proposalId: number;
   nonce: number;
@@ -58,21 +58,21 @@ export type GovGetProposalType = {
 
 export type GovGetVotingSupplyType = {
   block: number;
-  strategy: tEthereumAddress;
+  strategy: tSmartBCHAddress;
 };
 
 export type GovGetVotingAtBlockType = {
-  user: tEthereumAddress;
-  strategy: tEthereumAddress;
+  user: tSmartBCHAddress;
+  strategy: tSmartBCHAddress;
   block: number;
 };
 
 export type GovGetTokensVotingPower = {
-  user: tEthereumAddress;
-  tokens: tEthereumAddress[];
+  user: tSmartBCHAddress;
+  tokens: tSmartBCHAddress[];
 };
 
 export type GovGetVoteOnProposal = {
   proposalId: string;
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
 };

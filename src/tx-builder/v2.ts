@@ -4,8 +4,8 @@ import TxBuilderInterface from './interfaces/TxBuilder';
 import LendingPoolInterface from './interfaces/v2/LendingPool';
 import LendingPool from './services/v2/LendingPool';
 import BaseTxBuilder from './txBuilder';
-import WETHGatewayInterface from './interfaces/WETHGateway';
-import WETHGatewayService from './services/WETHGateway';
+import WBCHGatewayInterface from './interfaces/WBCHGateway';
+import WBCHGatewayService from './services/WBCHGateway';
 import BaseDebtTokenInterface from './interfaces/BaseDebtToken';
 import BaseDebtToken from './services/BaseDebtToken';
 import LiquiditySwapAdapterService from './services/LiquiditySwapAdapterParaswap';
@@ -24,8 +24,8 @@ export default class TxBuilder
     [market: string]: LendingPoolInterface;
   };
 
-  readonly wethGateways: {
-    [market: string]: WETHGatewayInterface;
+  readonly WBCHGateways: {
+    [market: string]: WBCHGatewayInterface;
   };
 
   readonly swapCollateralAdapters: {
@@ -50,7 +50,7 @@ export default class TxBuilder
   ) {
     super(network, injectedProvider, defaultProviderKeys, config);
 
-    this.wethGateways = {};
+    this.WBCHGateways = {};
     this.lendingPools = {};
     this.swapCollateralAdapters = {};
     this.repayWithCollateralAdapters = {};
@@ -101,10 +101,10 @@ export default class TxBuilder
     return this.swapCollateralAdapters[market];
   };
 
-  public getWethGateway = (market: string): WETHGatewayInterface => {
+  public getWBCHGateway = (market: string): WBCHGatewayInterface => {
     const { network } = this.configuration;
-    if (!this.wethGateways[market]) {
-      this.wethGateways[market] = new WETHGatewayService(
+    if (!this.WBCHGateways[market]) {
+      this.WBCHGateways[market] = new WBCHGatewayService(
         this.configuration,
         this.baseDebtTokenService,
         this.erc20Service,
@@ -112,7 +112,7 @@ export default class TxBuilder
       );
     }
 
-    return this.wethGateways[market];
+    return this.WBCHGateways[market];
   };
 
   public getLendingPool = (market: string): LendingPoolInterface => {
@@ -122,7 +122,7 @@ export default class TxBuilder
         this.configuration,
         this.erc20Service,
         this.synthetixService,
-        this.getWethGateway(market),
+        this.getWBCHGateway(market),
         this.getSwapCollateralAdapter(market),
         this.getRepayWithCollateralAdapter(market),
         market,

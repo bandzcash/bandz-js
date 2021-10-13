@@ -22,12 +22,12 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
 interface IMinterInterface extends ethers.utils.Interface {
   functions: {
-    "isEthRequired()": FunctionFragment;
+    "isBchRequired()": FunctionFragment;
     "mint(address,uint256)": FunctionFragment;
   };
 
   encodeFunctionData(
-    functionFragment: "isEthRequired",
+    functionFragment: "isBchRequired",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -36,7 +36,7 @@ interface IMinterInterface extends ethers.utils.Interface {
   ): string;
 
   decodeFunctionResult(
-    functionFragment: "isEthRequired",
+    functionFragment: "isBchRequired",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
@@ -58,13 +58,13 @@ export class IMinter extends Contract {
   interface: IMinterInterface;
 
   functions: {
-    isEthRequired(
+    isBchRequired(
       overrides?: CallOverrides
     ): Promise<{
       0: boolean;
     }>;
 
-    "isEthRequired()"(
+    "isBchRequired()"(
       overrides?: CallOverrides
     ): Promise<{
       0: boolean;
@@ -83,9 +83,9 @@ export class IMinter extends Contract {
     ): Promise<ContractTransaction>;
   };
 
-  isEthRequired(overrides?: CallOverrides): Promise<boolean>;
+  isBchRequired(overrides?: CallOverrides): Promise<boolean>;
 
-  "isEthRequired()"(overrides?: CallOverrides): Promise<boolean>;
+  "isBchRequired()"(overrides?: CallOverrides): Promise<boolean>;
 
   mint(
     _token: string,
@@ -100,9 +100,9 @@ export class IMinter extends Contract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    isEthRequired(overrides?: CallOverrides): Promise<boolean>;
+    isBchRequired(overrides?: CallOverrides): Promise<boolean>;
 
-    "isEthRequired()"(overrides?: CallOverrides): Promise<boolean>;
+    "isBchRequired()"(overrides?: CallOverrides): Promise<boolean>;
 
     mint(
       _token: string,
@@ -120,9 +120,9 @@ export class IMinter extends Contract {
   filters: {};
 
   estimateGas: {
-    isEthRequired(overrides?: CallOverrides): Promise<BigNumber>;
+    isBchRequired(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "isEthRequired()"(overrides?: CallOverrides): Promise<BigNumber>;
+    "isBchRequired()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     mint(
       _token: string,
@@ -138,9 +138,9 @@ export class IMinter extends Contract {
   };
 
   populateTransaction: {
-    isEthRequired(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    isBchRequired(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "isEthRequired()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    "isBchRequired()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     mint(
       _token: string,
