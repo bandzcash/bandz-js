@@ -16,7 +16,7 @@ import {
 import { FaucetParamsType } from '../types/FaucetMethodTypes';
 import { mintAmountsPerToken } from '../utils/parsings';
 import { FaucetValidator } from '../validators/methodValidators';
-import { IsEthAddress } from '../validators/paramValidators';
+import { IsBchAddress } from '../validators/paramValidators';
 import BaseService from './BaseService';
 
 export default class FaucetService
@@ -50,8 +50,8 @@ export default class FaucetService
 
   @FaucetValidator
   public async mint(
-    @IsEthAddress('userAddress')
-    @IsEthAddress('reserve')
+    @IsBchAddress('userAddress')
+    @IsBchAddress('reserve')
     { userAddress, reserve, tokenSymbol }: FaucetParamsType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const amount: string = mintAmountsPerToken[tokenSymbol];

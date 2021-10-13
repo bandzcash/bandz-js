@@ -42,7 +42,7 @@ import {
 } from '../../types/LendingPoolMethodTypes';
 import WBCHGatewayInterface from '../../interfaces/WBCHGateway';
 import {
-  IsEthAddress,
+  IsBchAddress,
   IsPositiveAmount,
   IsPositiveOrMinusOneAmount,
 } from '../../validators/paramValidators';
@@ -142,10 +142,10 @@ export default class LendingPool
 
   @LPValidator
   public async deposit(
-    @IsEthAddress('user')
-    @IsEthAddress('reserve')
+    @IsBchAddress('user')
+    @IsBchAddress('reserve')
     @IsPositiveAmount('amount')
-    @IsEthAddress('onBehalfOf')
+    @IsBchAddress('onBehalfOf')
     { user, reserve, amount, onBehalfOf, referralCode }: LPDepositParamsType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
@@ -225,11 +225,11 @@ export default class LendingPool
 
   @LPValidator
   public async withdraw(
-    @IsEthAddress('user')
-    @IsEthAddress('reserve')
+    @IsBchAddress('user')
+    @IsBchAddress('reserve')
     @IsPositiveOrMinusOneAmount('amount')
-    @IsEthAddress('onBehalfOf')
-    @IsEthAddress('aTokenAddress')
+    @IsBchAddress('onBehalfOf')
+    @IsBchAddress('aTokenAddress')
     { user, reserve, amount, onBehalfOf, aTokenAddress }: LPWithdrawParamsType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
@@ -285,11 +285,11 @@ export default class LendingPool
 
   @LPValidator
   public async borrow(
-    @IsEthAddress('user')
-    @IsEthAddress('reserve')
+    @IsBchAddress('user')
+    @IsBchAddress('reserve')
     @IsPositiveAmount('amount')
-    @IsEthAddress('debtTokenAddress')
-    @IsEthAddress('onBehalfOf')
+    @IsBchAddress('debtTokenAddress')
+    @IsBchAddress('onBehalfOf')
     {
       user,
       reserve,
@@ -351,10 +351,10 @@ export default class LendingPool
 
   @LPValidator
   public async repay(
-    @IsEthAddress('user')
-    @IsEthAddress('reserve')
+    @IsBchAddress('user')
+    @IsBchAddress('reserve')
     @IsPositiveOrMinusOneAmount('amount')
-    @IsEthAddress('onBehalfOf')
+    @IsBchAddress('onBehalfOf')
     { user, reserve, amount, interestRateMode, onBehalfOf }: LPRepayParamsType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
@@ -440,8 +440,8 @@ export default class LendingPool
 
   @LPValidator
   public async swapBorrowRateMode(
-    @IsEthAddress('user')
-    @IsEthAddress('reserve')
+    @IsBchAddress('user')
+    @IsBchAddress('reserve')
     { user, reserve, interestRateMode }: LPSwapBorrowRateMode
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const numericRateMode = interestRateMode === InterestRate.Variable ? 2 : 1;
@@ -469,8 +469,8 @@ export default class LendingPool
 
   @LPValidator
   public async setUsageAsCollateral(
-    @IsEthAddress('user')
-    @IsEthAddress('reserve')
+    @IsBchAddress('user')
+    @IsBchAddress('reserve')
     { user, reserve, usageAsCollateral }: LPSetUsageAsCollateral
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const lendingPoolContract = this.getContractInstance(
@@ -497,10 +497,10 @@ export default class LendingPool
 
   @LPValidator
   public async liquidationCall(
-    @IsEthAddress('liquidator')
-    @IsEthAddress('liquidatedUser')
-    @IsEthAddress('debtReserve')
-    @IsEthAddress('collateralReserve')
+    @IsBchAddress('liquidator')
+    @IsBchAddress('liquidatedUser')
+    @IsBchAddress('debtReserve')
+    @IsBchAddress('collateralReserve')
     @IsPositiveAmount('purchaseAmount')
     {
       liquidator,
@@ -579,12 +579,12 @@ export default class LendingPool
 
   @LPSwapCollateralValidator
   public async swapCollateral(
-    @IsEthAddress('user')
-    @IsEthAddress('fromAsset')
-    @IsEthAddress('fromAToken')
-    @IsEthAddress('toAsset')
-    @IsEthAddress('onBehalfOf')
-    @IsEthAddress('augustus')
+    @IsBchAddress('user')
+    @IsBchAddress('fromAsset')
+    @IsBchAddress('fromAToken')
+    @IsBchAddress('toAsset')
+    @IsBchAddress('onBehalfOf')
+    @IsBchAddress('augustus')
     @IsPositiveAmount('fromAmount')
     @IsPositiveAmount('minToAmount')
     {
@@ -722,11 +722,11 @@ export default class LendingPool
 
   @LPRepayWithCollateralValidator
   public async repayWithCollateral(
-    @IsEthAddress('user')
-    @IsEthAddress('fromAsset')
-    @IsEthAddress('fromAToken')
-    @IsEthAddress('assetToRepay')
-    @IsEthAddress('onBehalfOf')
+    @IsBchAddress('user')
+    @IsBchAddress('fromAsset')
+    @IsBchAddress('fromAToken')
+    @IsBchAddress('assetToRepay')
+    @IsBchAddress('onBehalfOf')
     @IsPositiveAmount('repayWithAmount')
     @IsPositiveAmount('repayAmount')
     {
@@ -874,11 +874,11 @@ export default class LendingPool
 
   @LPFlashLiquidationValidator
   public async flashLiquidation(
-    @IsEthAddress('user')
-    @IsEthAddress('collateralAsset')
-    @IsEthAddress('borrowedAsset')
+    @IsBchAddress('user')
+    @IsBchAddress('collateralAsset')
+    @IsBchAddress('borrowedAsset')
     @IsPositiveAmount('debtTokenCover')
-    @IsEthAddress('initiator')
+    @IsBchAddress('initiator')
     {
       user,
       collateralAsset,

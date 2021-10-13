@@ -10,3 +10,4 @@ schema.graphql
 artifacts
 cache
 package-lock.json
+replacements.txt

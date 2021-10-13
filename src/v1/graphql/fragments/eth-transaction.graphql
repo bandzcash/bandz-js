@@ -1,4 +1,4 @@
-fragment EthTransaction on EthereumTransactionModelExtended {
+fragment BchTransaction on EthereumTransactionModelExtended {
   tx {
     from
     to

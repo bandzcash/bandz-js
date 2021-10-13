@@ -13,7 +13,7 @@ import {
 } from '../types';
 import { SwapAndDepositMethodType } from '../types/LiquiditySwapAdapterParaswapMethodTypes';
 import { LiquiditySwapValidator } from '../validators/methodValidators';
-import { IsEthAddress, IsPositiveAmount } from '../validators/paramValidators';
+import { IsBchAddress, IsPositiveAmount } from '../validators/paramValidators';
 import BaseService from './BaseService';
 
 export function augustusFromAmountOffsetFromCalldata(calldata: string) {
@@ -53,10 +53,10 @@ export default class LiquiditySwapAdapterService
 
   @LiquiditySwapValidator
   public swapAndDeposit(
-    @IsEthAddress('user')
-    @IsEthAddress('assetToSwapFrom')
-    @IsEthAddress('assetToSwapTo')
-    @IsEthAddress('augustus')
+    @IsBchAddress('user')
+    @IsBchAddress('assetToSwapFrom')
+    @IsBchAddress('assetToSwapTo')
+    @IsBchAddress('augustus')
     @IsPositiveAmount('amountToSwap')
     @IsPositiveAmount('minAmountToReceive')
     {

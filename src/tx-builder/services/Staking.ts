@@ -25,7 +25,7 @@ import {
   StakingValidator,
 } from '../validators/methodValidators';
 import {
-  IsEthAddress,
+  IsBchAddress,
   IsPositiveAmount,
   IsPositiveOrMinusOneAmount,
   Optional,
@@ -79,7 +79,7 @@ export default class StakingService
 
   @SignStakingValidator
   public async signStaking(
-    @IsEthAddress() user: tSmartBCHAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits,
     nonce: string
   ): Promise<string> {
@@ -130,7 +130,7 @@ export default class StakingService
 
   @StakingValidator
   public async stakeWithPermit(
-    @IsEthAddress() user: tSmartBCHAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits,
     signature: string
   ): Promise<SmartBCHTransactionTypeExtended[]> {
@@ -172,9 +172,9 @@ export default class StakingService
 
   @StakingValidator
   public async stake(
-    @IsEthAddress() user: tSmartBCHAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits,
-    @Optional @IsEthAddress() onBehalfOf?: tSmartBCHAddress
+    @Optional @IsBchAddress() onBehalfOf?: tSmartBCHAddress
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const txs: SmartBCHTransactionTypeExtended[] = [];
     const { decimalsOf, isApproved, approve } = this.erc20Service;
@@ -223,7 +223,7 @@ export default class StakingService
 
   @StakingValidator
   public async redeem(
-    @IsEthAddress() user: tSmartBCHAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveOrMinusOneAmount() amount: tStringCurrencyUnits
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     let convertedAmount: tStringDecimalUnits;
@@ -258,7 +258,7 @@ export default class StakingService
 
   @StakingValidator
   public async cooldown(
-    @IsEthAddress() user: tSmartBCHAddress
+    @IsBchAddress() user: tSmartBCHAddress
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const stakingContract: IStakedToken = this.getContractInstance(
       this.stakingContractAddress
@@ -280,7 +280,7 @@ export default class StakingService
 
   @StakingValidator
   public async claimRewards(
-    @IsEthAddress() user: tSmartBCHAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveOrMinusOneAmount() amount: tStringCurrencyUnits
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     let convertedAmount: tStringDecimalUnits;

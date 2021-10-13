@@ -90,32 +90,32 @@ export type ComputedUserReserve = UserReserveData & {
   currentUnderlyingBalanceUSD: string;
 
   currentBorrows: string;
-  currentBorrowsETH: string;
+  currentBorrowsBCH: string;
   currentBorrowsUSD: string;
 
-  principalBorrowsETH: string;
+  principalBorrowsBCH: string;
   principalBorrowsUSD: string;
 
-  originationFeeETH: string;
+  originationFeeBCH: string;
   originationFeeUSD: string;
 };
 
 export type UserSummaryData = {
   id: string;
-  totalLiquidityETH: string;
-  totalCollateralETH: string;
+  totalLiquidityBCH: string;
+  totalCollateralBCH: string;
   totalBorrowsBCH: string;
-  totalFeesETH: string;
+  totalFeesBCH: string;
   totalFeesUSD: string;
   totalLiquidityUSD: string;
   totalCollateralUSD: string;
   totalBorrowsUSD: string;
-  totalBorrowsWithFeesETH: string;
+  totalBorrowsWithFeesBCH: string;
   totalBorrowsWithFeesUSD: string;
   availableBorrowsBCH: string;
   currentLoanToValue: string;
   currentLiquidationThreshold: string;
-  maxAmountToWithdrawInEth: string;
+  maxAmountToWithdrawInBch: string;
   healthFactor: string;
   reservesData: ComputedUserReserve[];
 };

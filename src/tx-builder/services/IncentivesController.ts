@@ -12,7 +12,7 @@ import {
   transactionType,
 } from '../types';
 import { IncentivesValidator } from '../validators/methodValidators';
-import { IsEthAddress } from '../validators/paramValidators';
+import { IsBchAddress } from '../validators/paramValidators';
 import BaseService from './BaseService';
 
 export type ClaimRewardsMethodType = {
@@ -53,9 +53,9 @@ export default class IncentivesController
 
   @IncentivesValidator
   public claimRewards(
-    @IsEthAddress('user')
-    // @IsEthAddressArray('assets')
-    @IsEthAddress('to')
+    @IsBchAddress('user')
+    // @IsBchAddressArray('assets')
+    @IsBchAddress('to')
     { user, assets, to }: ClaimRewardsMethodType
   ): SmartBCHTransactionTypeExtended[] {
     const incentivesContract: IAaveIncentivesController = this.getContractInstance(

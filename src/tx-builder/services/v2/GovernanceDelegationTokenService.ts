@@ -29,8 +29,8 @@ import { canBeEnsAddress } from '../../utils/parsings';
 import { GovDelegationValidator } from '../../validators/methodValidators';
 import {
   Is0OrPositiveAmount,
-  IsEthAddress,
-  IsEthAddressOrENS,
+  IsBchAddress,
+  IsBchAddressOrENS,
   IsPositiveAmount,
 } from '../../validators/paramValidators';
 import BaseService from '../BaseService';
@@ -44,9 +44,9 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async delegate(
-    @IsEthAddress('user')
-    @IsEthAddressOrENS('delegatee')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('user')
+    @IsBchAddressOrENS('delegatee')
+    @IsBchAddress('governanceToken')
     { user, delegatee, governanceToken }: GovDelegate
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const txs: SmartBCHTransactionTypeExtended[] = [];
@@ -75,9 +75,9 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async delegateByType(
-    @IsEthAddress('user')
-    @IsEthAddressOrENS('delegatee')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('user')
+    @IsBchAddressOrENS('delegatee')
+    @IsBchAddress('governanceToken')
     { user, delegatee, delegationType, governanceToken }: GovDelegateByType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const txs: SmartBCHTransactionTypeExtended[] = [];
@@ -107,9 +107,9 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async delegateBySig(
-    @IsEthAddress('user')
-    @IsEthAddressOrENS('delegatee')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('user')
+    @IsBchAddressOrENS('delegatee')
+    @IsBchAddress('governanceToken')
     { user, delegatee, expiry, signature, governanceToken }: GovDelegateBySig
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const txs: SmartBCHTransactionTypeExtended[] = [];
@@ -145,9 +145,9 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async delegateByTypeBySig(
-    @IsEthAddress('user')
-    @IsEthAddressOrENS('delegatee')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('user')
+    @IsBchAddressOrENS('delegatee')
+    @IsBchAddress('governanceToken')
     {
       user,
       delegatee,
@@ -191,8 +191,8 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async prepareDelegateSignature(
-    @IsEthAddressOrENS('delegatee')
-    @IsEthAddress('governanceToken')
+    @IsBchAddressOrENS('delegatee')
+    @IsBchAddress('governanceToken')
     @Is0OrPositiveAmount('nonce')
     {
       delegatee,
@@ -235,8 +235,8 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async prepareDelegateByTypeSignature(
-    @IsEthAddressOrENS('delegatee')
-    @IsEthAddress('governanceToken')
+    @IsBchAddressOrENS('delegatee')
+    @IsBchAddress('governanceToken')
     @Is0OrPositiveAmount('nonce')
     {
       delegatee,
@@ -282,8 +282,8 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async getDelegateeByType(
-    @IsEthAddress('delegator')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('delegator')
+    @IsBchAddress('governanceToken')
     { delegator, delegationType, governanceToken }: GovGetDelegateeByType
   ): Promise<tSmartBCHAddress> {
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(
@@ -297,8 +297,8 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async getPowerCurrent(
-    @IsEthAddress('user')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('user')
+    @IsBchAddress('governanceToken')
     { user, delegationType, governanceToken }: GovGetPowerCurrent
   ): Promise<tStringDecimalUnits> {
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(
@@ -311,8 +311,8 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async getPowerAtBlock(
-    @IsEthAddress('user')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('user')
+    @IsBchAddress('governanceToken')
     @IsPositiveAmount('blockNumber')
     { user, blockNumber, delegationType, governanceToken }: GovGetPowerAtBlock
   ): Promise<tStringDecimalUnits> {
@@ -330,8 +330,8 @@ export default class GovernanceDelegationTokenService
 
   @GovDelegationValidator
   public async getNonce(
-    @IsEthAddress('user')
-    @IsEthAddress('governanceToken')
+    @IsBchAddress('user')
+    @IsBchAddress('governanceToken')
     { user, governanceToken }: GovGetNonce
   ): Promise<tStringDecimalUnits> {
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(

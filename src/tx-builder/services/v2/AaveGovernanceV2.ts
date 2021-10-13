@@ -45,7 +45,7 @@ import { getProposalMetadata } from '../../utils/ipfs';
 import { GovValidator } from '../../validators/methodValidators';
 import {
   Is0OrPositiveAmount,
-  IsEthAddress,
+  IsBchAddress,
 } from '../../validators/paramValidators';
 import BaseService from '../BaseService';
 
@@ -142,7 +142,7 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async create(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     {
       user,
       targets,
@@ -184,7 +184,7 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async cancel(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId }: GovCancelType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
@@ -208,7 +208,7 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async queue(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId }: GovQueueType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
@@ -232,7 +232,7 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async execute(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId }: GovExecuteType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
@@ -256,7 +256,7 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async submitVote(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId, support }: GovSubmitVoteType
   ): Promise<SmartBCHTransactionTypeExtended[]> {
@@ -313,7 +313,7 @@ export default class AaveGovernanceV2Service
 
   @GovValidator
   public async submitVoteBySignature(
-    @IsEthAddress('user')
+    @IsBchAddress('user')
     @Is0OrPositiveAmount('proposalId')
     { user, proposalId, support, signature }: GovSubmitVoteSignType
   ): Promise<SmartBCHTransactionTypeExtended[]> {

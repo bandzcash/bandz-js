@@ -6,9 +6,9 @@ import { canBeEnsAddress } from '../utils/parsings';
 // import 'reflect-metadata';
 import {
   is0OrPositiveMetadataKey,
-  isEthAddressArrayMetadataKey,
-  isEthAddressMetadataKey,
-  isEthAddressOrENSMetadataKey,
+  IsBchAddressArrayMetadataKey,
+  IsBchAddressMetadataKey,
+  IsBchAddressOrENSMetadataKey,
   isPositiveMetadataKey,
   isPositiveOrMinusOneMetadataKey,
   optionalMetadataKey,
@@ -37,14 +37,14 @@ export function optionalValidator(
   return isParamOptional;
 }
 
-export function isEthAddressValidator(
+export function IsBchAddressValidator(
   target: any,
   propertyName: string,
   methodArguments: any,
   isParamOptional?: boolean[]
 ): void {
   const addressParameters: paramsType[] = Reflect.getOwnMetadata(
-    isEthAddressMetadataKey,
+    IsBchAddressMetadataKey,
     target,
     propertyName
   );
@@ -81,14 +81,14 @@ export function isEthAddressValidator(
   }
 }
 
-export function isEthAddressArrayValidator(
+export function IsBchAddressArrayValidator(
   target: any,
   propertyName: string,
   methodArguments: any,
   isParamOptional?: boolean[]
 ): void {
   const addressParameters: paramsType[] = Reflect.getOwnMetadata(
-    isEthAddressArrayMetadataKey,
+    IsBchAddressArrayMetadataKey,
     target,
     propertyName
   );
@@ -137,14 +137,14 @@ export function isEthAddressArrayValidator(
   }
 }
 
-export function isEthAddressOrEnsValidator(
+export function IsBchAddressOrEnsValidator(
   target: any,
   propertyName: string,
   methodArguments: any,
   isParamOptional?: boolean[]
 ): void {
   const addressParameters: paramsType[] = Reflect.getOwnMetadata(
-    isEthAddressOrENSMetadataKey,
+    IsBchAddressOrENSMetadataKey,
     target,
     propertyName
   );

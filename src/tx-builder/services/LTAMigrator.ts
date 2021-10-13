@@ -17,7 +17,7 @@ import {
 import { parseNumber } from '../utils/parsings';
 import BaseService from './BaseService';
 import { LTAMigratorValidator } from '../validators/methodValidators';
-import { IsEthAddress, IsPositiveAmount } from '../validators/paramValidators';
+import { IsBchAddress, IsPositiveAmount } from '../validators/paramValidators';
 
 export default class LTAMigratorService
   extends BaseService<ILendToAaveMigrator>
@@ -42,7 +42,7 @@ export default class LTAMigratorService
 
   @LTAMigratorValidator
   public async migrateLendToAave(
-    @IsEthAddress() user: tSmartBCHAddress,
+    @IsBchAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits
   ): Promise<SmartBCHTransactionTypeExtended[]> {
     const txs: SmartBCHTransactionTypeExtended[] = [];

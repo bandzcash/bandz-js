@@ -4,8 +4,8 @@ import {
   amount0OrPositiveValidator,
   amountGtThan0OrMinus1,
   amountGtThan0Validator,
-  isEthAddressOrEnsValidator,
-  isEthAddressValidator,
+  IsBchAddressOrEnsValidator,
+  IsBchAddressValidator,
   optionalValidator,
 } from './validations';
 import { utils } from 'ethers';
@@ -33,7 +33,7 @@ export function LPFlashLiquidationValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -66,7 +66,7 @@ export function LPRepayWithCollateralValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -99,7 +99,7 @@ export function LPSwapCollateralValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -125,7 +125,7 @@ export function LPValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -152,7 +152,7 @@ export function LTAMigratorValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -180,9 +180,9 @@ export function IncentivesValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
-    // isEthAddressArrayValidator(target, propertyName, arguments);
+    // IsBchAddressArrayValidator(target, propertyName, arguments);
 
     return method?.apply(this, arguments);
   };
@@ -207,7 +207,7 @@ export function LiquiditySwapValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -236,7 +236,7 @@ export function RepayWithCollateralValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -271,7 +271,7 @@ export function StakingValidator(
 
     const isParamOptional = optionalValidator(target, propertyName, arguments);
 
-    isEthAddressValidator(target, propertyName, arguments, isParamOptional);
+    IsBchAddressValidator(target, propertyName, arguments, isParamOptional);
 
     amountGtThan0Validator(target, propertyName, arguments, isParamOptional);
 
@@ -307,7 +307,7 @@ export function SignStakingValidator(
 
     const isParamOptional = optionalValidator(target, propertyName, arguments);
 
-    isEthAddressValidator(target, propertyName, arguments, isParamOptional);
+    IsBchAddressValidator(target, propertyName, arguments, isParamOptional);
 
     amountGtThan0Validator(target, propertyName, arguments, isParamOptional);
 
@@ -333,7 +333,7 @@ export function FaucetValidator(
 
     const isParamOptional = optionalValidator(target, propertyName, arguments);
 
-    isEthAddressValidator(target, propertyName, arguments, isParamOptional);
+    IsBchAddressValidator(target, propertyName, arguments, isParamOptional);
 
     amountGtThan0Validator(target, propertyName, arguments, isParamOptional);
 
@@ -341,7 +341,7 @@ export function FaucetValidator(
   };
 }
 
-export function WETHValidator(
+export function WBCHValidator(
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   target: any,
   propertyName: string,
@@ -357,7 +357,7 @@ export function WETHValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amountGtThan0Validator(target, propertyName, arguments);
 
@@ -393,7 +393,7 @@ export function GovValidator(
       return [];
     }
 
-    isEthAddressValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
 
     amount0OrPositiveValidator(target, propertyName, arguments);
 
@@ -410,8 +410,8 @@ export function GovDelegationValidator(
   const method = descriptor.value;
   // eslint-disable-next-line no-param-reassign
   descriptor.value = function () {
-    isEthAddressValidator(target, propertyName, arguments);
-    isEthAddressOrEnsValidator(target, propertyName, arguments);
+    IsBchAddressValidator(target, propertyName, arguments);
+    IsBchAddressOrEnsValidator(target, propertyName, arguments);
     amountGtThan0Validator(target, propertyName, arguments);
     amount0OrPositiveValidator(target, propertyName, arguments);
 

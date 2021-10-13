@@ -10,7 +10,7 @@ Object {
   "reservesData": Array [
     Object {
       "aTokenRewards": "0",
-      "aTokenRewardsETH": "0",
+      "aTokenRewardsBCH": "0",
       "aTokenRewardsUSD": "0",
       "aTokenincentivesUserIndex": "0",
       "principalStableDebt": "0",
@@ -57,9 +57,9 @@ Object {
   ],
   "totalBorrowsBCH": "224.903606951938325815",
   "totalBorrowsUSD": "375539.3154302718",
-  "totalCollateralETH": "0",
+  "totalCollateralBCH": "0",
   "totalCollateralUSD": "0",
-  "totalLiquidityETH": "0",
+  "totalLiquidityBCH": "0",
   "totalLiquidityUSD": "0",
   "totalRewards": "0",
   "totalRewardsBCH": "0",

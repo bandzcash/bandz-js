@@ -13,7 +13,7 @@ import {
 } from '../types';
 import { RepayWithCollateralType } from '../types/RepayWithCollateralMethodTypes';
 import { RepayWithCollateralValidator } from '../validators/methodValidators';
-import { IsEthAddress, IsPositiveAmount } from '../validators/paramValidators';
+import { IsBchAddress, IsPositiveAmount } from '../validators/paramValidators';
 import BaseService from './BaseService';
 
 export default class RepayWithCollateralAdapterService
@@ -36,9 +36,9 @@ export default class RepayWithCollateralAdapterService
 
   @RepayWithCollateralValidator
   public swapAndRepay(
-    @IsEthAddress('user')
-    @IsEthAddress('collateralAsset')
-    @IsEthAddress('debtAsset')
+    @IsBchAddress('user')
+    @IsBchAddress('collateralAsset')
+    @IsBchAddress('debtAsset')
     @IsPositiveAmount('collateralAmount')
     @IsPositiveAmount('debtRepayAmount')
     {

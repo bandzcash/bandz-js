@@ -20,9 +20,9 @@ import {
   WBCHWithdrawParamsType,
 } from '../types/WbchGatewayMethodTypes';
 import { parseNumber } from '../utils/parsings';
-import { WETHValidator } from '../validators/methodValidators';
+import { WBCHValidator } from '../validators/methodValidators';
 import {
-  IsEthAddress,
+  IsBchAddress,
   IsPositiveAmount,
   IsPositiveOrMinusOneAmount,
 } from '../validators/paramValidators';
@@ -55,11 +55,11 @@ export default class WBCHGatewayService
     this.WBCHGatewayAddress = this.WBCHGatewayConfig?.WBCH_GATEWAY || '';
   }
 
-  @WETHValidator
+  @WBCHValidator
   public async depositBCH(
-    @IsEthAddress('lendingPool')
-    @IsEthAddress('user')
-    @IsEthAddress('onBehalfOf')
+    @IsBchAddress('lendingPool')
+    @IsBchAddress('user')
+    @IsBchAddress('onBehalfOf')
     @IsPositiveAmount('amount')
     {
       lendingPool,
@@ -94,12 +94,12 @@ export default class WBCHGatewayService
     ];
   }
 
-  @WETHValidator
+  @WBCHValidator
   public async borrowBCH(
-    @IsEthAddress('lendingPool')
-    @IsEthAddress('user')
+    @IsBchAddress('lendingPool')
+    @IsBchAddress('user')
     @IsPositiveAmount('amount')
-    @IsEthAddress('debtTokenAddress')
+    @IsBchAddress('debtTokenAddress')
     {
       lendingPool,
       user,
@@ -158,13 +158,13 @@ export default class WBCHGatewayService
     return txs;
   }
 
-  @WETHValidator
+  @WBCHValidator
   public async withdrawBCH(
-    @IsEthAddress('lendingPool')
-    @IsEthAddress('user')
-    @IsEthAddress('onBehalfOf')
+    @IsBchAddress('lendingPool')
+    @IsBchAddress('user')
+    @IsBchAddress('onBehalfOf')
     @IsPositiveOrMinusOneAmount('amount')
-    @IsEthAddress('aTokenAddress')
+    @IsBchAddress('aTokenAddress')
     {
       lendingPool,
       user,
@@ -223,11 +223,11 @@ export default class WBCHGatewayService
     return txs;
   }
 
-  @WETHValidator
+  @WBCHValidator
   public async repayBCH(
-    @IsEthAddress('lendingPool')
-    @IsEthAddress('user')
-    @IsEthAddress('onBehalfOf')
+    @IsBchAddress('lendingPool')
+    @IsBchAddress('user')
+    @IsBchAddress('onBehalfOf')
     @IsPositiveAmount('amount')
     {
       lendingPool,
