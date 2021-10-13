@@ -136,7 +136,7 @@ export default class AaveGovernanceV2Service
     this.bandzGovernanceV2Address = BANDZ_GOVERNANCE_V2 || '';
     this.bandzGovernanceV2HelperAddress = BANDZ_GOVERNANCE_V2_HELPER || '';
     this.executors[ExecutorType.Short] =
-    BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT || '';
+      BANDZ_GOVERNANCE_V2_EXECUTOR_SHORT || '';
     this.executors[ExecutorType.Long] = BANDZ_GOVERNANCE_V2_EXECUTOR_LONG || '';
   }
 
