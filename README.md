@@ -7,9 +7,9 @@ The bandz-js package gives developers access to methods for formatting data and 
 1. [Quick Start](#quick-start)
 2. [Data Formatting Methods](#data-formatting-methods)
    - a. [User Data](#user-data)
-      - [formatUserSummaryData](#formatUserSummaryData) 
+      - [formatUserSummaryData](#formatUserSummaryData)
    - b. [Reserve Data](#reserve-data)
-      - [formatReserves](#formatReserves) 
+      - [formatReserves](#formatReserves)
 3. [Transaction Methods](#transaction-methods)
    - a. [Lending Pool V2](#lending-pool-v2)
       - [deposit](#deposit)
@@ -58,7 +58,7 @@ npm install --save @bandz/protocol-js
 
 # Data Formatting Methods
 
-BANDZ aggregates on-chain protocol data into a variety of different subgraphs on TheGraph which can be queried directly using the playground (links below) and integrated into applications directly via TheGraph API. 
+BANDZ aggregates on-chain protocol data into a variety of different subgraphs on TheGraph which can be queried directly using the playground (links below) and integrated into applications directly via TheGraph API.
 
 The bandz-js data formatting methods are a layer beyond graphql which wraps protocol data into more usable formats. Each method will require inputs from BANDZ subgraph queries, links to these queries in the source code are provided for each method below.
 
@@ -96,13 +96,13 @@ let userSummary = v2.formatUserSummaryData(poolReservesData, rawUserReserves, us
 
 ### formatUserSummaryData
 
-Returns formatted summary of BANDZ user portfolio including: array of holdings, total liquidity, total collateral, total borrows, liquidation threshold, health factor, and available borrowing power 
+Returns formatted summary of BANDZ user portfolio including: array of holdings, total liquidity, total collateral, total borrows, liquidation threshold, health factor, and available borrowing power
 
 - @param `poolReservesData` GraphQL input:
 	- subscription: src/[v1 or v2]/graphql/subscriptions/reserves-update-subscription.graphql
       : Requires input of pool (address of market which can be found above, or remove this filter to fetch all markets)
 	- types: src/[v1 or v2]/graphql/fragments/pool-reserve-data.graphql
-- @param `rawUserReserves` GraphQL input, query can be found here: 
+- @param `rawUserReserves` GraphQL input, query can be found here:
    - subscription: src/[v1 or v2]/graphql/subscriptions/user-position-update-subscription.graphql
       : Requires input of user (lowercase address), and pool (address of market which can be found above, or remove this filter to fetch all markets)
    - types: src/[v1 or v2]/graphql/fragments/user-reserve-data.graphql
@@ -133,11 +133,11 @@ v2.formatUserSummaryData(
 
 ### formatReserves
 
-Returns formatted summary of each BANDZ reserve asset 
+Returns formatted summary of each BANDZ reserve asset
 
 Note: liquidityRate = deposit rate in the return object
 
-- @param `reserves` GraphQL input: 
+- @param `reserves` GraphQL input:
 	- subscription: src/[v1 or v2]/graphql/subscriptions/reserves-update-subscription.graphql
       : Requires input of pool (address of market which can be found above, or remove this filter to fetch all markets)
 	- types: src/[v1 or v2]/graphql/fragments/pool-reserve-data.graphql
@@ -147,12 +147,12 @@ Note: liquidityRate = deposit rate in the return object
 
 ```
 v1.formatReserves(
-	reserves, // ReserveData[] 
+	reserves, // ReserveData[]
 	reservesIndexed30DaysAgo, // ? ReserveRatesData[]
 );
 
 v2.formatReserves(
-	reserves, // ReserveData[] 
+	reserves, // ReserveData[]
 	reservesIndexed30DaysAgo, // ? ReserveRatesData[]
 );
 ```

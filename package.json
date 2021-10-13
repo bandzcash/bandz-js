@@ -11,33 +11,8 @@
     "defi"
   ],
   "sideEffects": false,
-  "author": "Bandz <tech@bandz.cash>",
-  "contributors": [
-    {
-      "name": "Andrey Kozlov",
-      "email": "andrey@bandz.cash"
-    },
-    {
-      "name": "Ernesto Boado",
-      "email": "ernesto@bandz.cash"
-    },
-    {
-      "name": "Emilio Frangella",
-      "email": "emilio@bandz.cash"
-    },
-    {
-      "name": "Pol Sendra",
-      "email": "pol@bandz.cash"
-    },
-    {
-      "name": "Lukas Strassel",
-      "email": "lukas@bandz.cash"
-    },
-    {
-      "name": "Daniel Martin",
-      "email": "daniel@bandz.cash"
-    }
-  ],
+  "author": "Ronin <ronin@bandz.cash>",
+  "contributors": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bandzcash/bandz-js.git"
