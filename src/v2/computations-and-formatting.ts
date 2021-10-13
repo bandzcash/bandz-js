@@ -93,7 +93,7 @@ export function computeUserReserveData(
     poolReserve.lastUpdateTimestamp,
     currentTimestamp
   ).toString();
-  const [underlyingBalanceETH, underlyingBalanceUSD] = getEthAndUsdBalance(
+  const [underlyingBalanceBCH, underlyingBalanceUSD] = getEthAndUsdBalance(
     underlyingBalance,
     priceInBch,
     decimals,
@@ -108,7 +108,7 @@ export function computeUserReserveData(
     currentTimestamp
   ).toString();
 
-  const [variableBorrowsETH, variableBorrowsUSD] = getEthAndUsdBalance(
+  const [variableBorrowsBCH, variableBorrowsUSD] = getEthAndUsdBalance(
     variableBorrows,
     priceInBch,
     decimals,
@@ -122,7 +122,7 @@ export function computeUserReserveData(
     currentTimestamp
   ).toString();
 
-  const [stableBorrowsETH, stableBorrowsUSD] = getEthAndUsdBalance(
+  const [stableBorrowsBCH, stableBorrowsUSD] = getEthAndUsdBalance(
     stableBorrows,
     priceInBch,
     decimals,
@@ -183,7 +183,7 @@ export function computeUserReserveData(
       )
     : '0';
 
-  const [vTokenRewardsETH, vTokenRewardsUSD] = getEthAndUsdBalance(
+  const [vTokenRewardsBCH, vTokenRewardsUSD] = getEthAndUsdBalance(
     vTokenRewards,
     rewardsInfo.rewardTokenPriceBch,
     rewardsInfo.rewardTokenDecimals,
@@ -204,7 +204,7 @@ export function computeUserReserveData(
       )
     : '0';
 
-  const [sTokenRewardsETH, sTokenRewardsUSD] = getEthAndUsdBalance(
+  const [sTokenRewardsBCH, sTokenRewardsUSD] = getEthAndUsdBalance(
     sTokenRewards,
     rewardsInfo.rewardTokenPriceBch,
     rewardsInfo.rewardTokenDecimals,
@@ -214,19 +214,19 @@ export function computeUserReserveData(
   return {
     ...userReserve,
     underlyingBalance,
-    underlyingBalanceETH,
+    underlyingBalanceBCH,
     underlyingBalanceUSD,
     variableBorrows,
-    variableBorrowsETH,
+    variableBorrowsBCH,
     variableBorrowsUSD,
     stableBorrows,
-    stableBorrowsETH,
+    stableBorrowsBCH,
     stableBorrowsUSD,
     totalBorrows: valueToZDBigNumber(variableBorrows)
       .plus(stableBorrows)
       .toString(),
-    totalBorrowsETH: valueToZDBigNumber(variableBorrowsETH)
-      .plus(stableBorrowsETH)
+    totalBorrowsBCH: valueToZDBigNumber(variableBorrowsBCH)
+      .plus(stableBorrowsBCH)
       .toString(),
     totalBorrowsUSD: valueToZDBigNumber(variableBorrowsUSD)
       .plus(stableBorrowsUSD)
@@ -235,18 +235,18 @@ export function computeUserReserveData(
     aTokenRewardsETH,
     aTokenRewardsUSD,
     vTokenRewards,
-    vTokenRewardsETH,
+    vTokenRewardsBCH,
     vTokenRewardsUSD,
     sTokenRewards,
-    sTokenRewardsETH,
+    sTokenRewardsBCH,
     sTokenRewardsUSD,
     totalRewards: valueToZDBigNumber(aTokenRewards)
       .plus(vTokenRewards)
       .plus(sTokenRewards)
       .toString(),
-    totalRewardsETH: valueToZDBigNumber(aTokenRewardsETH)
-      .plus(vTokenRewardsETH)
-      .plus(sTokenRewardsETH)
+    totalRewardsBCH: valueToZDBigNumber(aTokenRewardsETH)
+      .plus(vTokenRewardsBCH)
+      .plus(sTokenRewardsBCH)
       .toString(),
     totalRewardsUSD: valueToZDBigNumber(aTokenRewardsUSD)
       .plus(vTokenRewardsUSD)
@@ -265,12 +265,12 @@ export function computeRawUserSummaryData(
 ): UserSummaryData {
   let totalLiquidityETH = valueToZDBigNumber('0');
   let totalCollateralETH = valueToZDBigNumber('0');
-  let totalBorrowsETH = valueToZDBigNumber('0');
+  let totalBorrowsBCH = valueToZDBigNumber('0');
   let currentLtv = valueToBigNumber('0');
   let currentLiquidationThreshold = valueToBigNumber('0');
 
   let totalRewards = valueToBigNumber('0');
-  let totalRewardsETH = valueToBigNumber('0');
+  let totalRewardsBCH = valueToBigNumber('0');
   let totalRewardsUSD = valueToBigNumber('0');
 
   const userReservesData = rawUserReserves
@@ -292,19 +292,19 @@ export function computeRawUserSummaryData(
       );
 
       totalRewards = totalRewards.plus(computedUserReserve.totalRewards);
-      totalRewardsETH = totalRewardsETH.plus(
-        computedUserReserve.totalRewardsETH
+      totalRewardsBCH = totalRewardsBCH.plus(
+        computedUserReserve.totalRewardsBCH
       );
       totalRewardsUSD = totalRewardsUSD.plus(
         computedUserReserve.totalRewardsUSD
       );
 
       totalLiquidityETH = totalLiquidityETH.plus(
-        computedUserReserve.underlyingBalanceETH
+        computedUserReserve.underlyingBalanceBCH
       );
-      totalBorrowsETH = totalBorrowsETH
-        .plus(computedUserReserve.variableBorrowsETH)
-        .plus(computedUserReserve.stableBorrowsETH);
+      totalBorrowsBCH = totalBorrowsBCH
+        .plus(computedUserReserve.variableBorrowsBCH)
+        .plus(computedUserReserve.stableBorrowsBCH);
 
       // asset enabled as collateral
       if (
@@ -312,16 +312,16 @@ export function computeRawUserSummaryData(
         userReserve.usageAsCollateralEnabledOnUser
       ) {
         totalCollateralETH = totalCollateralETH.plus(
-          computedUserReserve.underlyingBalanceETH
+          computedUserReserve.underlyingBalanceBCH
         );
         currentLtv = currentLtv.plus(
           valueToBigNumber(
-            computedUserReserve.underlyingBalanceETH
+            computedUserReserve.underlyingBalanceBCH
           ).multipliedBy(poolReserve.baseLTVasCollateral)
         );
         currentLiquidationThreshold = currentLiquidationThreshold.plus(
           valueToBigNumber(
-            computedUserReserve.underlyingBalanceETH
+            computedUserReserve.underlyingBalanceBCH
           ).multipliedBy(poolReserve.reserveLiquidationThreshold)
         );
       }
@@ -348,7 +348,7 @@ export function computeRawUserSummaryData(
 
   const healthFactor = calculateHealthFactorFromBalances(
     totalCollateralETH,
-    totalBorrowsETH,
+    totalBorrowsBCH,
     currentLiquidationThreshold
   );
 
@@ -362,14 +362,14 @@ export function computeRawUserSummaryData(
     .dividedBy(usdPriceBch)
     .toString();
 
-  const totalBorrowsUSD = totalBorrowsETH
+  const totalBorrowsUSD = totalBorrowsBCH
     .multipliedBy(pow10(USD_DECIMALS))
     .dividedBy(usdPriceBch)
     .toString();
 
   const availableBorrowsBCH = calculateavailableBorrowsBCH(
     totalCollateralETH,
-    totalBorrowsETH,
+    totalBorrowsBCH,
     currentLtv
   );
 
@@ -378,12 +378,12 @@ export function computeRawUserSummaryData(
     totalCollateralUSD,
     totalBorrowsUSD,
     totalRewards: totalRewards.toString(),
-    totalRewardsETH: totalRewardsETH.toString(),
+    totalRewardsBCH: totalRewardsBCH.toString(),
     totalRewardsUSD: totalRewardsUSD.toString(),
     id: userId,
     totalLiquidityETH: totalLiquidityETH.toString(),
     totalCollateralETH: totalCollateralETH.toString(),
-    totalBorrowsETH: totalBorrowsETH.toString(),
+    totalBorrowsBCH: totalBorrowsBCH.toString(),
     availableBorrowsBCH: availableBorrowsBCH.toString(),
     currentLoanToValue: currentLtv.toString(),
     currentLiquidationThreshold: currentLiquidationThreshold.toString(),
@@ -436,8 +436,8 @@ export function formatUserSummaryData(
           userReserve.underlyingBalance,
           reserveDecimals
         ),
-        underlyingBalanceETH: normalize(
-          userReserve.underlyingBalanceETH,
+        underlyingBalanceBCH: normalize(
+          userReserve.underlyingBalanceBCH,
           BCH_DECIMALS
         ),
         underlyingBalanceUSD: normalize(
@@ -445,14 +445,14 @@ export function formatUserSummaryData(
           USD_DECIMALS
         ),
         stableBorrows: normalize(userReserve.stableBorrows, reserveDecimals),
-        stableBorrowsETH: normalize(userReserve.stableBorrowsETH, BCH_DECIMALS),
+        stableBorrowsBCH: normalize(userReserve.stableBorrowsBCH, BCH_DECIMALS),
         stableBorrowsUSD: normalize(userReserve.stableBorrowsUSD, USD_DECIMALS),
         variableBorrows: normalize(
           userReserve.variableBorrows,
           reserveDecimals
         ),
-        variableBorrowsETH: normalize(
-          userReserve.variableBorrowsETH,
+        variableBorrowsBCH: normalize(
+          userReserve.variableBorrowsBCH,
           BCH_DECIMALS
         ),
         variableBorrowsUSD: normalize(
@@ -460,7 +460,7 @@ export function formatUserSummaryData(
           USD_DECIMALS
         ),
         totalBorrows: normalize(userReserve.totalBorrows, reserveDecimals),
-        totalBorrowsETH: normalize(userReserve.totalBorrowsETH, BCH_DECIMALS),
+        totalBorrowsBCH: normalize(userReserve.totalBorrowsBCH, BCH_DECIMALS),
         totalBorrowsUSD: normalize(userReserve.totalBorrowsUSD, USD_DECIMALS),
       };
     }
@@ -472,7 +472,7 @@ export function formatUserSummaryData(
     totalLiquidityUSD: normalize(userData.totalLiquidityUSD, USD_DECIMALS),
     totalCollateralETH: normalize(userData.totalCollateralETH, BCH_DECIMALS),
     totalCollateralUSD: normalize(userData.totalCollateralUSD, USD_DECIMALS),
-    totalBorrowsETH: normalize(userData.totalBorrowsETH, BCH_DECIMALS),
+    totalBorrowsBCH: normalize(userData.totalBorrowsBCH, BCH_DECIMALS),
     totalBorrowsUSD: normalize(userData.totalBorrowsUSD, USD_DECIMALS),
     availableBorrowsBCH: normalize(userData.availableBorrowsBCH, BCH_DECIMALS),
     currentLoanToValue: normalize(userData.currentLoanToValue, 4),
@@ -482,7 +482,7 @@ export function formatUserSummaryData(
     ),
     healthFactor: userData.healthFactor,
     totalRewards: userData.totalRewards,
-    totalRewardsETH: userData.totalRewardsETH,
+    totalRewardsBCH: userData.totalRewardsBCH,
     totalRewardsUSD: userData.totalRewardsUSD,
   };
 }

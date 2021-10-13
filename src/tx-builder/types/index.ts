@@ -69,7 +69,7 @@ export type MigratorConfig = {
 
 export type LendingPoolMarketConfig = {
   LENDING_POOL: tEthereumAddress;
-  WETH_GATEWAY?: tEthereumAddress;
+  WBCH_GATEWAY?: tEthereumAddress;
   FLASH_LIQUIDATION_ADAPTER?: tEthereumAddress;
   REPAY_WITH_COLLATERAL_ADAPTER?: tEthereumAddress;
   SWAP_COLLATERAL_ADAPTER?: tEthereumAddress;
@@ -172,7 +172,7 @@ export type AddressModel = {
   SYNTHETIX_PROXY_ADDRESS: tEthereumAddress;
   GOVERNANCE_PROTO_CONTRACT: tEthereumAddress;
   LEND_TO_AAVE_MIGRATOR: tEthereumAddress;
-  WETH_GATEWAY: tEthereumAddress;
+  WBCH_GATEWAY: tEthereumAddress;
   FAUCET: tEthereumAddress;
   SWAP_COLLATERAL_ADAPTER: tEthereumAddress;
   REPAY_WITH_COLLATERAL_ADAPTER: tEthereumAddress;
@@ -190,7 +190,7 @@ export type tCommonContractAddressBetweenMarkets = Pick<
   | 'SYNTHETIX_PROXY_ADDRESS'
   | 'GOVERNANCE_PROTO_CONTRACT'
   | 'LEND_TO_AAVE_MIGRATOR'
-  | 'WETH_GATEWAY'
+  | 'WBCH_GATEWAY'
   | 'FAUCET'
   | 'SWAP_COLLATERAL_ADAPTER'
   | 'REPAY_WITH_COLLATERAL_ADAPTER'

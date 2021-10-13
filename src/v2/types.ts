@@ -122,32 +122,32 @@ export type UserReserveData = {
 
 export type ComputedUserReserve = UserReserveData & {
   underlyingBalance: string;
-  underlyingBalanceETH: string;
+  underlyingBalanceBCH: string;
   underlyingBalanceUSD: string;
 
   variableBorrows: string;
-  variableBorrowsETH: string;
+  variableBorrowsBCH: string;
   variableBorrowsUSD: string;
 
   stableBorrows: string;
-  stableBorrowsETH: string;
+  stableBorrowsBCH: string;
   stableBorrowsUSD: string;
 
   totalBorrows: string;
-  totalBorrowsETH: string;
+  totalBorrowsBCH: string;
   totalBorrowsUSD: string;
 
   aTokenRewards: string;
   aTokenRewardsETH: string;
   aTokenRewardsUSD: string;
   vTokenRewards: string;
-  vTokenRewardsETH: string;
+  vTokenRewardsBCH: string;
   vTokenRewardsUSD: string;
   sTokenRewards: string;
-  sTokenRewardsETH: string;
+  sTokenRewardsBCH: string;
   sTokenRewardsUSD: string;
   totalRewards: string;
-  totalRewardsETH: string;
+  totalRewardsBCH: string;
   totalRewardsUSD: string;
 };
 
@@ -157,7 +157,7 @@ export type UserSummaryData = {
   totalLiquidityUSD: string;
   totalCollateralETH: string;
   totalCollateralUSD: string;
-  totalBorrowsETH: string;
+  totalBorrowsBCH: string;
   totalBorrowsUSD: string;
   availableBorrowsBCH: string;
   currentLoanToValue: string;
@@ -165,6 +165,6 @@ export type UserSummaryData = {
   healthFactor: string;
   reservesData: ComputedUserReserve[];
   totalRewards: string;
-  totalRewardsETH: string;
+  totalRewardsBCH: string;
   totalRewardsUSD: string;
 };

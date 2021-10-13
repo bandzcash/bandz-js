@@ -86,7 +86,7 @@ export type UserReserveData = {
 
 export type ComputedUserReserve = UserReserveData & {
   currentUnderlyingBalance: string;
-  currentUnderlyingBalanceETH: string;
+  currentunderlyingBalanceBCH: string;
   currentUnderlyingBalanceUSD: string;
 
   currentBorrows: string;
@@ -104,7 +104,7 @@ export type UserSummaryData = {
   id: string;
   totalLiquidityETH: string;
   totalCollateralETH: string;
-  totalBorrowsETH: string;
+  totalBorrowsBCH: string;
   totalFeesETH: string;
   totalFeesUSD: string;
   totalLiquidityUSD: string;

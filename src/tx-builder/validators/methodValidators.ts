@@ -350,9 +350,9 @@ export function WETHValidator(
   const method = descriptor.value;
   // eslint-disable-next-line no-param-reassign
   descriptor.value = function () {
-    const WETH_GATEWAY = this.wethGatewayConfig?.WETH_GATEWAY || '';
+    const WBCH_GATEWAY = this.wethGatewayConfig?.WBCH_GATEWAY || '';
 
-    if (!utils.isAddress(WETH_GATEWAY)) {
+    if (!utils.isAddress(WBCH_GATEWAY)) {
       console.error(`[WethGatewayValidator] You need to pass valid addresses`);
       return [];
     }

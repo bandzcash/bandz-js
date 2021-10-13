@@ -228,10 +228,10 @@ function computeUserReserveData(
     poolReserve,
     currentTimestamp
   );
-  const currentUnderlyingBalanceETH = currentUnderlyingBalance
+  const currentunderlyingBalanceBCH = currentUnderlyingBalance
     .multipliedBy(priceInBch)
     .dividedBy(pow10(decimals));
-  const currentUnderlyingBalanceUSD = currentUnderlyingBalanceETH
+  const currentUnderlyingBalanceUSD = currentunderlyingBalanceBCH
     .multipliedBy(pow10(USD_DECIMALS))
     .dividedBy(usdPriceBch)
     .toFixed(0);
@@ -276,7 +276,7 @@ function computeUserReserveData(
     currentBorrowsETH: currentBorrowsETH.toString(),
     principalBorrowsETH: principalBorrowsETH.toString(),
     currentUnderlyingBalance: currentUnderlyingBalance.toFixed(),
-    currentUnderlyingBalanceETH: currentUnderlyingBalanceETH.toFixed(),
+    currentunderlyingBalanceBCH: currentunderlyingBalanceBCH.toFixed(),
   };
 }
 
@@ -289,7 +289,7 @@ export function computeRawUserSummaryData(
 ): UserSummaryData {
   let totalLiquidityETH = valueToZDBigNumber('0');
   let totalCollateralETH = valueToZDBigNumber('0');
-  let totalBorrowsETH = valueToZDBigNumber('0');
+  let totalBorrowsBCH = valueToZDBigNumber('0');
   let totalFeesETH = valueToZDBigNumber('0');
   let currentLtv = valueToBigNumber('0');
   let currentLiquidationThreshold = valueToBigNumber('0');
@@ -311,9 +311,9 @@ export function computeRawUserSummaryData(
         currentTimestamp
       );
       totalLiquidityETH = totalLiquidityETH.plus(
-        computedUserReserve.currentUnderlyingBalanceETH
+        computedUserReserve.currentunderlyingBalanceBCH
       );
-      totalBorrowsETH = totalBorrowsETH.plus(
+      totalBorrowsBCH = totalBorrowsBCH.plus(
         computedUserReserve.currentBorrowsETH
       );
       totalFeesETH = totalFeesETH.plus(computedUserReserve.originationFeeETH);
@@ -324,16 +324,16 @@ export function computeRawUserSummaryData(
         userReserve.usageAsCollateralEnabledOnUser
       ) {
         totalCollateralETH = totalCollateralETH.plus(
-          computedUserReserve.currentUnderlyingBalanceETH
+          computedUserReserve.currentunderlyingBalanceBCH
         );
         currentLtv = currentLtv.plus(
           valueToBigNumber(
-            computedUserReserve.currentUnderlyingBalanceETH
+            computedUserReserve.currentunderlyingBalanceBCH
           ).multipliedBy(poolReserve.baseLTVasCollateral)
         );
         currentLiquidationThreshold = currentLiquidationThreshold.plus(
           valueToBigNumber(
-            computedUserReserve.currentUnderlyingBalanceETH
+            computedUserReserve.currentunderlyingBalanceBCH
           ).multipliedBy(poolReserve.reserveLiquidationThreshold)
         );
       }
@@ -360,7 +360,7 @@ export function computeRawUserSummaryData(
 
   const healthFactor = calculateHealthFactorFromBalances(
     totalCollateralETH,
-    totalBorrowsETH,
+    totalBorrowsBCH,
     totalFeesETH,
     currentLiquidationThreshold
   );
@@ -375,7 +375,7 @@ export function computeRawUserSummaryData(
     .dividedBy(usdPriceBch)
     .toString();
 
-  const totalBorrowsUSD = totalBorrowsETH
+  const totalBorrowsUSD = totalBorrowsBCH
     .multipliedBy(pow10(USD_DECIMALS))
     .dividedBy(usdPriceBch)
     .toString();
@@ -384,16 +384,16 @@ export function computeRawUserSummaryData(
     .multipliedBy(pow10(USD_DECIMALS))
     .dividedBy(usdPriceBch);
 
-  const totalBorrowsWithFeesETH = totalFeesETH.plus(totalBorrowsETH);
+  const totalBorrowsWithFeesETH = totalFeesETH.plus(totalBorrowsBCH);
   const totalBorrowsWithFeesUSD = totalFeesUSD.plus(totalBorrowsUSD);
   const availableBorrowsBCH = calculateavailableBorrowsBCH(
     totalCollateralETH,
-    totalBorrowsETH,
+    totalBorrowsBCH,
     totalFeesETH,
     currentLtv
   );
 
-  const totalBorrowsAndFeesETH = totalBorrowsETH.plus(totalFeesETH);
+  const totalBorrowsAndFeesETH = totalBorrowsBCH.plus(totalFeesETH);
   const maxAmountToWithdrawInEth = totalLiquidityETH.minus(
     totalBorrowsAndFeesETH.eq(0)
       ? '0'
@@ -410,7 +410,7 @@ export function computeRawUserSummaryData(
     totalLiquidityETH: totalLiquidityETH.toString(),
     totalCollateralETH: totalCollateralETH.toString(),
     totalFeesETH: totalFeesETH.toString(),
-    totalBorrowsETH: totalBorrowsETH.toString(),
+    totalBorrowsBCH: totalBorrowsBCH.toString(),
     availableBorrowsBCH: availableBorrowsBCH.toString(),
     currentLoanToValue: currentLtv.toString(),
     currentLiquidationThreshold: currentLiquidationThreshold.toString(),
@@ -469,8 +469,8 @@ export function formatUserSummaryData(
           userReserve.currentUnderlyingBalance,
           reserveDecimals
         ),
-        currentUnderlyingBalanceETH: normalize(
-          userReserve.currentUnderlyingBalanceETH,
+        currentunderlyingBalanceBCH: normalize(
+          userReserve.currentunderlyingBalanceBCH,
           BCH_DECIMALS
         ),
         currentUnderlyingBalanceUSD: normalize(
@@ -519,7 +519,7 @@ export function formatUserSummaryData(
     totalCollateralUSD: normalize(userData.totalCollateralUSD, USD_DECIMALS),
     totalFeesETH: normalize(userData.totalFeesETH, BCH_DECIMALS),
     totalFeesUSD: normalize(userData.totalFeesUSD, USD_DECIMALS),
-    totalBorrowsETH: normalize(userData.totalBorrowsETH, BCH_DECIMALS),
+    totalBorrowsBCH: normalize(userData.totalBorrowsBCH, BCH_DECIMALS),
     totalBorrowsUSD: normalize(userData.totalBorrowsUSD, USD_DECIMALS),
     totalBorrowsWithFeesETH: normalize(
       userData.totalBorrowsWithFeesETH,
