@@ -1,5 +1,5 @@
 {
-  "version": "4.1.0",
+  "version": "4.2.0",
   "license": "MIT",
   "name": "@bandz/protocol-js",
   "description": "Bandz protocol data aggregation tool",
