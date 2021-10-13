@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers';
-import { transactionType, Configuration, Network } from '../types';
+import { transactionType, Configuration } from '../types';
 
 const DEFAULT_SURPLUS = 30; // 30%
 
@@ -20,8 +20,6 @@ export const estimateGasByNetwork = async (
   gasSurplus?: number
 ): Promise<BigNumber> => {
   const estimatedGas = await config.provider.estimateGas(tx);
-
-  const { network } = config;
 
   return estimatedGas.add(
     estimatedGas.mul(gasSurplus || DEFAULT_SURPLUS).div(100)
