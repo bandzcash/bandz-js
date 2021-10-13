@@ -18,7 +18,7 @@ import {
   WBCHDepositParamsType,
   WBCHRepayParamsType,
   WBCHWithdrawParamsType,
-} from '../types/WBCHGatewayMethodTypes';
+} from '../types/WbchGatewayMethodTypes';
 import { parseNumber } from '../utils/parsings';
 import { WETHValidator } from '../validators/methodValidators';
 import {

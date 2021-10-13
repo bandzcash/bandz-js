@@ -29,7 +29,7 @@ export { default as TxBuilderV2 } from './tx-builder/v2';
 export { default as LendingPoolInterfaceV2 } from './tx-builder/interfaces/v2/LendingPool';
 
 export * from './tx-builder/types';
-export * from './tx-builder/types/WBCHGatewayMethodTypes';
+export * from './tx-builder/types/WbchGatewayMethodTypes';
 export * from './tx-builder/types/LendingPoolMethodTypes';
 export * from './tx-builder/types/FaucetMethodTypes';
 export * from './tx-builder/types/GovernanceV2MethodTypes';

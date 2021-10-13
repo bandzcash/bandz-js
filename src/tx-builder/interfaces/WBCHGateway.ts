@@ -4,7 +4,7 @@ import {
   WBCHDepositParamsType,
   WBCHRepayParamsType,
   WBCHWithdrawParamsType,
-} from '../types/WBCHGatewayMethodTypes';
+} from '../types/WbchGatewayMethodTypes';
 
 export default interface WBCHGatewayInterface {
   depositBCH: (
