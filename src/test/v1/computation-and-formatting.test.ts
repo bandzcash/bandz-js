@@ -21,7 +21,7 @@ const mockReserve: ReserveData = {
   name: 'TrueUSD',
   optimalUtilisationRate: '800000000000000000000000000',
   price: {
-    priceInEth: '1069659625790585',
+    priceInBch: '1069659625790585',
   },
   reserveLiquidationBonus: '105',
   reserveLiquidationThreshold: '80',

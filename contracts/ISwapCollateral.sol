@@ -17,6 +17,6 @@ interface ISwapCollateral {
     uint256[] calldata amountToSwapList,
     uint256[] calldata minAmountsToReceive,
     PermitSignature[] calldata permitParams,
-    bool[] calldata useEthPath
+    bool[] calldata useBchPath
   ) external;
 }

@@ -88,7 +88,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "WETH_ADDRESS",
+    name: "WBCH_ADDRESS",
     outputs: [
       {
         internalType: "address",

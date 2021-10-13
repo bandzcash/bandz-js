@@ -77,7 +77,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -93,7 +93,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
@@ -110,7 +110,7 @@ export class ISwapCollateral extends Contract {
       r: BytesLike;
       s: BytesLike;
     }[],
-    useEthPath: boolean[],
+    useBchPath: boolean[],
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -126,7 +126,7 @@ export class ISwapCollateral extends Contract {
       r: BytesLike;
       s: BytesLike;
     }[],
-    useEthPath: boolean[],
+    useBchPath: boolean[],
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -143,7 +143,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -159,7 +159,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -179,7 +179,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -195,7 +195,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: Overrides
     ): Promise<BigNumber>;
   };
@@ -213,7 +213,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -229,7 +229,7 @@ export class ISwapCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       }[],
-      useEthPath: boolean[],
+      useBchPath: boolean[],
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };

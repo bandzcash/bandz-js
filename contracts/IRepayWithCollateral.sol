@@ -18,6 +18,6 @@ interface IRepayWithCollateral {
     uint256 debtRepayAmount,
     uint256 debtRateMode,
     PermitSignature calldata permitSignature,
-    bool useEthPath
+    bool useBchPath
   ) external;
 }

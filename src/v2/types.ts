@@ -25,7 +25,7 @@ export type RewardsInformation = {
   rewardTokenAddress: string;
   rewardTokenDecimals: number;
   incentivePrecision: number;
-  rewardTokenPriceEth: string;
+  rewardTokenPriceBch: string;
   emissionEndTimestamp: number;
 };
 
@@ -67,7 +67,7 @@ export type ReserveData = {
   totalScaledVariableDebt: string;
   lastUpdateTimestamp: number;
   price: {
-    priceInEth: string;
+    priceInBch: string;
   };
   aEmissionPerSecond: string;
   vEmissionPerSecond: string;
@@ -159,7 +159,7 @@ export type UserSummaryData = {
   totalCollateralUSD: string;
   totalBorrowsETH: string;
   totalBorrowsUSD: string;
-  availableBorrowsETH: string;
+  availableBorrowsBCH: string;
   currentLoanToValue: string;
   currentLiquidationThreshold: string;
   healthFactor: string;

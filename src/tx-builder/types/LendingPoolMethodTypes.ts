@@ -86,7 +86,7 @@ export type LPRepayWithCollateral = {
   onBehalfOf?: tEthereumAddress;
   referralCode?: string;
   flash?: boolean;
-  useEthPath?: boolean;
+  useBchPath?: boolean;
 };
 
 export type LPFlashLoan = {
@@ -106,5 +106,5 @@ export type LPFlashLiquidation = {
   debtTokenCover: string;
   liquidateAll: boolean;
   initiator: tEthereumAddress;
-  useEthPath: boolean;
+  useBchPath: boolean;
 };

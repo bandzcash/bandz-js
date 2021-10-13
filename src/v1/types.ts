@@ -53,7 +53,7 @@ export type ReserveData = {
     id: string;
   };
   price: {
-    priceInEth: string;
+    priceInBch: string;
   };
 };
 
@@ -112,7 +112,7 @@ export type UserSummaryData = {
   totalBorrowsUSD: string;
   totalBorrowsWithFeesETH: string;
   totalBorrowsWithFeesUSD: string;
-  availableBorrowsETH: string;
+  availableBorrowsBCH: string;
   currentLoanToValue: string;
   currentLiquidationThreshold: string;
   maxAmountToWithdrawInEth: string;

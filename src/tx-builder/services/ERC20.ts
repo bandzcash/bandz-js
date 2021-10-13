@@ -10,7 +10,7 @@ import {
   tStringDecimalUnits,
   TokenMetadataType,
 } from '../types';
-import { API_ETH_MOCK_ADDRESS, SUPER_BIG_ALLOWANCE_NUMBER } from '../config';
+import { API_BCH_MOCK_ADDRESS, SUPER_BIG_ALLOWANCE_NUMBER } from '../config';
 import { IERC20Detailed, IERC20Detailed__factory } from '../contract-types';
 import BaseService from './BaseService';
 import { parseNumber } from '../utils/parsings';
@@ -52,7 +52,7 @@ export default class ERC20Service
     spender: tEthereumAddress,
     amount: tStringCurrencyUnits
   ): Promise<boolean> => {
-    if (token.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) return true;
+    if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) return true;
     const decimals = await this.decimalsOf(token);
     const erc20Contract: IERC20Detailed = this.getContractInstance(token);
     const allowance: BigNumber = await erc20Contract.allowance(
@@ -67,7 +67,7 @@ export default class ERC20Service
   };
 
   public decimalsOf = async (token: tEthereumAddress): Promise<number> => {
-    if (token.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) return 18;
+    if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) return 18;
     if (!this.tokenDecimals[token]) {
       const erc20Contract = this.getContractInstance(token);
       this.tokenDecimals[token] = await erc20Contract.decimals();
@@ -79,10 +79,10 @@ export default class ERC20Service
   public getTokenData = async (
     token: tEthereumAddress
   ): Promise<TokenMetadataType> => {
-    if (token.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) {
+    if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
       return {
-        name: 'Ethereum',
-        symbol: 'ETH',
+        name: 'BitcoinCash',
+        symbol: 'BCH',
         decimals: 18,
         address: token,
       };

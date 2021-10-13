@@ -54,7 +54,7 @@ describe('calculateUserReserveIncentives', () => {
     id:
       '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20xb53c1a33016b2dc2ff3653530bff1848a515c8c5',
     underlyingAsset: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
-    symbol: 'aWETH',
+    symbol: 'aWBCH',
     decimals: 18,
     baseLTVasCollateral: '8000',
     reserveLiquidationThreshold: '8500',
@@ -80,8 +80,8 @@ describe('calculateUserReserveIncentives', () => {
     stableDebtLastUpdateTimestamp: 1631554490,
     totalScaledVariableDebt: '81689984341288838884434',
 
-    price: { priceInEth: '1000000000000000000' },
-    priceInEth: '1000000000000000000',
+    price: { priceInBch: '1000000000000000000' },
+    priceInBch: '1000000000000000000',
     variableRateSlope1: '80000000000000000000000000',
     variableRateSlope2: '1000000000000000000000000000',
     stableRateSlope1: '100000000000000000000000000',
@@ -111,13 +111,13 @@ describe('calculateUserReserveIncentives', () => {
       reserve: {
         id:
           '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc20xb53c1a33016b2dc2ff3653530bff1848a515c8c5',
-        symbol: 'ETH',
+        symbol: 'BCH',
         decimals: 18,
         liquidityRate: '222438954027153387451224',
         reserveLiquidationBonus: '10500',
         lastUpdateTimestamp: 1631587511,
         price: {
-          priceInEth: '1000000000000000000',
+          priceInBch: '1000000000000000000',
         },
         reserveFactor: '1000',
         baseLTVasCollateral: '8000',
@@ -135,7 +135,7 @@ describe('calculateUserReserveIncentives', () => {
       },
     },
     currentTimestamp: 1631587561,
-    usdPriceEth: 329302000000,
+    usdPriceBch: 329302000000,
   };
 
   const formattedUserReserve = formatUserSummaryData(
@@ -149,11 +149,11 @@ describe('calculateUserReserveIncentives', () => {
       rewardTokenAddress: '0x030ba81f1c18d280636f32af80b9aad02cf0854e',
       incentivePrecision: 18,
       rewardTokenDecimals: 18,
-      rewardTokenPriceEth: '11',
+      rewardTokenPriceBch: '11',
     }
   );
 
-  it('should calculate the correct aWETH incentives', () => {
+  it('should calculate the correct aWBCH incentives', () => {
     expect(formattedUserReserve.totalRewards).toBe('0.002457377422282363');
   });
 });

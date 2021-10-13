@@ -19,5 +19,5 @@ interface IMinter {
    * @notice Returns if the mint() function is payable or not
    * @return bool
    */
-  function isEthRequired() external pure returns (bool);
+  function isBchRequired() external pure returns (bool);
 }

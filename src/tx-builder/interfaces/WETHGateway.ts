@@ -7,16 +7,16 @@ import {
 } from '../types/WethGatewayMethodTypes';
 
 export default interface WETHGatewayInterface {
-  depositETH: (
+  depositBCH: (
     args: WETHDepositParamsType
   ) => Promise<EthereumTransactionTypeExtended[]>;
-  withdrawETH: (
+  withdrawBCH: (
     args: WETHWithdrawParamsType
   ) => Promise<EthereumTransactionTypeExtended[]>;
-  repayETH: (
+  repayBCH: (
     args: WETHRepayParamsType
   ) => Promise<EthereumTransactionTypeExtended[]>;
-  borrowETH: (
+  borrowBCH: (
     args: WETHBorrowParamsType
   ) => Promise<EthereumTransactionTypeExtended[]>;
 }

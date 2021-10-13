@@ -22,7 +22,7 @@ Object {
   "name": "TrueUSD",
   "optimalUtilisationRate": "800000000000000000000000000",
   "price": Object {
-    "priceInEth": "0.001069659625790585",
+    "priceInBch": "0.001069659625790585",
   },
   "reserveLiquidationBonus": "0.05",
   "reserveLiquidationThreshold": "0.8",

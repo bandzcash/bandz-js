@@ -34,14 +34,14 @@ const mockReserve: ReserveData = {
   averageStableRate: '109284236984257451326752610',
   stableDebtLastUpdateTimestamp: 1606992400,
   totalScaledVariableDebt: '145496831599325217573288',
-  // priceInEth: '1634050000000000',
+  // priceInBch: '1634050000000000',
   variableRateSlope1: '40000000000000000000000000',
   variableRateSlope2: '750000000000000000000000000',
   stableRateSlope1: '20000000000000000000000000',
   stableRateSlope2: '750000000000000000000000000',
   id:
     '0xff795577d9ac8bd7d90ee22b6c1703490b6512fd0x88757f2f99175387ab4c6a4b3067c77a695b0349',
-  price: { priceInEth: '1634050000000000' },
+  price: { priceInBch: '1634050000000000' },
   // fake data
   optimalUtilisationRate: '109284236984257451326752610',
   baseVariableBorrowRate: '109284236984257451326752610',
@@ -94,7 +94,7 @@ describe('computations and formattings', () => {
         rewardTokenAddress: '0xb597cd8d3217ea6477232f9217fa70837ff667af',
         rewardTokenDecimals: 18,
         incentivePrecision: 18,
-        rewardTokenPriceEth: '0',
+        rewardTokenPriceBch: '0',
         emissionEndTimestamp: 0,
       }
     );

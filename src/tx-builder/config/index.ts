@@ -12,9 +12,9 @@ export const MAX_UINT_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 export const SUPER_BIG_ALLOWANCE_NUMBER =
   '11579208923731619542357098500868790785326998466564056403945758400791';
-export const API_ETH_MOCK_ADDRESS =
+export const API_BCH_MOCK_ADDRESS =
   '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE';
-export const uniswapEthAmount = '0.1';
+export const uniswapBchAmount = '0.1';
 export const SURPLUS = '0.05';
 
 export const gasLimitRecommendations: GasRecommendationType = {
@@ -42,11 +42,11 @@ export const gasLimitRecommendations: GasRecommendationType = {
     limit: '300000',
     recommended: '300000',
   },
-  [ProtocolAction.borrowETH]: {
+  [ProtocolAction.borrowBCH]: {
     limit: '450000',
     recommended: '450000',
   },
-  [ProtocolAction.withdrawETH]: {
+  [ProtocolAction.withdrawBCH]: {
     limit: '640000',
     recommended: '640000',
   },

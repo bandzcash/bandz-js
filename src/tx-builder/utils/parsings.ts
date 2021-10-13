@@ -1,8 +1,8 @@
 import BigNumber from 'bignumber.js';
 import {
-  API_ETH_MOCK_ADDRESS,
+  API_BCH_MOCK_ADDRESS,
   DEFAULT_NULL_VALUE_ON_TX,
-  uniswapEthAmount,
+  uniswapBchAmount,
 } from '../config';
 import { tStringDecimalUnits } from '../types';
 
@@ -19,7 +19,7 @@ export const decimalsToCurrencyUnits = (
   new BigNumber(value).div(new BigNumber(10).pow(decimals)).toFixed();
 
 export const getTxValue = (reserve: string, amount: string): string => {
-  return reserve.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()
+  return reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()
     ? amount
     : DEFAULT_NULL_VALUE_ON_TX;
 };
@@ -35,7 +35,7 @@ export const mintAmountsPerToken: { [token: string]: tStringDecimalUnits } = {
   LINK: parseNumber('1000', 18),
   MANA: parseNumber('100000', 18),
   MKR: parseNumber('10', 18),
-  WETH: parseNumber('10', 18),
+  WBCH: parseNumber('10', 18),
   REN: parseNumber('10000', 18),
   REP: parseNumber('1000', 18),
   SNX: parseNumber('100', 18),
@@ -47,15 +47,15 @@ export const mintAmountsPerToken: { [token: string]: tStringDecimalUnits } = {
   WBTC: parseNumber('1', 8),
   YFI: parseNumber('1', 18),
   ZRX: parseNumber('100000', 18),
-  UNIUSDC: parseNumber(uniswapEthAmount, 6),
-  UNIDAI: parseNumber(uniswapEthAmount, 18),
-  UNIUSDT: parseNumber(uniswapEthAmount, 6),
-  UNIDAIETH: parseNumber(uniswapEthAmount, 18),
-  UNIUSDCETH: parseNumber(uniswapEthAmount, 18),
-  UNISETHETH: parseNumber(uniswapEthAmount, 18),
-  UNILENDETH: parseNumber(uniswapEthAmount, 18),
-  UNILINKETH: parseNumber(uniswapEthAmount, 18),
-  UNIMKRETH: parseNumber(uniswapEthAmount, 18),
+  UNIUSDC: parseNumber(uniswapBchAmount, 6),
+  UNIDAI: parseNumber(uniswapBchAmount, 18),
+  UNIUSDT: parseNumber(uniswapBchAmount, 6),
+  UNIDAIETH: parseNumber(uniswapBchAmount, 18),
+  UNIUSDCETH: parseNumber(uniswapBchAmount, 18),
+  UNISETHETH: parseNumber(uniswapBchAmount, 18),
+  UNILENDETH: parseNumber(uniswapBchAmount, 18),
+  UNILINKETH: parseNumber(uniswapBchAmount, 18),
+  UNIMKRETH: parseNumber(uniswapBchAmount, 18),
 };
 
 export const canBeEnsAddress = (ensAddress: string): boolean => {

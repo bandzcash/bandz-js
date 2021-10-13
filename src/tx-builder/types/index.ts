@@ -1,7 +1,7 @@
 import { providers, BigNumber, BytesLike, PopulatedTransaction } from 'ethers';
 
 export type tEthereumAddress = string;
-export type tStringCurrencyUnits = string; // ex 2.5 eth
+export type tStringCurrencyUnits = string; // ex 2.5 bch
 export type tStringDecimalUnits = string; // ex 2500000000000000000
 export type ENS = string; // something.eth
 
@@ -124,8 +124,8 @@ export enum ProtocolAction {
   repay = 'repay',
   swapCollateral = 'swapCollateral',
   repayCollateral = 'repayCollateral',
-  withdrawETH = 'withdrawETH',
-  borrowETH = 'borrwoETH',
+  withdrawBCH = 'withdrawBCH',
+  borrowBCH = 'borrwoETH',
 }
 
 export enum GovernanceVote {

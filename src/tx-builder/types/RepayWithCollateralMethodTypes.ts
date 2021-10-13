@@ -8,5 +8,5 @@ export type RepayWithCollateralType = {
   debtRepayAmount: string;
   debtRateMode: number;
   permit: PermitSignature;
-  useEthPath?: boolean;
+  useBchPath?: boolean;
 };

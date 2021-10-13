@@ -27,7 +27,7 @@ interface IFlashLiquidationAdapterInterface extends ethers.utils.Interface {
     "ORACLE()": FunctionFragment;
     "UNISWAP_ROUTER()": FunctionFragment;
     "USD_ADDRESS()": FunctionFragment;
-    "WETH_ADDRESS()": FunctionFragment;
+    "WBCH_ADDRESS()": FunctionFragment;
     "getAmountsIn(uint256,address,address)": FunctionFragment;
     "getAmountsOut(uint256,address,address)": FunctionFragment;
   };
@@ -50,7 +50,7 @@ interface IFlashLiquidationAdapterInterface extends ethers.utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "WETH_ADDRESS",
+    functionFragment: "WBCH_ADDRESS",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -80,7 +80,7 @@ interface IFlashLiquidationAdapterInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "WETH_ADDRESS",
+    functionFragment: "WBCH_ADDRESS",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -135,9 +135,9 @@ export class IFlashLiquidationAdapter extends Contract {
 
     "USD_ADDRESS()"(overrides?: Overrides): Promise<ContractTransaction>;
 
-    WETH_ADDRESS(overrides?: Overrides): Promise<ContractTransaction>;
+    WBCH_ADDRESS(overrides?: Overrides): Promise<ContractTransaction>;
 
-    "WETH_ADDRESS()"(overrides?: Overrides): Promise<ContractTransaction>;
+    "WBCH_ADDRESS()"(overrides?: Overrides): Promise<ContractTransaction>;
 
     getAmountsIn(
       amountOut: BigNumberish,
@@ -214,9 +214,9 @@ export class IFlashLiquidationAdapter extends Contract {
 
   "USD_ADDRESS()"(overrides?: Overrides): Promise<ContractTransaction>;
 
-  WETH_ADDRESS(overrides?: Overrides): Promise<ContractTransaction>;
+  WBCH_ADDRESS(overrides?: Overrides): Promise<ContractTransaction>;
 
-  "WETH_ADDRESS()"(overrides?: Overrides): Promise<ContractTransaction>;
+  "WBCH_ADDRESS()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   getAmountsIn(
     amountOut: BigNumberish,
@@ -291,9 +291,9 @@ export class IFlashLiquidationAdapter extends Contract {
 
     "USD_ADDRESS()"(overrides?: CallOverrides): Promise<string>;
 
-    WETH_ADDRESS(overrides?: CallOverrides): Promise<string>;
+    WBCH_ADDRESS(overrides?: CallOverrides): Promise<string>;
 
-    "WETH_ADDRESS()"(overrides?: CallOverrides): Promise<string>;
+    "WBCH_ADDRESS()"(overrides?: CallOverrides): Promise<string>;
 
     getAmountsIn(
       amountOut: BigNumberish,
@@ -371,9 +371,9 @@ export class IFlashLiquidationAdapter extends Contract {
 
     "USD_ADDRESS()"(overrides?: Overrides): Promise<BigNumber>;
 
-    WETH_ADDRESS(overrides?: Overrides): Promise<BigNumber>;
+    WBCH_ADDRESS(overrides?: Overrides): Promise<BigNumber>;
 
-    "WETH_ADDRESS()"(overrides?: Overrides): Promise<BigNumber>;
+    "WBCH_ADDRESS()"(overrides?: Overrides): Promise<BigNumber>;
 
     getAmountsIn(
       amountOut: BigNumberish,
@@ -431,9 +431,9 @@ export class IFlashLiquidationAdapter extends Contract {
 
     "USD_ADDRESS()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    WETH_ADDRESS(overrides?: Overrides): Promise<PopulatedTransaction>;
+    WBCH_ADDRESS(overrides?: Overrides): Promise<PopulatedTransaction>;
 
-    "WETH_ADDRESS()"(overrides?: Overrides): Promise<PopulatedTransaction>;
+    "WBCH_ADDRESS()"(overrides?: Overrides): Promise<PopulatedTransaction>;
 
     getAmountsIn(
       amountOut: BigNumberish,

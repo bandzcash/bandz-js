@@ -84,7 +84,7 @@ import { v1, v2 } from '@bandz/protocol-js';
 
 // Fetch poolReservesData from GQL Subscription
 // Fetch rawUserReserves from GQL Subscription
-// Fetch ethPriceUSD from GQL Subscription
+// Fetch bchPriceUSD from GQL Subscription
 
 let userAddress = "0x..."
 
@@ -107,7 +107,7 @@ Returns formatted summary of BANDZ user portfolio including: array of holdings, 
       : Requires input of user (lowercase address), and pool (address of market which can be found above, or remove this filter to fetch all markets)
    - types: src/[v1 or v2]/graphql/fragments/user-reserve-data.graphql
 - @param `userId` Wallet address, MUST BE LOWERCASE!
-- @param `usdPriceEth` Current price of USD in ETH in small units (10^18). For example, if ETH price in USD = $1900, usdPriceEth = (1 / 1900) * 10^18
+- @param `usdPriceBch` Current price of USD in BCH in small units (10^18). For example, if BCH price in USD = $1900, usdPriceBch = (1 / 1900) * 10^18
    : Can also be fetched using this subscription: /src/[v1 or v2]/graphql/subscriptions/usd-price-eth-update-subscription.graphql
 - @param `currentTimestamp` Current Unix timestamp in seconds: Math.floor(Date.now() / 1000)
 
@@ -116,7 +116,7 @@ v1.formatUserSummaryData(
   poolReservesData: ReserveData[],
   rawUserReserves: UserReserveData[],
   userId: string,
-  usdPriceEth: BigNumberValue,
+  usdPriceBch: BigNumberValue,
   currentTimestamp: number
 );
 
@@ -124,7 +124,7 @@ v2.formatUserSummaryData(
   poolReservesData: ReserveData[],
   rawUserReserves: UserReserveData[],
   userId: string,
-  usdPriceEth: BigNumberValue,
+  usdPriceBch: BigNumberValue,
   currentTimestamp: number
 );
 ```
@@ -173,7 +173,7 @@ import { Network, Market } from '@bandz/protocol-js';
 import { TxBuilderV2, Network, Market } from '@bandz/protocol-js'
 
 const httpProvider = new Web3.providers.HttpProvider(
-    process.env.ETHEREUM_URL ||
+    process.env.SMARTBCH_URL ||
       "https://kovan.infura.io/v3/<project_id>"
   );
 const txBuilder = new TxBuilderV2(Network.main, httpProvider);
@@ -187,7 +187,7 @@ The library accepts 3 kinds of providers:
 
 - web3 provider
 - JsonRPC url
-- no provider: if no provider is passed it will default to ethers Infura / etherscan providers (shared providers, do not use in production)
+- no provider: if no provider is passed it will default to ethers Infura / smartscan providers (shared providers, do not use in production)
 
 To learn more about supported providers, see the [ethers documentation on providers](https://docs.ethers.io/v5/api/providers/#providers).
 
@@ -210,10 +210,10 @@ having {tx, txType}
 
 Deposits the underlying asset into the reserve. A corresponding amount of the overlying asset (aTokens) is minted.
 
-- @param `user` The ethereum address that will make the deposit
-- @param `reserve` The ethereum address of the reserve
+- @param `user` The smartBCH address that will make the deposit
+- @param `reserve` The smartBCH address of the reserve
 - @param `amount` The amount to be deposited
-- @param @optional `onBehalfOf` The ethereum address for which user is depositing. It will default to the user address
+- @param @optional `onBehalfOf` The smartBCH address for which user is depositing. It will default to the user address
 - @param @optional `referralCode` Integrators are assigned a referral code and can potentially receive rewards. It defaults to 0 (no referrer)
 
 ```
@@ -234,12 +234,12 @@ Borrow an `amount` of `reserve` asset.
 
 User must have a collaterised position (i.e. aTokens in their wallet)
 
-- @param `user` The ethereum address that will receive the borrowed amount
-- @param `reserve` The ethereum address of the reserve asset
-- @param `amount` The amount to be borrowed, in human readable units (e.g. 2.5 ETH)
+- @param `user` The smartBCH address that will receive the borrowed amount
+- @param `reserve` The smartBCH address of the reserve asset
+- @param `amount` The amount to be borrowed, in human readable units (e.g. 2.5 BCH)
 - @param `interestRateMode` Whether the borrow will incur a stable or variable interest rate (1 | 2)
-- @param @optional `debtTokenAddress` The ethereum address of the debt token of the asset you want to borrow. Only needed if the reserve is ETH mock address
-- @param @optional `onBehalfOf` The ethereum address for which user is borrowing. It will default to the user address
+- @param @optional `debtTokenAddress` The smartBCH address of the debt token of the asset you want to borrow. Only needed if the reserve is BCH mock address
+- @param @optional `onBehalfOf` The smartBCH address for which user is borrowing. It will default to the user address
 - @param @optional `refferalCode` Integrators are assigned a referral code and can potentially receive rewards. It defaults to 0 (no referrer)
 
 ```
@@ -265,11 +265,11 @@ lendingPool.borrow({
 Repays a borrow on the specific reserve, for the specified amount (or for the whole amount, if (-1) is specified).
 the target user is defined by `onBehalfOf`. If there is no repayment on behalf of another account, `onBehalfOf` must be equal to `user`.
 
-- @param `user` The ethereum address that repays
-- @param `reserve` The ethereum address of the reserve on which the user borrowed
+- @param `user` The smartBCH address that repays
+- @param `reserve` The smartBCH address of the reserve on which the user borrowed
 - @param `amount` The amount to repay, or (-1) if the user wants to repay everything
 - @param `interestRateMode` Whether the borrow will incur a stable or variable interest rate (1 | 2)
-- @param @optional `onBehalfOf` The ethereum address for which user is repaying. It will default to the user address
+- @param @optional `onBehalfOf` The smartBCH address for which user is repaying. It will default to the user address
 
 ```
 enum InterestRate {
@@ -293,10 +293,10 @@ If the `user` is not approved, an approval transaction will also be returned.
 
 Withdraws the underlying asset of an aToken asset.
 
-- @param `user` The ethereum address that will receive the aTokens
-- @param `reserve` The ethereum address of the reserve asset
+- @param `user` The smartBCH address that will receive the aTokens
+- @param `reserve` The smartBCH address of the reserve asset
 - @param `amount` The amount of aToken being redeemed
-- @param @optional `aTokenAddress` The ethereum address of the aToken. Only needed if the reserve is ETH mock address
+- @param @optional `aTokenAddress` The smartBCH address of the aToken. Only needed if the reserve is BCH mock address
 - @param @optional `onBehalfOf` The amount of aToken being redeemed. It will default to the user address
 
 ```
@@ -313,7 +313,7 @@ lendingPool.withdraw({
 
 Borrowers can use this function to swap between stable and variable borrow rate modes.
 
-- @param `user` The ethereum address that wants to swap rate modes
+- @param `user` The smartBCH address that wants to swap rate modes
 - @param `reserve` The address of the reserve on which the user borrowed
 - @param `interestRateMode` Whether the borrow will incur a stable or variable interest rate (1 | 2)
 
@@ -335,8 +335,8 @@ lendingPool.swapBorrowRateMode({
 
 Allows depositors to enable or disable a specific deposit as collateral.
 
-- @param `user` The ethereum address that enables or disables the deposit as collateral
-- @param `reserve` The ethereum address of the reserve
+- @param `user` The smartBCH address that enables or disables the deposit as collateral
+- @param `reserve` The smartBCH address of the reserve
 - @param `useAsCollateral` True if the user wants to use the deposit as collateral, false otherwise.
 
 ```
@@ -351,9 +351,9 @@ lendingPool.setUsageAsCollateral({
 
 Users can invoke this function to liquidate an undercollateralized position.
 
-- @param `liquidator` The ethereum address that will liquidate the position
+- @param `liquidator` The smartBCH address that will liquidate the position
 - @param `liquidatedUser` The address of the borrower
-- @param `debtReserve` The ethereum address of the principal reserve
+- @param `debtReserve` The smartBCH address of the principal reserve
 - @param `collateralReserve` The address of the collateral to liquidated
 - @param `purchaseAmount` The amount of principal that the liquidator wants to repay
 - @param @optional `getAToken` Boolean to indicate if the user wants to receive the aToken instead of the asset. Defaults to false
@@ -373,19 +373,19 @@ lendingPool.liquidationCall({
 
 Allows users to swap a collateral to another asset
 
-- @param `user` The ethereum address that will liquidate the position
+- @param `user` The smartBCH address that will liquidate the position
 - @param @optional `flash` If the transaction will be executed through a flasloan(true) or will be done directly through the adapters(false). Defaults to false
-- @param `fromAsset` The ethereum address of the asset you want to swap
-- @param `fromAToken` The ethereum address of the aToken of the asset you want to swap
-- @param `toAsset` The ethereum address of the asset you want to swap to (get)
+- @param `fromAsset` The smartBCH address of the asset you want to swap
+- @param `fromAToken` The smartBCH address of the aToken of the asset you want to swap
+- @param `toAsset` The smartBCH address of the asset you want to swap to (get)
 - @param `fromAmount` The amount you want to swap
 - @param `toAmount` The amount you want to get after the swap
 - @param `maxSlippage` The max slippage that the user accepts in the swap
 - @param @optional `permitSignature` A permit signature of the tx. Only needed when previously signed (Not needed at the moment).
 - @param `swapAll` Bool indicating if the user wants to swap all the current collateral
-- @param @optional `onBehalfOf` The ethereum address for which user is swaping. It will default to the user address
+- @param @optional `onBehalfOf` The smartBCH address for which user is swaping. It will default to the user address
 - @param @optional `referralCode` Integrators are assigned a referral code and can potentially receive rewards. It defaults to 0 (no referrer)
-- @param @optional `useEthPath` Boolean to indicate if the swap will use an ETH path. Defaults to false
+- @param @optional `useBchPath` Boolean to indicate if the swap will use an BCH path. Defaults to false
 
 ```
 type PermitSignature = {
@@ -409,7 +409,7 @@ await lendingPool.swapCollateral({
    swapAll, // boolean;
    onBehalfOf, // ? string;
    referralCode, // ? string;
-   useEthPath, // ? boolean;
+   useBchPath, // ? boolean;
 });
 ```
 
@@ -417,19 +417,19 @@ await lendingPool.swapCollateral({
 
 Allows a borrower to repay the open debt with the borrower collateral
 
-- @param `user` The ethereum address that will liquidate the position
-- @param `fromAsset` The ethereum address of the asset you want to repay with (collateral)
-- @param `fromAToken` The ethereum address of the aToken of the asset you want to repay with (collateral)
-- @param `assetToRepay` The ethereum address of the asset you want to repay
+- @param `user` The smartBCH address that will liquidate the position
+- @param `fromAsset` The smartBCH address of the asset you want to repay with (collateral)
+- @param `fromAToken` The smartBCH address of the aToken of the asset you want to repay with (collateral)
+- @param `assetToRepay` The smartBCH address of the asset you want to repay
 - @param `repayWithAmount` The amount of collateral you want to repay the debt with
 - @param `repayAmount` The amount of debt you want to repay
 - @param `permitSignature` A permit signature of the tx. Optional
 - @param @optional `repayAllDebt` Bool indicating if the user wants to repay all current debt. Defaults to false
 - @param `rateMode` Enum indicating the type of the interest rate of the collateral
-- @param @optional `onBehalfOf` The ethereum address for which user is swaping. It will default to the user address
+- @param @optional `onBehalfOf` The smartBCH address for which user is swaping. It will default to the user address
 - @param @optional `referralCode` Integrators are assigned a referral code and can potentially receive rewards. It defaults to 0 (no referrer)
 - @param @optional `flash` If the transaction will be executed through a flasloan(true) or will be done directly through the adapters(false). Defaults to false
-- @param @optional `useEthPath` Boolean to indicate if the swap will use an ETH path. Defaults to false
+- @param @optional `useBchPath` Boolean to indicate if the swap will use an BCH path. Defaults to false
 
 ```
 enum InterestRate {
@@ -451,7 +451,7 @@ await lendingPool.repayWithCollateral({
    onBehalfOf, // ? string;
    referralCode, // ? string;
    flash, // ? boolean;
-   useEthPath, // ? boolean;
+   useBchPath, // ? boolean;
 });
 ```
 
@@ -467,7 +467,7 @@ import {
 } from '@bandz/protocol-js';
 
 const httpProvider = new Web3.providers.HttpProvider(
-   process.env.ETHEREUM_URL ||
+   process.env.SMARTBCH_URL ||
    "https://kovan.infura.io/v3/<project_id>"
 );
 const txBuilder = new TxBuilderV2(Network.main, httpProvider);
@@ -479,7 +479,7 @@ const powerDelegation = txBuilder.governanceDelegationTokenService;
 
 Creates a Proposal (needs to be validated by the Proposal Validator)
 
-- @param `user` The ethereum address that will create the proposal
+- @param `user` The smartBCH address that will create the proposal
 - @param `targets` list of contracts called by proposal's associated transactions
 - @param `values` list of value in wei for each propoposal's associated transaction
 - @param `signatures` list of function signatures (can be empty) to be used when created the callData
@@ -513,7 +513,7 @@ gov2.create({
 Cancels a Proposal.
 Callable by the \_guardian with relaxed conditions, or by anybody if the conditions of cancellation on the executor are fulfilled
 
-- @param `user` The ethereum address that will create the proposal
+- @param `user` The smartBCH address that will create the proposal
 - @param `proposalId` Id of the proposal we want to cancel
 
 ```
@@ -527,7 +527,7 @@ gov2.cancel({
 
 Queue the proposal (If Proposal Succeeded)
 
-- @param `user` The ethereum address that will create the proposal
+- @param `user` The smartBCH address that will create the proposal
 - @param `proposalId` Id of the proposal we want to queue
 
 ```
@@ -541,7 +541,7 @@ gov2.queue({
 
 Execute the proposal (If Proposal Queued)
 
-- @param `user` The ethereum address that will create the proposal
+- @param `user` The smartBCH address that will create the proposal
 - @param `proposalId` Id of the proposal we want to execute
 
 ```
@@ -555,7 +555,7 @@ gov2.execute({
 
 Function allowing msg.sender to vote for/against a proposal
 
-- @param `user` The ethereum address that will create the proposal
+- @param `user` The smartBCH address that will create the proposal
 - @param `proposalId` Id of the proposal we want to vote
 - @param `support` Bool indicating if you are voting in favor (true) or against (false)
 
@@ -573,9 +573,9 @@ gov2.submitVote({
 
 Method for the user to delegate voting `and` proposition power to the chosen address
 
-- @param `user` The ethereum address that will create the proposal
-- @param `delegatee` The ethereum address to which the user wants to delegate proposition power and voting power
-- @param `governanceToken` The ethereum address of the governance token
+- @param `user` The smartBCH address that will create the proposal
+- @param `delegatee` The smartBCH address to which the user wants to delegate proposition power and voting power
+- @param `governanceToken` The smartBCH address of the governance token
 
 ```
 powerDelegation.delegate({
@@ -589,10 +589,10 @@ powerDelegation.delegate({
 
 Method for the user to delegate voting `or` proposition power to the chosen address
 
-- @param `user` The ethereum address that will create the proposal
-- @param `delegatee` The ethereum address to which the user wants to delegate proposition power and voting power
+- @param `user` The smartBCH address that will create the proposal
+- @param `delegatee` The smartBCH address to which the user wants to delegate proposition power and voting power
 - @param `delegationType` The type of the delegation the user wants to do: voting power ('0') or proposition power ('1')
-- @param `governanceToken` The ethereum address of the governance token
+- @param `governanceToken` The smartBCH address of the governance token
 
 ```
 powerDelegation.delegateByType({
@@ -611,7 +611,7 @@ To use the testnet faucets which are compatible with Bandz:
 import { TxBuilderV2, Network, Market } from '@bandz/protocol-js'
 
 const httpProvider = new Web3.providers.HttpProvider(
-    process.env.ETHEREUM_URL ||
+    process.env.SMARTBCH_URL ||
       "https://kovan.infura.io/v3/<project_id>"
   );
 const txBuilder = new TxBuilderV2(Network.main, httpProvider);
@@ -622,8 +622,8 @@ const faucet = txBuilder.faucetService;
 
 Mint tokens for the usage on the Bandz protocol on the Kovan network. The amount of minted tokens is fixed and depends on the token
 
-- @param `userAddress` The ethereum address of the wallet the minted tokens will go
-- @param `reserve` The ethereum address of the token you want to mint
+- @param `userAddress` The smartBCH address of the wallet the minted tokens will go
+- @param `reserve` The smartBCH address of the token you want to mint
 - @param `tokenSymbol` The symbol of the token you want to mint
 
 ```

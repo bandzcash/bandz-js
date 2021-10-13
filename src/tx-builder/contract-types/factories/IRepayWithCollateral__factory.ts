@@ -82,7 +82,7 @@ const _abi = [
       },
       {
         internalType: "bool",
-        name: "useEthPath",
+        name: "useBchPath",
         type: "bool",
       },
     ],

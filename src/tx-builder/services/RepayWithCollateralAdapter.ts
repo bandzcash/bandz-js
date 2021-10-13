@@ -49,7 +49,7 @@ export default class RepayWithCollateralAdapterService
       debtRepayAmount,
       debtRateMode,
       permit,
-      useEthPath,
+      useBchPath,
     }: RepayWithCollateralType,
     txs?: EthereumTransactionTypeExtended[]
   ): EthereumTransactionTypeExtended {
@@ -66,7 +66,7 @@ export default class RepayWithCollateralAdapterService
           debtRepayAmount,
           debtRateMode,
           permit,
-          useEthPath || false
+          useBchPath || false
         ),
       from: user,
     });

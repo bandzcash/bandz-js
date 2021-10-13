@@ -1,5 +1,5 @@
 import { constants } from 'ethers';
-import { IWETHGateway, IWETHGateway__factory } from '../contract-types';
+import { IWBCHGateway, IWBCHGateway__factory } from '../contract-types';
 import BaseDebtTokenInterface from '../interfaces/BaseDebtToken';
 import IERC20ServiceInterface from '../interfaces/ERC20';
 import WETHGatewayInterface from '../interfaces/WETHGateway';
@@ -29,7 +29,7 @@ import {
 import BaseService from './BaseService';
 
 export default class WETHGatewayService
-  extends BaseService<IWETHGateway>
+  extends BaseService<IWBCHGateway>
   implements WETHGatewayInterface {
   readonly wethGatewayAddress: string;
 
@@ -47,7 +47,7 @@ export default class WETHGatewayService
     erc20Service: IERC20ServiceInterface,
     wethGatewayConfig: LendingPoolMarketConfig | undefined
   ) {
-    super(config, IWETHGateway__factory);
+    super(config, IWBCHGateway__factory);
     this.wethGatewayConfig = wethGatewayConfig;
     this.baseDebtTokenService = baseDebtTokenService;
     this.erc20Service = erc20Service;
@@ -56,7 +56,7 @@ export default class WETHGatewayService
   }
 
   @WETHValidator
-  public async depositETH(
+  public async depositBCH(
     @IsEthAddress('lendingPool')
     @IsEthAddress('user')
     @IsEthAddress('onBehalfOf')
@@ -71,12 +71,12 @@ export default class WETHGatewayService
   ): Promise<EthereumTransactionTypeExtended[]> {
     const convertedAmount: tStringDecimalUnits = parseNumber(amount, 18);
 
-    const wethGatewayContract: IWETHGateway = this.getContractInstance(
+    const wethGatewayContract: IWBCHGateway = this.getContractInstance(
       this.wethGatewayAddress
     );
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
       rawTxMethod: () =>
-        wethGatewayContract.populateTransaction.depositETH(
+        wethGatewayContract.populateTransaction.depositBCH(
           lendingPool,
           onBehalfOf || user,
           referralCode || '0'
@@ -95,7 +95,7 @@ export default class WETHGatewayService
   }
 
   @WETHValidator
-  public async borrowETH(
+  public async borrowBCH(
     @IsEthAddress('lendingPool')
     @IsEthAddress('user')
     @IsPositiveAmount('amount')
@@ -130,13 +130,13 @@ export default class WETHGatewayService
 
       txs.push(approveDelegationTx);
     }
-    const wethGatewayContract: IWETHGateway = this.getContractInstance(
+    const wethGatewayContract: IWBCHGateway = this.getContractInstance(
       this.wethGatewayAddress
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
       rawTxMethod: () =>
-        wethGatewayContract.populateTransaction.borrowETH(
+        wethGatewayContract.populateTransaction.borrowBCH(
           lendingPool,
           convertedAmount,
           numericRateMode,
@@ -151,7 +151,7 @@ export default class WETHGatewayService
       gas: this.generateTxPriceEstimation(
         txs,
         txCallback,
-        ProtocolAction.borrowETH
+        ProtocolAction.borrowBCH
       ),
     });
 
@@ -159,7 +159,7 @@ export default class WETHGatewayService
   }
 
   @WETHValidator
-  public async withdrawETH(
+  public async withdrawBCH(
     @IsEthAddress('lendingPool')
     @IsEthAddress('user')
     @IsEthAddress('onBehalfOf')
@@ -196,13 +196,13 @@ export default class WETHGatewayService
       );
       txs.push(approveTx);
     }
-    const wethGatewayContract: IWETHGateway = this.getContractInstance(
+    const wethGatewayContract: IWBCHGateway = this.getContractInstance(
       this.wethGatewayAddress
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
       rawTxMethod: () =>
-        wethGatewayContract.populateTransaction.withdrawETH(
+        wethGatewayContract.populateTransaction.withdrawBCH(
           lendingPool,
           convertedAmount,
           onBehalfOf || user
@@ -216,7 +216,7 @@ export default class WETHGatewayService
       gas: this.generateTxPriceEstimation(
         txs,
         txCallback,
-        ProtocolAction.withdrawETH
+        ProtocolAction.withdrawBCH
       ),
     });
 
@@ -224,7 +224,7 @@ export default class WETHGatewayService
   }
 
   @WETHValidator
-  public async repayETH(
+  public async repayBCH(
     @IsEthAddress('lendingPool')
     @IsEthAddress('user')
     @IsEthAddress('onBehalfOf')
@@ -239,13 +239,13 @@ export default class WETHGatewayService
   ): Promise<EthereumTransactionTypeExtended[]> {
     const convertedAmount: tStringDecimalUnits = parseNumber(amount, 18);
     const numericRateMode = interestRateMode === InterestRate.Variable ? 2 : 1;
-    const wethGatewayContract: IWETHGateway = this.getContractInstance(
+    const wethGatewayContract: IWBCHGateway = this.getContractInstance(
       this.wethGatewayAddress
     );
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
       rawTxMethod: () =>
-        wethGatewayContract.populateTransaction.repayETH(
+        wethGatewayContract.populateTransaction.repayBCH(
           lendingPool,
           convertedAmount,
           numericRateMode,

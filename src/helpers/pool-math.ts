@@ -124,47 +124,47 @@ export function getCompoundedStableBalance(
 }
 
 export function calculateHealthFactorFromBalances(
-  collateralBalanceETH: BigNumberValue,
-  borrowBalanceETH: BigNumberValue,
+  collateralBalanceBCH: BigNumberValue,
+  borrowBalanceBCH: BigNumberValue,
   currentLiquidationThreshold: BigNumberValue
 ): BigNumber {
-  if (valueToBigNumber(borrowBalanceETH).eq(0)) {
+  if (valueToBigNumber(borrowBalanceBCH).eq(0)) {
     return valueToBigNumber('-1'); // invalid number
   }
-  return valueToBigNumber(collateralBalanceETH)
+  return valueToBigNumber(collateralBalanceBCH)
     .multipliedBy(currentLiquidationThreshold)
     .dividedBy(pow10(LTV_PRECISION))
-    .div(borrowBalanceETH);
+    .div(borrowBalanceBCH);
 }
 
 export function calculateHealthFactorFromBalancesBigUnits(
-  collateralBalanceETH: BigNumberValue,
-  borrowBalanceETH: BigNumberValue,
+  collateralBalanceBCH: BigNumberValue,
+  borrowBalanceBCH: BigNumberValue,
   currentLiquidationThreshold: BigNumberValue
 ): BigNumber {
   return calculateHealthFactorFromBalances(
-    collateralBalanceETH,
-    borrowBalanceETH,
+    collateralBalanceBCH,
+    borrowBalanceBCH,
     new BigNumber(currentLiquidationThreshold)
       .multipliedBy(pow10(LTV_PRECISION))
       .decimalPlaces(0, BigNumber.ROUND_DOWN)
   );
 }
 
-export function calculateAvailableBorrowsETH(
-  collateralBalanceETH: BigNumberValue,
-  borrowBalanceETH: BigNumberValue,
+export function calculateavailableBorrowsBCH(
+  collateralBalanceBCH: BigNumberValue,
+  borrowBalanceBCH: BigNumberValue,
   currentLtv: BigNumberValue
 ): BigNumber {
   if (valueToZDBigNumber(currentLtv).eq(0)) {
     return valueToZDBigNumber('0');
   }
-  const availableBorrowsETH = valueToZDBigNumber(collateralBalanceETH)
+  const availableBorrowsBCH = valueToZDBigNumber(collateralBalanceBCH)
     .multipliedBy(currentLtv)
     .dividedBy(pow10(LTV_PRECISION))
-    .minus(borrowBalanceETH);
-  return availableBorrowsETH.gt('0')
-    ? availableBorrowsETH
+    .minus(borrowBalanceBCH);
+  return availableBorrowsBCH.gt('0')
+    ? availableBorrowsBCH
     : valueToZDBigNumber('0');
 }
 

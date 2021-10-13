@@ -22,7 +22,7 @@ export type { IStakedToken } from "./IStakedToken";
 export type { ISwapCollateral } from "./ISwapCollateral";
 export type { IParaSwapLiquiditySwapAdapter } from "./IParaSwapLiquiditySwapAdapter";
 export type { ISynthetix } from "./ISynthetix";
-export type { IWETHGateway } from "./IWETHGateway";
+export type { IWBCHGateway } from "./IWBCHGateway";
 
 export { IAaveGovernanceV2__factory } from "./factories/IAaveGovernanceV2__factory";
 export { IAaveIncentivesController__factory } from "./factories/IAaveIncentivesController__factory";
@@ -45,4 +45,4 @@ export { IStakedToken__factory } from "./factories/IStakedToken__factory";
 export { ISwapCollateral__factory } from "./factories/ISwapCollateral__factory";
 export { IParaSwapLiquiditySwapAdapter__factory } from "./factories/IParaSwapLiquiditySwapAdapter__factory";
 export { ISynthetix__factory } from "./factories/ISynthetix__factory";
-export { IWETHGateway__factory } from "./factories/IWETHGateway__factory";
+export { IWBCHGateway__factory } from "./factories/IWBCHGateway__factory";

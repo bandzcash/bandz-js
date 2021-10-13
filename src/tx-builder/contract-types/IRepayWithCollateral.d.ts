@@ -79,7 +79,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
@@ -96,7 +96,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: Overrides
     ): Promise<ContractTransaction>;
   };
@@ -114,7 +114,7 @@ export class IRepayWithCollateral extends Contract {
       r: BytesLike;
       s: BytesLike;
     },
-    useEthPath: boolean,
+    useBchPath: boolean,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -131,7 +131,7 @@ export class IRepayWithCollateral extends Contract {
       r: BytesLike;
       s: BytesLike;
     },
-    useEthPath: boolean,
+    useBchPath: boolean,
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
@@ -149,7 +149,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -166,7 +166,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -187,7 +187,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: Overrides
     ): Promise<BigNumber>;
 
@@ -204,7 +204,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: Overrides
     ): Promise<BigNumber>;
   };
@@ -223,7 +223,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
@@ -240,7 +240,7 @@ export class IRepayWithCollateral extends Contract {
         r: BytesLike;
         s: BytesLike;
       },
-      useEthPath: boolean,
+      useBchPath: boolean,
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
   };

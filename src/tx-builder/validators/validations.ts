@@ -59,7 +59,7 @@ export function isEthAddressValidator(
           throw new Error(
             `Address: ${
               methodArguments[0][storedParams.field]
-            } is not a valid ethereum Address`
+            } is not a valid smartBCH address`
           );
         }
       } else {
@@ -73,7 +73,7 @@ export function isEthAddressValidator(
           throw new Error(
             `Address: ${
               methodArguments[storedParams.index]
-            } is not a valid ethereum Address`
+            } is not a valid smartBCH address`
           );
         }
       }
@@ -107,7 +107,7 @@ export function isEthAddressArrayValidator(
             fieldArray.forEach((address: string) => {
               if (!utils.isAddress(address)) {
                 throw new Error(
-                  `Address: ${address} is not a valid ethereum Address`
+                  `Address: ${address} is not a valid smartBCH address`
                 );
               }
             });
@@ -126,7 +126,7 @@ export function isEthAddressArrayValidator(
             fieldArray.forEach((address: string) => {
               if (!utils.isAddress(address)) {
                 throw new Error(
-                  `Address: ${address} is not a valid ethereum Address`
+                  `Address: ${address} is not a valid smartBCH address`
                 );
               }
             });
@@ -160,7 +160,7 @@ export function isEthAddressOrEnsValidator(
             throw new Error(
               `Address ${
                 methodArguments[0][storedParams.field]
-              } is not valid ENS format or a valid ethereum Address`
+              } is not valid ENS format or a valid smartBCH address`
             );
           }
         }
@@ -176,7 +176,7 @@ export function isEthAddressOrEnsValidator(
             throw new Error(
               `Address ${
                 methodArguments[storedParams.index]
-              } is not valid ENS format or a valid ethereum Address`
+              } is not valid ENS format or a valid smartBCH address`
             );
           }
         }

@@ -1,6 +1,6 @@
 import { constants, utils, BigNumberish, BytesLike } from 'ethers';
 import {
-  API_ETH_MOCK_ADDRESS,
+  API_BCH_MOCK_ADDRESS,
   DEFAULT_APPROVE_AMOUNT,
   MAX_UINT_AMOUNT,
   SURPLUS,
@@ -148,8 +148,8 @@ export default class LendingPool
     @IsEthAddress('onBehalfOf')
     { user, reserve, amount, onBehalfOf, referralCode }: LPDepositParamsType
   ): Promise<EthereumTransactionTypeExtended[]> {
-    if (reserve.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) {
-      return this.wethGatewayService.depositETH({
+    if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
+      return this.wethGatewayService.depositBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -232,14 +232,14 @@ export default class LendingPool
     @IsEthAddress('aTokenAddress')
     { user, reserve, amount, onBehalfOf, aTokenAddress }: LPWithdrawParamsType
   ): Promise<EthereumTransactionTypeExtended[]> {
-    if (reserve.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) {
+    if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
       if (!aTokenAddress) {
         throw new Error(
-          'To withdraw ETH you need to pass the aWETH token address'
+          'To withdraw BCH you need to pass the aWBCH token address'
         );
       }
 
-      return this.wethGatewayService.withdrawETH({
+      return this.wethGatewayService.withdrawBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -300,13 +300,13 @@ export default class LendingPool
       referralCode,
     }: LPBorrowParamsType
   ): Promise<EthereumTransactionTypeExtended[]> {
-    if (reserve.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) {
+    if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
       if (!debtTokenAddress) {
         throw new Error(
-          `To borrow ETH you need to pass the stable or variable WETH debt Token Address corresponding the interestRateMode`
+          `To borrow BCH you need to pass the stable or variable WBCH debt Token Address corresponding the interestRateMode`
         );
       }
-      return this.wethGatewayService.borrowETH({
+      return this.wethGatewayService.borrowBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -357,8 +357,8 @@ export default class LendingPool
     @IsEthAddress('onBehalfOf')
     { user, reserve, amount, interestRateMode, onBehalfOf }: LPRepayParamsType
   ): Promise<EthereumTransactionTypeExtended[]> {
-    if (reserve.toLowerCase() === API_ETH_MOCK_ADDRESS.toLowerCase()) {
-      return this.wethGatewayService.repayETH({
+    if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
+      return this.wethGatewayService.repayBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -742,7 +742,7 @@ export default class LendingPool
       onBehalfOf,
       referralCode,
       flash,
-      useEthPath,
+      useBchPath,
     }: LPRepayWithCollateral
   ): Promise<EthereumTransactionTypeExtended[]> {
     const txs: EthereumTransactionTypeExtended[] = [];
@@ -816,7 +816,7 @@ export default class LendingPool
           permitParams.v,
           permitParams.r,
           permitParams.s,
-          useEthPath || false,
+          useBchPath || false,
         ]
       );
 
@@ -862,7 +862,7 @@ export default class LendingPool
         debtRepayAmount: convertedRepayAmount,
         debtRateMode: numericInterestRate,
         permit: permitParams,
-        useEthPath,
+        useBchPath,
       },
       txs
     );
@@ -886,7 +886,7 @@ export default class LendingPool
       debtTokenCover,
       liquidateAll,
       initiator,
-      useEthPath,
+      useBchPath,
     }: LPFlashLiquidation
   ): Promise<EthereumTransactionTypeExtended[]> {
     const addSurplus = (amount: string): string => {
@@ -923,7 +923,7 @@ export default class LendingPool
         borrowedAsset,
         user,
         convertedDebtTokenCover,
-        useEthPath || false,
+        useBchPath || false,
       ]
     );
 

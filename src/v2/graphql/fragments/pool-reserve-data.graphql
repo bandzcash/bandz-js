@@ -39,7 +39,7 @@ fragment ReserveData on Reserve {
   utilizationRate
   reserveLiquidationBonus
   price {
-    priceInEth
+    priceInBch
   }
   lastUpdateTimestamp
   stableDebtLastUpdateTimestamp
