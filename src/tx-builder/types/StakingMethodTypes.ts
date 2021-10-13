@@ -1,33 +1,33 @@
-import { tEthereumAddress, tStringCurrencyUnits } from '.';
+import { tSmartBCHAddress, tStringCurrencyUnits } from '.';
 
 export type signStakingParamsType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
   nonce: string;
 };
 
 export type stakeWithPermitParamsType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
   signature: string;
 };
 
 export type stakeParamsType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
-  onBehalfOf?: tEthereumAddress;
+  onBehalfOf?: tSmartBCHAddress;
 };
 
 export type redeemParamsType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
 };
 
 export type cooldownParamsType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
 };
 
 export type claimRewardsParamsType = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
 };

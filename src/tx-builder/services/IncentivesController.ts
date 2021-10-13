@@ -5,10 +5,10 @@ import {
 } from '../contract-types';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   IncentivesConfig,
-  tEthereumAddress,
+  tSmartBCHAddress,
   transactionType,
 } from '../types';
 import { IncentivesValidator } from '../validators/methodValidators';
@@ -22,16 +22,16 @@ export type ClaimRewardsMethodType = {
 };
 
 export interface IncentivesControllerInterface {
-  incentivesControllerRewardTokenAddress: tEthereumAddress;
+  incentivesControllerRewardTokenAddress: tSmartBCHAddress;
   claimRewards: (
     args: ClaimRewardsMethodType
-  ) => EthereumTransactionTypeExtended[];
+  ) => SmartBCHTransactionTypeExtended[];
 }
 
 export default class IncentivesController
   extends BaseService<IAaveIncentivesController>
   implements IncentivesControllerInterface {
-  public readonly incentivesControllerRewardTokenAddress: tEthereumAddress;
+  public readonly incentivesControllerRewardTokenAddress: tSmartBCHAddress;
   readonly incentivesControllerAddress: string;
 
   readonly incentivesConfig: IncentivesConfig | undefined;
@@ -57,7 +57,7 @@ export default class IncentivesController
     // @IsEthAddressArray('assets')
     @IsEthAddress('to')
     { user, assets, to }: ClaimRewardsMethodType
-  ): EthereumTransactionTypeExtended[] {
+  ): SmartBCHTransactionTypeExtended[] {
     const incentivesContract: IAaveIncentivesController = this.getContractInstance(
       this.incentivesControllerAddress
     );
@@ -74,7 +74,7 @@ export default class IncentivesController
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.REWARD_ACTION,
+        txType: eSmartBCHTxType.REWARD_ACTION,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];

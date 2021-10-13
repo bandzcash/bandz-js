@@ -1,12 +1,12 @@
 import {
-  tEthereumAddress,
-  EthereumTransactionTypeExtended,
+  tSmartBCHAddress,
+  SmartBCHTransactionTypeExtended,
   tStringCurrencyUnits,
 } from '../types';
 
 export default interface LTAMigratorInterface {
   migrateLendToAave: (
-    user: tEthereumAddress,
+    user: tSmartBCHAddress,
     amount: tStringCurrencyUnits
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
 }

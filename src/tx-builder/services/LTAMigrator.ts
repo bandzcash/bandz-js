@@ -7,10 +7,10 @@ import {
 import LTAMigratorInterface from '../interfaces/LTAMigrator';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   MigratorConfig,
-  tEthereumAddress,
+  tSmartBCHAddress,
   transactionType,
   tStringCurrencyUnits,
 } from '../types';
@@ -42,10 +42,10 @@ export default class LTAMigratorService
 
   @LTAMigratorValidator
   public async migrateLendToAave(
-    @IsEthAddress() user: tEthereumAddress,
+    @IsEthAddress() user: tSmartBCHAddress,
     @IsPositiveAmount() amount: tStringCurrencyUnits
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
 
     const { isApproved, approve, decimalsOf } = this.erc20Service;
 
@@ -77,7 +77,7 @@ export default class LTAMigratorService
     });
 
     txs.push({
-      txType: eEthereumTxType.MIGRATION_LEND_AAVE,
+      txType: eSmartBCHTxType.MIGRATION_LEND_AAVE,
       tx: txCallback,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });

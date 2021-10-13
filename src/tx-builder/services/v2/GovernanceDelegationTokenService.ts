@@ -7,9 +7,9 @@ import GovernanceDelegationTokenInterface from '../../interfaces/v2/GovernanceDe
 import {
   ChainId,
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
-  tEthereumAddress,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
+  tSmartBCHAddress,
   transactionType,
   tStringDecimalUnits,
 } from '../../types';
@@ -48,8 +48,8 @@ export default class GovernanceDelegationTokenService
     @IsEthAddressOrENS('delegatee')
     @IsEthAddress('governanceToken')
     { user, delegatee, governanceToken }: GovDelegate
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(
       governanceToken
     );
@@ -66,7 +66,7 @@ export default class GovernanceDelegationTokenService
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOV_DELEGATION_ACTION,
+      txType: eSmartBCHTxType.GOV_DELEGATION_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
 
@@ -79,8 +79,8 @@ export default class GovernanceDelegationTokenService
     @IsEthAddressOrENS('delegatee')
     @IsEthAddress('governanceToken')
     { user, delegatee, delegationType, governanceToken }: GovDelegateByType
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(
       governanceToken
     );
@@ -98,7 +98,7 @@ export default class GovernanceDelegationTokenService
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOV_DELEGATION_ACTION,
+      txType: eSmartBCHTxType.GOV_DELEGATION_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
 
@@ -111,8 +111,8 @@ export default class GovernanceDelegationTokenService
     @IsEthAddressOrENS('delegatee')
     @IsEthAddress('governanceToken')
     { user, delegatee, expiry, signature, governanceToken }: GovDelegateBySig
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(
       governanceToken
     );
@@ -136,7 +136,7 @@ export default class GovernanceDelegationTokenService
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOV_DELEGATION_ACTION,
+      txType: eSmartBCHTxType.GOV_DELEGATION_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
 
@@ -156,8 +156,8 @@ export default class GovernanceDelegationTokenService
       signature,
       governanceToken,
     }: GovDelegateByTypeBySig
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(
       governanceToken
     );
@@ -182,7 +182,7 @@ export default class GovernanceDelegationTokenService
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.GOV_DELEGATION_ACTION,
+      txType: eSmartBCHTxType.GOV_DELEGATION_ACTION,
       gas: this.generateTxPriceEstimation(txs, txCallback),
     });
 
@@ -285,7 +285,7 @@ export default class GovernanceDelegationTokenService
     @IsEthAddress('delegator')
     @IsEthAddress('governanceToken')
     { delegator, delegationType, governanceToken }: GovGetDelegateeByType
-  ): Promise<tEthereumAddress> {
+  ): Promise<tSmartBCHAddress> {
     const governanceDelegationToken: IGovernancePowerDelegationToken = this.getContractInstance(
       governanceToken
     );

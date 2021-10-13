@@ -1,21 +1,21 @@
 import {
-  EthereumTransactionTypeExtended,
-  tEthereumAddress,
+  SmartBCHTransactionTypeExtended,
+  tSmartBCHAddress,
   tStringCurrencyUnits,
   tStringDecimalUnits,
 } from '../types';
 
 export default interface BaseDebtTokenInterface {
   approveDelegation: (
-    user: tEthereumAddress,
-    delegatee: tEthereumAddress,
-    debtTokenAddress: tEthereumAddress,
+    user: tSmartBCHAddress,
+    delegatee: tSmartBCHAddress,
+    debtTokenAddress: tSmartBCHAddress,
     amount: tStringDecimalUnits
-  ) => EthereumTransactionTypeExtended;
+  ) => SmartBCHTransactionTypeExtended;
   isDelegationApproved: (
-    debtTokenAddress: tEthereumAddress,
-    allowanceGiver: tEthereumAddress,
-    spender: tEthereumAddress,
+    debtTokenAddress: tSmartBCHAddress,
+    allowanceGiver: tSmartBCHAddress,
+    spender: tSmartBCHAddress,
     amount: tStringCurrencyUnits
   ) => Promise<boolean>;
 }

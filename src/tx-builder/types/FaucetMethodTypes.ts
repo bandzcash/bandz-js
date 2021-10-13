@@ -1,7 +1,7 @@
-import { tEthereumAddress } from '.';
+import { tSmartBCHAddress } from '.';
 
 export type FaucetParamsType = {
-  userAddress: tEthereumAddress;
-  reserve: tEthereumAddress;
+  userAddress: tSmartBCHAddress;
+  reserve: tSmartBCHAddress;
   tokenSymbol: string;
 };

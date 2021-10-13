@@ -198,7 +198,7 @@ Object that contains all the necessary methods to create Bandz lending pool tran
 The return object will be a Promise array of objects of type:
 
 ```
-import { EthereumTransactionTypeExtended } from '@bandz/protocol-js'
+import { SmartBCHTransactionTypeExtended } from '@bandz/protocol-js'
 ```
 
 having {tx, txType}

@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers';
-import { tEthereumAddress } from '.';
+import { tSmartBCHAddress } from '.';
 
 export enum ProposalState {
   Pending = 'Pending',
@@ -17,9 +17,9 @@ export type Proposal = {
   title: string;
   description: string;
   shortDescription: string;
-  creator: tEthereumAddress;
-  executor: tEthereumAddress;
-  targets: tEthereumAddress[];
+  creator: tSmartBCHAddress;
+  executor: tSmartBCHAddress;
+  targets: tSmartBCHAddress[];
   values: BigNumber[];
   signatures: string[];
   calldatas: string[];

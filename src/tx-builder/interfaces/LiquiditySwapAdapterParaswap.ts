@@ -1,9 +1,9 @@
-import { EthereumTransactionTypeExtended } from '../types';
+import { SmartBCHTransactionTypeExtended } from '../types';
 import { SwapAndDepositMethodType } from '../types/LiquiditySwapAdapterParaswapMethodTypes';
 
 export default interface LiquiditySwapAdapterInterface {
   swapAndDeposit: (
     args: SwapAndDepositMethodType,
-    txs?: EthereumTransactionTypeExtended[]
-  ) => EthereumTransactionTypeExtended;
+    txs?: SmartBCHTransactionTypeExtended[]
+  ) => SmartBCHTransactionTypeExtended;
 }

@@ -1,110 +1,110 @@
 import { BytesLike } from 'ethers';
 import {
-  tEthereumAddress,
+  tSmartBCHAddress,
   tStringCurrencyUnits,
   InterestRate,
   PermitSignature,
 } from '.';
 
 export type LPDepositParamsType = {
-  user: tEthereumAddress;
-  reserve: tEthereumAddress;
+  user: tSmartBCHAddress;
+  reserve: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
-  onBehalfOf?: tEthereumAddress;
+  onBehalfOf?: tSmartBCHAddress;
   referralCode?: string;
 };
 
 export type LPWithdrawParamsType = {
-  user: tEthereumAddress;
-  reserve: tEthereumAddress;
+  user: tSmartBCHAddress;
+  reserve: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
-  onBehalfOf?: tEthereumAddress;
-  aTokenAddress?: tEthereumAddress;
+  onBehalfOf?: tSmartBCHAddress;
+  aTokenAddress?: tSmartBCHAddress;
 };
 export type LPBorrowParamsType = {
-  user: tEthereumAddress;
-  reserve: tEthereumAddress;
+  user: tSmartBCHAddress;
+  reserve: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
   interestRateMode: InterestRate;
-  debtTokenAddress?: tEthereumAddress;
-  onBehalfOf?: tEthereumAddress;
+  debtTokenAddress?: tSmartBCHAddress;
+  onBehalfOf?: tSmartBCHAddress;
   referralCode?: string;
 };
 export type LPRepayParamsType = {
-  user: tEthereumAddress;
-  reserve: tEthereumAddress;
+  user: tSmartBCHAddress;
+  reserve: tSmartBCHAddress;
   amount: tStringCurrencyUnits;
   interestRateMode: InterestRate;
-  onBehalfOf?: tEthereumAddress;
+  onBehalfOf?: tSmartBCHAddress;
 };
 export type LPSwapBorrowRateMode = {
-  user: tEthereumAddress;
-  reserve: tEthereumAddress;
+  user: tSmartBCHAddress;
+  reserve: tSmartBCHAddress;
   interestRateMode: InterestRate;
 };
 export type LPSetUsageAsCollateral = {
-  user: tEthereumAddress;
-  reserve: tEthereumAddress;
+  user: tSmartBCHAddress;
+  reserve: tSmartBCHAddress;
   usageAsCollateral: boolean;
 };
 export type LPLiquidationCall = {
-  liquidator: tEthereumAddress;
-  liquidatedUser: tEthereumAddress;
-  debtReserve: tEthereumAddress;
-  collateralReserve: tEthereumAddress;
+  liquidator: tSmartBCHAddress;
+  liquidatedUser: tSmartBCHAddress;
+  debtReserve: tSmartBCHAddress;
+  collateralReserve: tSmartBCHAddress;
   purchaseAmount: tStringCurrencyUnits;
   getAToken?: boolean;
   liquidateAll?: boolean;
 };
 
 export type LPSwapCollateral = {
-  user: tEthereumAddress;
+  user: tSmartBCHAddress;
   flash?: boolean;
-  fromAsset: tEthereumAddress; // List of addresses of the underlying asset to be swap from
-  fromAToken: tEthereumAddress;
-  toAsset: tEthereumAddress; // List of the addresses of the reserve to be swapped to and deposited
+  fromAsset: tSmartBCHAddress; // List of addresses of the underlying asset to be swap from
+  fromAToken: tSmartBCHAddress;
+  toAsset: tSmartBCHAddress; // List of the addresses of the reserve to be swapped to and deposited
   fromAmount: tStringCurrencyUnits; // List of amounts to be swapped. If the amount exceeds the balance, the total balance is used for the swap
   minToAmount: tStringCurrencyUnits;
   permitSignature?: PermitSignature;
   swapAll: boolean;
-  onBehalfOf?: tEthereumAddress;
+  onBehalfOf?: tSmartBCHAddress;
   referralCode?: string;
-  augustus: tEthereumAddress;
+  augustus: tSmartBCHAddress;
   swapCallData: BytesLike;
 };
 
 export type LPRepayWithCollateral = {
-  user: tEthereumAddress;
-  fromAsset: tEthereumAddress;
-  fromAToken: tEthereumAddress;
-  assetToRepay: tEthereumAddress; // List of addresses of the underlying asset to be swap from
+  user: tSmartBCHAddress;
+  fromAsset: tSmartBCHAddress;
+  fromAToken: tSmartBCHAddress;
+  assetToRepay: tSmartBCHAddress; // List of addresses of the underlying asset to be swap from
   repayWithAmount: tStringCurrencyUnits;
   repayAmount: tStringCurrencyUnits; // List of amounts to be swapped. If the amount exceeds the balance, the total balance is used for the swap
   permitSignature?: PermitSignature;
   repayAllDebt?: boolean;
   rateMode: InterestRate;
-  onBehalfOf?: tEthereumAddress;
+  onBehalfOf?: tSmartBCHAddress;
   referralCode?: string;
   flash?: boolean;
   useBchPath?: boolean;
 };
 
 export type LPFlashLoan = {
-  user: tEthereumAddress;
-  receiver: tEthereumAddress;
-  assets: tEthereumAddress[];
+  user: tSmartBCHAddress;
+  receiver: tSmartBCHAddress;
+  assets: tSmartBCHAddress[];
   amounts: tStringCurrencyUnits[];
   modes: InterestRate[];
-  onBehalfOf?: tEthereumAddress;
+  onBehalfOf?: tSmartBCHAddress;
   referralCode?: string;
 };
 
 export type LPFlashLiquidation = {
-  user: tEthereumAddress;
-  collateralAsset: tEthereumAddress;
-  borrowedAsset: tEthereumAddress;
+  user: tSmartBCHAddress;
+  collateralAsset: tSmartBCHAddress;
+  borrowedAsset: tSmartBCHAddress;
   debtTokenCover: string;
   liquidateAll: boolean;
-  initiator: tEthereumAddress;
+  initiator: tSmartBCHAddress;
   useBchPath: boolean;
 };

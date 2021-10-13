@@ -1,37 +1,37 @@
 import {
-  EthereumTransactionTypeExtended,
-  tEthereumAddress,
+  SmartBCHTransactionTypeExtended,
+  tSmartBCHAddress,
   tStringCurrencyUnits,
 } from '../types';
 
 export default interface StakingInterface {
-  stakingContractAddress: tEthereumAddress;
-  stakingRewardTokenContractAddress: tEthereumAddress;
+  stakingContractAddress: tSmartBCHAddress;
+  stakingRewardTokenContractAddress: tSmartBCHAddress;
 
   stake: (
-    user: tEthereumAddress,
+    user: tSmartBCHAddress,
     amount: tStringCurrencyUnits,
-    onBehalfOf?: tEthereumAddress
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+    onBehalfOf?: tSmartBCHAddress
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   redeem: (
-    user: tEthereumAddress,
+    user: tSmartBCHAddress,
     amount: tStringCurrencyUnits
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   cooldown: (
-    user: tEthereumAddress
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+    user: tSmartBCHAddress
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   claimRewards: (
-    user: tEthereumAddress,
+    user: tSmartBCHAddress,
     amount: tStringCurrencyUnits
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
   signStaking: (
-    user: tEthereumAddress,
+    user: tSmartBCHAddress,
     amount: tStringCurrencyUnits,
     nonce: string
   ) => Promise<string>;
   stakeWithPermit: (
-    user: tEthereumAddress,
+    user: tSmartBCHAddress,
     amount: tStringCurrencyUnits,
     signature: string
-  ) => Promise<EthereumTransactionTypeExtended[]>;
+  ) => Promise<SmartBCHTransactionTypeExtended[]>;
 }

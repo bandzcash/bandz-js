@@ -8,8 +8,8 @@ import {
 import FaucetInterface from '../interfaces/Faucet';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   LendingPoolMarketConfig,
   transactionType,
 } from '../types';
@@ -53,7 +53,7 @@ export default class FaucetService
     @IsEthAddress('userAddress')
     @IsEthAddress('reserve')
     { userAddress, reserve, tokenSymbol }: FaucetParamsType
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     const amount: string = mintAmountsPerToken[tokenSymbol];
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -66,7 +66,7 @@ export default class FaucetService
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.FAUCET_MINT,
+        txType: eSmartBCHTxType.FAUCET_MINT,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];

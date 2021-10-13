@@ -11,14 +11,14 @@ import SynthetixInterface from '../../interfaces/Synthetix';
 import LendingPoolInterface from '../../interfaces/v2/LendingPool';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   InterestRate,
   ProtocolAction,
   TokenMetadataType,
   transactionType,
   tStringDecimalUnits,
-  tEthereumAddress,
+  tSmartBCHAddress,
   LendingPoolMarketConfig,
 } from '../../types';
 import { getTxValue, parseNumber } from '../../utils/parsings';
@@ -40,7 +40,7 @@ import {
   LPWithdrawParamsType,
   LPFlashLiquidation,
 } from '../../types/LendingPoolMethodTypes';
-import WETHGatewayInterface from '../../interfaces/WETHGateway';
+import WBCHGatewayInterface from '../../interfaces/WBCHGateway';
 import {
   IsEthAddress,
   IsPositiveAmount,
@@ -52,11 +52,11 @@ import BaseService from '../BaseService';
 import { augustusFromAmountOffsetFromCalldata } from '../LiquiditySwapAdapterParaswap';
 
 const buildParaSwapLiquiditySwapParams = (
-  assetToSwapTo: tEthereumAddress,
+  assetToSwapTo: tSmartBCHAddress,
   minAmountToReceive: BigNumberish,
   swapAllBalanceOffset: BigNumberish,
   swapCalldata: string | Buffer | BytesLike,
-  augustus: tEthereumAddress,
+  augustus: tSmartBCHAddress,
   permitAmount: BigNumberish,
   deadline: BigNumberish,
   v: BigNumberish,
@@ -94,7 +94,7 @@ export default class LendingPool
 
   readonly synthetixService: SynthetixInterface;
 
-  readonly wethGatewayService: WETHGatewayInterface;
+  readonly WBCHGatewayService: WBCHGatewayInterface;
 
   readonly liquiditySwapAdapterService: LiquiditySwapAdapterInterface;
 
@@ -112,7 +112,7 @@ export default class LendingPool
     config: Configuration,
     erc20Service: IERC20ServiceInterface,
     synthetixService: SynthetixInterface,
-    wethGatewayService: WETHGatewayInterface,
+    WBCHGatewayService: WBCHGatewayInterface,
     liquiditySwapAdapterService: LiquiditySwapAdapterInterface,
     repayWithCollateralAdapterService: RepayWithCollateralAdapterInterface,
     market: string,
@@ -121,7 +121,7 @@ export default class LendingPool
     super(config, ILendingPool__factory);
     this.erc20Service = erc20Service;
     this.synthetixService = synthetixService;
-    this.wethGatewayService = wethGatewayService;
+    this.WBCHGatewayService = WBCHGatewayService;
     this.liquiditySwapAdapterService = liquiditySwapAdapterService;
     this.repayWithCollateralAdapterService = repayWithCollateralAdapterService;
     this.market = market;
@@ -147,9 +147,9 @@ export default class LendingPool
     @IsPositiveAmount('amount')
     @IsEthAddress('onBehalfOf')
     { user, reserve, amount, onBehalfOf, referralCode }: LPDepositParamsType
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
-      return this.wethGatewayService.depositBCH({
+      return this.WBCHGatewayService.depositBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -162,7 +162,7 @@ export default class LendingPool
       approve,
       decimalsOf,
     }: IERC20ServiceInterface = this.erc20Service;
-    const txs: EthereumTransactionTypeExtended[] = [];
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const reserveDecimals: number = await decimalsOf(reserve);
     const convertedAmount: tStringDecimalUnits = parseNumber(
       amount,
@@ -185,7 +185,7 @@ export default class LendingPool
       amount
     );
     if (!approved) {
-      const approveTx: EthereumTransactionTypeExtended = approve(
+      const approveTx: SmartBCHTransactionTypeExtended = approve(
         user,
         reserve,
         this.lendingPoolAddress,
@@ -212,7 +212,7 @@ export default class LendingPool
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs,
         txCallback,
@@ -231,7 +231,7 @@ export default class LendingPool
     @IsEthAddress('onBehalfOf')
     @IsEthAddress('aTokenAddress')
     { user, reserve, amount, onBehalfOf, aTokenAddress }: LPWithdrawParamsType
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
       if (!aTokenAddress) {
         throw new Error(
@@ -239,7 +239,7 @@ export default class LendingPool
         );
       }
 
-      return this.wethGatewayService.withdrawBCH({
+      return this.WBCHGatewayService.withdrawBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -273,7 +273,7 @@ export default class LendingPool
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.DLP_ACTION,
+        txType: eSmartBCHTxType.DLP_ACTION,
         gas: this.generateTxPriceEstimation(
           [],
           txCallback,
@@ -299,14 +299,14 @@ export default class LendingPool
       onBehalfOf,
       referralCode,
     }: LPBorrowParamsType
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
       if (!debtTokenAddress) {
         throw new Error(
           `To borrow BCH you need to pass the stable or variable WBCH debt Token Address corresponding the interestRateMode`
         );
       }
-      return this.wethGatewayService.borrowBCH({
+      return this.WBCHGatewayService.borrowBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -343,7 +343,7 @@ export default class LendingPool
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.DLP_ACTION,
+        txType: eSmartBCHTxType.DLP_ACTION,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];
@@ -356,9 +356,9 @@ export default class LendingPool
     @IsPositiveOrMinusOneAmount('amount')
     @IsEthAddress('onBehalfOf')
     { user, reserve, amount, interestRateMode, onBehalfOf }: LPRepayParamsType
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     if (reserve.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
-      return this.wethGatewayService.repayBCH({
+      return this.WBCHGatewayService.repayBCH({
         lendingPool: this.lendingPoolAddress,
         user,
         amount,
@@ -366,7 +366,7 @@ export default class LendingPool
         onBehalfOf,
       });
     }
-    const txs: EthereumTransactionTypeExtended[] = [];
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const {
       isApproved,
       approve,
@@ -404,7 +404,7 @@ export default class LendingPool
     );
 
     if (!approved) {
-      const approveTx: EthereumTransactionTypeExtended = approve(
+      const approveTx: SmartBCHTransactionTypeExtended = approve(
         user,
         reserve,
         this.lendingPoolAddress,
@@ -427,7 +427,7 @@ export default class LendingPool
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs,
         txCallback,
@@ -443,7 +443,7 @@ export default class LendingPool
     @IsEthAddress('user')
     @IsEthAddress('reserve')
     { user, reserve, interestRateMode }: LPSwapBorrowRateMode
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     const numericRateMode = interestRateMode === InterestRate.Variable ? 2 : 1;
 
     const lendingPoolContract = this.getContractInstance(
@@ -460,7 +460,7 @@ export default class LendingPool
 
     return [
       {
-        txType: eEthereumTxType.DLP_ACTION,
+        txType: eSmartBCHTxType.DLP_ACTION,
         tx: txCallback,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
@@ -472,7 +472,7 @@ export default class LendingPool
     @IsEthAddress('user')
     @IsEthAddress('reserve')
     { user, reserve, usageAsCollateral }: LPSetUsageAsCollateral
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     const lendingPoolContract = this.getContractInstance(
       this.lendingPoolAddress
     );
@@ -489,7 +489,7 @@ export default class LendingPool
     return [
       {
         tx: txCallback,
-        txType: eEthereumTxType.DLP_ACTION,
+        txType: eSmartBCHTxType.DLP_ACTION,
         gas: this.generateTxPriceEstimation([], txCallback),
       },
     ];
@@ -511,8 +511,8 @@ export default class LendingPool
       getAToken,
       liquidateAll,
     }: LPLiquidationCall
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
     const {
       isApproved,
       approve,
@@ -527,7 +527,7 @@ export default class LendingPool
     );
 
     if (!approved) {
-      const approveTx: EthereumTransactionTypeExtended = approve(
+      const approveTx: SmartBCHTransactionTypeExtended = approve(
         liquidator,
         debtReserve,
         this.lendingPoolAddress,
@@ -566,7 +566,7 @@ export default class LendingPool
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs,
         txCallback,
@@ -602,8 +602,8 @@ export default class LendingPool
       augustus,
       swapCallData,
     }: LPSwapCollateral
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
 
     const permitParams = permitSignature || {
       amount: '0',
@@ -621,7 +621,7 @@ export default class LendingPool
     );
 
     if (!approved) {
-      const approveTx: EthereumTransactionTypeExtended = this.erc20Service.approve(
+      const approveTx: SmartBCHTransactionTypeExtended = this.erc20Service.approve(
         user,
         fromAToken,
         this.swapCollateralAddress,
@@ -690,7 +690,7 @@ export default class LendingPool
 
       txs.push({
         tx: txCallback,
-        txType: eEthereumTxType.DLP_ACTION,
+        txType: eSmartBCHTxType.DLP_ACTION,
         gas: this.generateTxPriceEstimation(
           txs,
           txCallback,
@@ -701,7 +701,7 @@ export default class LendingPool
     }
 
     // Direct call to swap and deposit
-    const swapAndDepositTx: EthereumTransactionTypeExtended = await this.liquiditySwapAdapterService.swapAndDeposit(
+    const swapAndDepositTx: SmartBCHTransactionTypeExtended = await this.liquiditySwapAdapterService.swapAndDeposit(
       {
         user,
         assetToSwapFrom: fromAsset,
@@ -744,8 +744,8 @@ export default class LendingPool
       flash,
       useBchPath,
     }: LPRepayWithCollateral
-  ): Promise<EthereumTransactionTypeExtended[]> {
-    const txs: EthereumTransactionTypeExtended[] = [];
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
+    const txs: SmartBCHTransactionTypeExtended[] = [];
 
     const permitParams = permitSignature || {
       amount: '0',
@@ -763,7 +763,7 @@ export default class LendingPool
     );
 
     if (!approved) {
-      const approveTx: EthereumTransactionTypeExtended = this.erc20Service.approve(
+      const approveTx: SmartBCHTransactionTypeExtended = this.erc20Service.approve(
         user,
         fromAToken,
         this.repayWithCollateralAddress,
@@ -842,7 +842,7 @@ export default class LendingPool
 
       txs.push({
         tx: txCallback,
-        txType: eEthereumTxType.DLP_ACTION,
+        txType: eSmartBCHTxType.DLP_ACTION,
         gas: this.generateTxPriceEstimation(
           txs,
           txCallback,
@@ -853,7 +853,7 @@ export default class LendingPool
       return txs;
     }
 
-    const swapAndRepayTx: EthereumTransactionTypeExtended = this.repayWithCollateralAdapterService.swapAndRepay(
+    const swapAndRepayTx: SmartBCHTransactionTypeExtended = this.repayWithCollateralAdapterService.swapAndRepay(
       {
         user,
         collateralAsset: fromAsset,
@@ -888,7 +888,7 @@ export default class LendingPool
       initiator,
       useBchPath,
     }: LPFlashLiquidation
-  ): Promise<EthereumTransactionTypeExtended[]> {
+  ): Promise<SmartBCHTransactionTypeExtended[]> {
     const addSurplus = (amount: string): string => {
       return (
         Number(amount) +
@@ -896,7 +896,7 @@ export default class LendingPool
       ).toString();
     };
 
-    const txs: EthereumTransactionTypeExtended[] = [];
+    const txs: SmartBCHTransactionTypeExtended[] = [];
 
     const lendingPoolContract: ILendingPool = this.getContractInstance(
       this.lendingPoolAddress
@@ -943,7 +943,7 @@ export default class LendingPool
 
     txs.push({
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs,
         txCallback,

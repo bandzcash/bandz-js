@@ -5,8 +5,8 @@ import {
 import RepayWithCollateralAdapterInterface from '../interfaces/RepayWithCollateralAdapter';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   LendingPoolMarketConfig,
   ProtocolAction,
   transactionType,
@@ -51,8 +51,8 @@ export default class RepayWithCollateralAdapterService
       permit,
       useBchPath,
     }: RepayWithCollateralType,
-    txs?: EthereumTransactionTypeExtended[]
-  ): EthereumTransactionTypeExtended {
+    txs?: SmartBCHTransactionTypeExtended[]
+  ): SmartBCHTransactionTypeExtended {
     const repayWithCollateralContract: IRepayWithCollateral = this.getContractInstance(
       this.repayWithCollateralAddress
     );
@@ -73,7 +73,7 @@ export default class RepayWithCollateralAdapterService
 
     return {
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs || [],
         txCallback,

@@ -2,9 +2,9 @@ import { BigNumber } from 'ethers';
 import IERC20ServiceInterface from '../interfaces/ERC20';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
-  tEthereumAddress,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
+  tSmartBCHAddress,
   transactionType,
   tStringCurrencyUnits,
   tStringDecimalUnits,
@@ -26,11 +26,11 @@ export default class ERC20Service
   }
 
   public approve = (
-    user: tEthereumAddress,
-    token: tEthereumAddress,
-    spender: tEthereumAddress,
+    user: tSmartBCHAddress,
+    token: tSmartBCHAddress,
+    spender: tSmartBCHAddress,
     amount: tStringDecimalUnits
-  ): EthereumTransactionTypeExtended => {
+  ): SmartBCHTransactionTypeExtended => {
     const erc20Contract = this.getContractInstance(token);
 
     const txCallback: () => Promise<transactionType> = this.generateTxCallback({
@@ -41,15 +41,15 @@ export default class ERC20Service
 
     return {
       tx: txCallback,
-      txType: eEthereumTxType.ERC20_APPROVAL,
+      txType: eSmartBCHTxType.ERC20_APPROVAL,
       gas: this.generateTxPriceEstimation([], txCallback),
     };
   };
 
   public isApproved = async (
-    token: tEthereumAddress,
-    userAddress: tEthereumAddress,
-    spender: tEthereumAddress,
+    token: tSmartBCHAddress,
+    userAddress: tSmartBCHAddress,
+    spender: tSmartBCHAddress,
     amount: tStringCurrencyUnits
   ): Promise<boolean> => {
     if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) return true;
@@ -66,7 +66,7 @@ export default class ERC20Service
     return allowance.gte(amountBNWithDecimals);
   };
 
-  public decimalsOf = async (token: tEthereumAddress): Promise<number> => {
+  public decimalsOf = async (token: tSmartBCHAddress): Promise<number> => {
     if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) return 18;
     if (!this.tokenDecimals[token]) {
       const erc20Contract = this.getContractInstance(token);
@@ -77,7 +77,7 @@ export default class ERC20Service
   };
 
   public getTokenData = async (
-    token: tEthereumAddress
+    token: tSmartBCHAddress
   ): Promise<TokenMetadataType> => {
     if (token.toLowerCase() === API_BCH_MOCK_ADDRESS.toLowerCase()) {
       return {

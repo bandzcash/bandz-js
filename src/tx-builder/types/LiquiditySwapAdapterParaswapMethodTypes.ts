@@ -1,14 +1,14 @@
 import { BytesLike } from 'ethers';
-import { PermitSignature, tEthereumAddress } from '.';
+import { PermitSignature, tSmartBCHAddress } from '.';
 
 export type SwapAndDepositMethodType = {
-  user: tEthereumAddress;
-  assetToSwapFrom: tEthereumAddress;
-  assetToSwapTo: tEthereumAddress;
+  user: tSmartBCHAddress;
+  assetToSwapFrom: tSmartBCHAddress;
+  assetToSwapTo: tSmartBCHAddress;
   amountToSwap: string;
   minAmountToReceive: string;
   permitParams: PermitSignature;
   swapCallData: BytesLike;
-  augustus: tEthereumAddress;
+  augustus: tSmartBCHAddress;
   swapAll: boolean;
 };

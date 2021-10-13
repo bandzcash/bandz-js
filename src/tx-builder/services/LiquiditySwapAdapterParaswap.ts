@@ -5,8 +5,8 @@ import {
 import LiquiditySwapAdapterInterface from '../interfaces/LiquiditySwapAdapterParaswap';
 import {
   Configuration,
-  eEthereumTxType,
-  EthereumTransactionTypeExtended,
+  eSmartBCHTxType,
+  SmartBCHTransactionTypeExtended,
   LendingPoolMarketConfig,
   ProtocolAction,
   transactionType,
@@ -70,8 +70,8 @@ export default class LiquiditySwapAdapterService
       swapCallData,
       swapAll,
     }: SwapAndDepositMethodType,
-    txs?: EthereumTransactionTypeExtended[]
-  ): EthereumTransactionTypeExtended {
+    txs?: SmartBCHTransactionTypeExtended[]
+  ): SmartBCHTransactionTypeExtended {
     const liquiditySwapContract = this.getContractInstance(
       this.liquiditySwapAdapterAddress
     );
@@ -95,7 +95,7 @@ export default class LiquiditySwapAdapterService
 
     return {
       tx: txCallback,
-      txType: eEthereumTxType.DLP_ACTION,
+      txType: eSmartBCHTxType.DLP_ACTION,
       gas: this.generateTxPriceEstimation(
         txs || [],
         txCallback,
