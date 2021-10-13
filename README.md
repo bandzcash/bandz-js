@@ -174,7 +174,7 @@ import { TxBuilderV2, Network, Market } from '@bandz/protocol-js'
 
 const httpProvider = new Web3.providers.HttpProvider(
     process.env.SMARTBCH_URL ||
-      "https://kovan.infura.io/v3/<project_id>"
+      "https://smartbch.fountainhead.cash/testnet"
   );
 const txBuilder = new TxBuilderV2(Network.main, httpProvider);
 
@@ -468,7 +468,7 @@ import {
 
 const httpProvider = new Web3.providers.HttpProvider(
    process.env.SMARTBCH_URL ||
-   "https://kovan.infura.io/v3/<project_id>"
+   "https://smartbch.fountainhead.cash/testnet"
 );
 const txBuilder = new TxBuilderV2(Network.main, httpProvider);
 const gov2 = txBuilder.bandzGovernanceV2Service;
@@ -612,7 +612,7 @@ import { TxBuilderV2, Network, Market } from '@bandz/protocol-js'
 
 const httpProvider = new Web3.providers.HttpProvider(
     process.env.SMARTBCH_URL ||
-      "https://kovan.infura.io/v3/<project_id>"
+      "https://smartbch.fountainhead.cash/testnet"
   );
 const txBuilder = new TxBuilderV2(Network.main, httpProvider);
 const faucet = txBuilder.faucetService;
@@ -620,7 +620,7 @@ const faucet = txBuilder.faucetService;
 
 ### mint
 
-Mint tokens for the usage on the Bandz protocol on the Kovan network. The amount of minted tokens is fixed and depends on the token
+Mint tokens for the usage on the Bandz protocol on the Testnet(Amber) network. The amount of minted tokens is fixed and depends on the token
 
 - @param `userAddress` The smartBCH address of the wallet the minted tokens will go
 - @param `reserve` The smartBCH address of the token you want to mint

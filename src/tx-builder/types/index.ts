@@ -20,31 +20,11 @@ export enum Market {
 export enum Network {
   mainnet = 'mainnet',
   amber = 'amber',
-  kovan = 'kovan',
-  polygon = 'polygon',
-  fork = 'fork',
-  mumbai = 'mumbai',
-  polygon_fork = 'polygon_fork',
-  avalanche = 'avalanche',
-  avalanche_fork = 'avalanche_fork',
-  fuji = 'fuji', // avalanche test network
-  arbitrum_one = 'arbitrum_one',
-  arbitrum_rinkeby = 'arbitrum_rinkeby',
 }
 
 export enum ChainId {
   mainnet = 10000,
   amber = 10001,
-  kovan = 42,
-  polygon = 137,
-  fork = 1337,
-  mumbai = 80001,
-  polygon_fork = 1338,
-  avalanche = 43114,
-  avalanche_fork = 1337,
-  fuji = 43113, // avalanche test network
-  arbitrum_one = 42161,
-  arbitrum_rinkeby = 421611,
 }
 export type ConstantAddressesByNetwork = {
   [network: string]: {
